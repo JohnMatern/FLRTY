@@ -1,0 +1,4 @@
+Api Key: oHik6iZ8O.190d879d-0e2f-4cd5-a433-6fc61adbe2ff
+Network: Rinkeby
+Network ID: 4
+API Whitelist Token: 8fc71fd9-dd47-4093-a338-39be9eea6b9a
