@@ -465,7 +465,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"localhost/FLRTY/contracts/mFLRTY.sol": "FLRTY"
+			"localhost/FLRTY/contracts/mFLRTY.sol": "FLRTYmtx"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -494,11 +494,11 @@
 			]
 		},
 		"localhost/FLRTY/contracts/mFLRTY.sol": {
-			"keccak256": "0x75e6aca4ded02ea38433f5bd8ffd881317ba90e199c6925064b06998b83dfb63",
+			"keccak256": "0xd34a58040b8df040d412c63f3909a0ffecf7a75edb5565a5f93012776a8cebee",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8a825be0799fbc661a3e58039acff6cf34237e930b4ee230fca847886ad4042c",
-				"dweb:/ipfs/QmSMYrGkVK6mCdXJvGu8zP8k3CusnprpDZQYTGv9yAf1ye"
+				"bzz-raw://f77b31b3823be2bba5e1d8ad332ffe8ebb341ff597a1eedc8738bcef815f6a27",
+				"dweb:/ipfs/Qmctzg7Xpc1uyv5bJ6sSxpjGq1Sjc7rN5mfzNXzBr1YzQQ"
 			]
 		},
 		"localhost/FLRTY/contracts/openzeppelin/math/SafeMath.sol": {

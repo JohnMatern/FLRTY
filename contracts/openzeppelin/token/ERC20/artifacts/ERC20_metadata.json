@@ -50,31 +50,6 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "userAddress",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "address payable",
-						"name": "relayerAddress",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "bytes",
-						"name": "functionSignature",
-						"type": "bytes"
-					}
-				],
-				"name": "MetaTransactionExecuted",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "from",
@@ -204,77 +179,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "userAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "bytes",
-						"name": "functionSignature",
-						"type": "bytes"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "sigR",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "bytes32",
-						"name": "sigS",
-						"type": "bytes32"
-					},
-					{
-						"internalType": "uint8",
-						"name": "sigV",
-						"type": "uint8"
-					}
-				],
-				"name": "executeMetaTransaction",
-				"outputs": [
-					{
-						"internalType": "bytes",
-						"name": "",
-						"type": "bytes"
-					}
-				],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getChainID",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					}
-				],
-				"name": "getNonce",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "nonce",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "spender",
 						"type": "address"
 					},
@@ -292,32 +196,6 @@
 						"type": "bool"
 					}
 				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "initialSupply",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "supply",
-						"type": "uint256"
-					}
-				],
-				"name": "mint",
-				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -415,7 +293,7 @@
 			}
 		],
 		"devdoc": {
-			"details": "Flarity meta tx enabled ERC-20 Token",
+			"details": "Implementation of the {IERC20} interface. This implementation is agnostic to the way tokens are created. This means that a supply mechanism has to be added in a derived contract using {_mint}. For a generic mechanism see {ERC20PresetMinterPauser}. TIP: For a detailed writeup see our guide https://forum.zeppelin.solutions/t/how-to-implement-erc20-supply-mechanisms/226[How to implement supply mechanisms]. We have followed general OpenZeppelin guidelines: functions revert instead of returning `false` on failure. This behavior is nonetheless conventional and does not conflict with the expectations of ERC20 applications. Additionally, an {Approval} event is emitted on calls to {transferFrom}. This allows applications to reconstruct the allowance for all accounts just by listening to said events. Other implementations of the EIP may not emit these events, as it isn't required by the specification. Finally, the non-standard {decreaseAllowance} and {increaseAllowance} functions have been added to mitigate the well-known issues around setting allowances. See {IERC20-approve}.",
 			"kind": "dev",
 			"methods": {
 				"allowance(address,address)": {
@@ -428,10 +306,10 @@
 					"details": "See {IERC20-balanceOf}."
 				},
 				"constructor": {
-					"details": "Sets the values for {name} and {symbol}. The defaut value of {decimals} is 18. To select a different value for {decimals} you should overload it. All three of these values are immutable: they can only be set once during construction."
+					"details": "Sets the values for {name} and {symbol}, initializes {decimals} with a default value of 18. To select a different value for {decimals}, use {_setupDecimals}. All three of these values are immutable: they can only be set once during construction."
 				},
 				"decimals()": {
-					"details": "Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5,05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless this function is overloaded; NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}."
+					"details": "Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5,05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless {_setupDecimals} is called. NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}."
 				},
 				"decreaseAllowance(address,uint256)": {
 					"details": "Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`."
@@ -465,7 +343,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"localhost/FLRTY/contracts/mFLRTY.sol": "FLRTY"
+			"localhost/FLRTY/contracts/openzeppelin/token/ERC20/ERC20.sol": "ERC20"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -479,28 +357,6 @@
 		"remappings": []
 	},
 	"sources": {
-		"localhost/FLRTY/contracts/EIP712Base.sol": {
-			"keccak256": "0x246648e4563a90a00619a0b20639a991673ee3c53b7e44822aef10dc84ed4d90",
-			"urls": [
-				"bzz-raw://1b3d643d86b1a3e913ec254dea28b9b83fb3a2433b896ea55a3d1e5fc65e60eb",
-				"dweb:/ipfs/QmdVctPrvDFUHJUvextQwj4hxHyPRmcZqnuj4JdrMLw8x3"
-			]
-		},
-		"localhost/FLRTY/contracts/EIP712MetaTransaction.sol": {
-			"keccak256": "0xa795ab59c01e554f45118ef08ab0ca04884c087f832dc392652c76d2fd3a78a6",
-			"urls": [
-				"bzz-raw://8c1dc617901395672b334d62c594484b2f1ebd82e959fb050a2d7e864866a2c4",
-				"dweb:/ipfs/Qmeud9ZQBCXS6HcmjWm7h2VFqPGDmrPYZZC1F674axJMdB"
-			]
-		},
-		"localhost/FLRTY/contracts/mFLRTY.sol": {
-			"keccak256": "0x75e6aca4ded02ea38433f5bd8ffd881317ba90e199c6925064b06998b83dfb63",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://8a825be0799fbc661a3e58039acff6cf34237e930b4ee230fca847886ad4042c",
-				"dweb:/ipfs/QmSMYrGkVK6mCdXJvGu8zP8k3CusnprpDZQYTGv9yAf1ye"
-			]
-		},
 		"localhost/FLRTY/contracts/openzeppelin/math/SafeMath.sol": {
 			"keccak256": "0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52",
 			"license": "MIT",
@@ -509,12 +365,28 @@
 				"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR"
 			]
 		},
+		"localhost/FLRTY/contracts/openzeppelin/token/ERC20/ERC20.sol": {
+			"keccak256": "0xca0c2396dbeb3503b51abf4248ebf77a1461edad513c01529df51850a012bee3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://991b44ff44e0496e8554a90f4c0512c28faed45104d40430019f3c67ea67740e",
+				"dweb:/ipfs/Qmc3nRapVbcctELoZS5qe17zLkFB3bETBfwzCTMF1CSuGE"
+			]
+		},
 		"localhost/FLRTY/contracts/openzeppelin/token/ERC20/IERC20.sol": {
 			"keccak256": "0x5f02220344881ce43204ae4a6281145a67bc52c2bb1290a791857df3d19d78f5",
 			"license": "MIT",
 			"urls": [
 				"bzz-raw://24427744bd3e6cb73c17010119af12a318289c0253a4d9acb8576c9fb3797b08",
 				"dweb:/ipfs/QmTLDqpKRBuxGxRAmjgXt9AkXyACW3MtKzi7PYjm5iMfGC"
+			]
+		},
+		"localhost/FLRTY/contracts/openzeppelin/utils/Context.sol": {
+			"keccak256": "0x8d3cb350f04ff49cfb10aef08d87f19dcbaecc8027b0bed12f3275cd12f38cf0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ded47ec7c96750f9bd04bbbc84f659992d4ba901cb7b532a52cd468272cf378f",
+				"dweb:/ipfs/QmfBrGtQP7rZEqEg6Wz6jh2N2Kukpj1z5v3CGWmAqrzm96"
 			]
 		}
 	},
