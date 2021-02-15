@@ -1,0 +1,55 @@
+{
+	"compiler": {
+		"version": "0.5.13+commit.5b0b510c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "version",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"localhost/FLRTY/contracts/v2/EIP712Base.sol": "EIP712Base"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"localhost/FLRTY/contracts/v2/EIP712Base.sol": {
+			"keccak256": "0x149f1e3da61078c67dfc451a77b5836d0b21fdfa8f38e0ad7ceaa3fd01df9349",
+			"urls": [
+				"bzz-raw://0c9e563f7ea5e611399439c7e4f28dab1267efe664b5df54e3386902fd200287",
+				"dweb:/ipfs/QmT7n1YSEgD5Mm3LCnuj3YSMx2TzBtZy7eczCWguJXYjbN"
+			]
+		}
+	},
+	"version": 1
+}

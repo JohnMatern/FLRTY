@@ -3,7 +3,7 @@ config.data = {
     tokenName: "FLRTY",
     apiKey: "oHik6iZ8O.190d879d-0e2f-4cd5-a433-6fc61adbe2ff",
     chainId: '4',
-    address: "0xAF70B1BF957cE1A4b58ab3122563722aaa543Ed2",
+    address: "0xbB27592c01Ff9CEd92468f4C4976874D07414f76",
     abi: [
         {
             "inputs": [
@@ -324,19 +324,6 @@ config.data = {
                     "internalType": "uint8",
                     "name": "",
                     "type": "uint8"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "getChainID",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "id",
-                    "type": "uint256"
                 }
             ],
             "stateMutability": "view",
