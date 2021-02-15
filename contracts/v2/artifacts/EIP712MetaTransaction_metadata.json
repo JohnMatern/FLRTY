@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.7.4+commit.3f05b770"
+		"version": "0.5.13+commit.5b0b510c"
 	},
 	"language": "Solidity",
 	"output": {
@@ -16,13 +16,9 @@
 						"internalType": "string",
 						"name": "version",
 						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "chainid",
-						"type": "uint256"
 					}
 				],
+				"payable": false,
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -52,6 +48,7 @@
 				"type": "event"
 			},
 			{
+				"constant": false,
 				"inputs": [
 					{
 						"internalType": "address",
@@ -87,23 +84,12 @@
 						"type": "bytes"
 					}
 				],
+				"payable": true,
 				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "getChainID",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
+				"constant": true,
 				"inputs": [
 					{
 						"internalType": "address",
@@ -119,30 +105,24 @@
 						"type": "uint256"
 					}
 				],
+				"payable": false,
 				"stateMutability": "view",
 				"type": "function"
 			}
 		],
 		"devdoc": {
-			"kind": "dev",
-			"methods": {},
-			"version": 1
+			"methods": {}
 		},
 		"userdoc": {
-			"kind": "user",
-			"methods": {},
-			"version": 1
+			"methods": {}
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"localhost/FLRTY/contracts/EIP712MetaTransaction.sol": "EIP712MetaTransaction"
+			"localhost/FLRTY/contracts/v2/EIP712MetaTransaction.sol": "EIP712MetaTransaction"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
-		"metadata": {
-			"bytecodeHash": "ipfs"
-		},
 		"optimizer": {
 			"enabled": false,
 			"runs": 200
@@ -150,26 +130,25 @@
 		"remappings": []
 	},
 	"sources": {
-		"localhost/FLRTY/contracts/EIP712Base.sol": {
-			"keccak256": "0x246648e4563a90a00619a0b20639a991673ee3c53b7e44822aef10dc84ed4d90",
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol": {
+			"keccak256": "0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076",
 			"urls": [
-				"bzz-raw://1b3d643d86b1a3e913ec254dea28b9b83fb3a2433b896ea55a3d1e5fc65e60eb",
-				"dweb:/ipfs/QmdVctPrvDFUHJUvextQwj4hxHyPRmcZqnuj4JdrMLw8x3"
+				"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f",
+				"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq"
 			]
 		},
-		"localhost/FLRTY/contracts/EIP712MetaTransaction.sol": {
-			"keccak256": "0xa795ab59c01e554f45118ef08ab0ca04884c087f832dc392652c76d2fd3a78a6",
+		"localhost/FLRTY/contracts/v2/EIP712Base.sol": {
+			"keccak256": "0x149f1e3da61078c67dfc451a77b5836d0b21fdfa8f38e0ad7ceaa3fd01df9349",
 			"urls": [
-				"bzz-raw://8c1dc617901395672b334d62c594484b2f1ebd82e959fb050a2d7e864866a2c4",
-				"dweb:/ipfs/Qmeud9ZQBCXS6HcmjWm7h2VFqPGDmrPYZZC1F674axJMdB"
+				"bzz-raw://0c9e563f7ea5e611399439c7e4f28dab1267efe664b5df54e3386902fd200287",
+				"dweb:/ipfs/QmT7n1YSEgD5Mm3LCnuj3YSMx2TzBtZy7eczCWguJXYjbN"
 			]
 		},
-		"localhost/FLRTY/contracts/openzeppelin/math/SafeMath.sol": {
-			"keccak256": "0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52",
-			"license": "MIT",
+		"localhost/FLRTY/contracts/v2/EIP712MetaTransaction.sol": {
+			"keccak256": "0x4841d6f3cf3de167efef83c5f600e617977317cb444ec2023bb09cb8057759af",
 			"urls": [
-				"bzz-raw://526dc85e1f9b9b45830e202568d267d93dde7a4fcccf4ad7798dadcd92304d3c",
-				"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR"
+				"bzz-raw://4d131a436155498c4a777bef7108011620d75c64f80b0bec09d8f96e5550fed3",
+				"dweb:/ipfs/QmXQpNbK2quBy7FQjnN8PddkYRVnKQxTBo4F1v44uKZs9u"
 			]
 		}
 	},

@@ -1,10 +1,12 @@
+import React, { useState, useEffect } from "react";
+import "react-notifications/lib/notifications.css";
+import Web3 from "web3";
 import { Component } from "react";
 import { Biconomy } from "@biconomy/mexa";
-
+let sigUtil = require("eth-sig-util");
 const { config } = require("./config");
-const Web3 = require("web3");
-const sigUtil = require("eth-sig-util");
-
+ 
+ 
 const domainType = [
   { name: "name", type: "string" },
   { name: "version", type: "string" },
@@ -17,12 +19,13 @@ const metaTransactionType = [
   { name: "functionSignature", type: "bytes" }
 ];
 let domainData = {
-  name: config.data.tokenName,
-  version: 1,
-  chainId: config.data.chainId,
+  name: "FLRTY",
+  version: "1",
+  chainId: 4,
   verifyingContract: config.data.address
 };
-
+ 
+let web3, biconomyObj, contract;
 
 class App extends Component {
   constructor(props) {
@@ -32,28 +35,28 @@ class App extends Component {
       rcp: '',
       web3: 'undefined'
     };
-
+ 
     this.getSignatureParameters = this.getSignatureParameters.bind(this);
   }
-
+ 
   send = () => {
     this.metaTransfer();
   }
-
+ 
   onChangeRcp = (e) => {
     e.preventDefault();
     this.setState({ rcp: e.target.value });
   }
-
+ 
   onChangeAmount = (e) => {
     e.preventDefault();
     this.setState({ amount: this.state.web3.utils.toWei(e.target.value, 'ether')});
   }
-
+ 
   onClickHandler = () => {
     this.send();
   }
-
+ 
   metaTransfer = async () => {
     console.log("rcp: "+this.state.rcp+" amount: "+this.state.amount)
     let functionSignature = this.state.contract.methods
@@ -63,30 +66,37 @@ class App extends Component {
       console.log(functionSignature)
     this.executeMetaTransaction(functionSignature);
   };
-
-
+ 
+ 
   connect = async () => {
-    this.setState({ biconomy: await new Biconomy(window.ethereum, { apiKey: config.data.apiKey }) });
-    this.setState({ web3: await new Web3(this.state.biconomy) });
 
-    this.state.biconomy.onEvent(this.state.biconomy.READY, async () => {
+    biconomyObj = new Biconomy(window["ethereum"],{apiKey: "oHik6iZ8O.190d879d-0e2f-4cd5-a433-6fc61adbe2ff", debug: true});    
+    web3 = new Web3(biconomyObj);
+    
+    biconomyObj.onEvent(biconomyObj.READY, async () => {
       // Initialize your dapp here like getting user accounts etc
+      this.setState({ biconomy: biconomyObj});
 
+      this.setState({ web3: web3 });
+      
       await window.ethereum.enable();
-      this.setState({ contract: await new this.state.web3.eth.Contract(config.data.abi, config.data.address) });
-    }).onEvent(this.state.biconomy.ERROR, (error, message) => {
+
+      contract = await new web3.eth.Contract(config.data.abi, config.data.address) ;
+      this.setState({ contract: contract});
+    }).onEvent(biconomyObj.ERROR, (error, message) => {
       // Handle error while initializing mexa
       console.log(error)
     });
-    let accounts= await this.state.web3.eth.getAccounts();
+
+    let accounts= await web3.eth.getAccounts();
     this.setState({account: accounts[0]})
     console.log("logged in as: "+this.state.account)
   }
-
+ 
   componentDidMount = () => {
     this.connect();
   }
-
+ 
   executeMetaTransaction = async (functionSignature) => {
     let nonce = await this.state.contract.methods.getNonce(this.state.account).call();
     console.log("nonce: "+nonce);
@@ -94,12 +104,12 @@ class App extends Component {
     message.nonce = parseInt(nonce);
     message.from = this.state.account;
     message.functionSignature = functionSignature;
-
+ 
     let stateInstance = this.state;
-
+ 
     console.log("message:");
     console.log(message)
-
+ 
     const dataToSign = JSON.stringify({
       types: {
         EIP712Domain: domainType,
@@ -109,11 +119,11 @@ class App extends Component {
       primaryType: "MetaTransaction",
       message: message
     });
-
+ 
     console.log("data to sign:");
     console.log(dataToSign);
-
-
+ 
+ 
     this.state.web3.eth.currentProvider.send(
       {
         jsonrpc: "2.0",
@@ -121,7 +131,7 @@ class App extends Component {
         method: "eth_signTypedData_v4",
         params: [message.from, dataToSign]
       },
-
+ 
       async function (error, response) {
         let result = await response.result;
         console.log("response result: ")
@@ -146,12 +156,11 @@ class App extends Component {
           console.log("tx:")
           console.log(tx)
       }.bind(this)
-
+ 
     );
-
+ 
   }
-
-  
+ 
   getSignatureParameters = (signature) => {
     console.log("sig: " + signature)
     if (!this.state.web3.utils.isHexStrict(signature)) {
@@ -173,8 +182,8 @@ class App extends Component {
       v: v
     };
   };
-
-
+ 
+ 
   render() {
     return (
       <div class="app">
@@ -185,12 +194,12 @@ class App extends Component {
           <input type="number" name="amount" onChange={this.onChangeAmount} /><br />
           <button type="submit" value="Submit" onClick={this.onClickHandler}>send</button><br />
         </label>
-
+ 
         Recipient Address: {this.state.rcp} <br />
         Amount: {(this.state.web3 !== 'undefined') && this.state.web3.utils.fromWei(this.state.amount,'ether')}
       </div>
     );
   }
 }
-
+ 
 export default App;
