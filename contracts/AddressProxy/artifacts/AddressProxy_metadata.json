@@ -1,0 +1,263 @@
+{
+	"compiler": {
+		"version": "0.7.4+commit.3f05b770"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "eventName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					}
+				],
+				"name": "adminModified",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "eventName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "contractName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "contractAddress",
+						"type": "address"
+					}
+				],
+				"name": "contractAddressModified",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "addAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "contractAddress",
+						"type": "address"
+					}
+				],
+				"name": "addContractAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "addresses",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "admins",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "oldAdmin",
+						"type": "address"
+					}
+				],
+				"name": "removeAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "removeContractAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "setOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Kurt Merbeth </www.merbeth.io>",
+			"details": "Addresses can be accessed by addresses[\"<contract name>\"].      In addition to the management of contract addresses in public 'addresses' mapping, several admins can be created and deleted.       The owner cannot be deleted from the admins mapping, but can be changed. ",
+			"events": {
+				"adminModified(string,address)": {
+					"details": "Emitted when admins mapping is modified."
+				},
+				"contractAddressModified(string,string,address)": {
+					"details": "Emitted when addresses mapping is modified."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"addAdmin(address)": {
+					"details": "Adds a new admin to admins mapping.      Function can only called by admins or owner.      An admin can't add itself twice      Emits an { adminModified } event.",
+					"params": {
+						"newAdmin": "Address of new admin."
+					}
+				},
+				"addContractAddress(string,address)": {
+					"details": "Add a new contract address to addresses mapping.      This function can only called by admins or owner.      Emits an { contractAddressModified } event.",
+					"params": {
+						"contractAddress": "The address of the contract to add.",
+						"name": "The name of the contract to add."
+					}
+				},
+				"constructor": {
+					"details": "Set owner to msg.sender and add msg.sender to admins mapping."
+				},
+				"removeAdmin(address)": {
+					"details": "Removes an admin from admins mapping.      Function can only called by admins or owner.      Admins can't remove themself.      Owner of this smart contract can't be removed drom admins list.      Set admins[<address>] to 0.      Emits an { adminModified } event.",
+					"params": {
+						"oldAdmin": "The address to remove from admins list."
+					}
+				},
+				"removeContractAddress(string)": {
+					"details": "Removes an address from addresses mapping.      For this purpose the address of the sepcific contract is set to address(0) in addresses mapping.      Emits an { contractAddressModified } event.",
+					"params": {
+						"name": "The name of the contract to remove"
+					}
+				},
+				"setOwner(address)": {
+					"details": "Overwrites the existing owner.      Only the current owner can call this function.      Adds new owner to admins list if necessary.      Emits an { adminModified } event.",
+					"params": {
+						"newOwner": "Address of the new owner."
+					}
+				}
+			},
+			"title": "AddressProxy",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "Stores contract names and their addresses in a mapping.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"localhost/FLRTY/contracts/AddressProxy/AdressProxy.sol": "AddressProxy"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"localhost/FLRTY/contracts/AddressProxy/AdressProxy.sol": {
+			"keccak256": "0xbb67a8a1393eb24015c839fcba67826ee9671f6f8983c4d47e0bd1e386e32ac5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6aa15455c8f0baab92809b44cb6e6facdb2fa36a6c3a449dbe0dd12d3c311daf",
+				"dweb:/ipfs/QmRQhepqQvPBkp4X8vMPgbVUzX5hC84UtKuJHmSfnEo1b7"
+			]
+		}
+	},
+	"version": 1
+}
