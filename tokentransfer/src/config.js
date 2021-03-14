@@ -1,9 +1,9 @@
 let config = {};
 config.data = {
     tokenName: "FLRTY",
-    apiKey: "oHik6iZ8O.190d879d-0e2f-4cd5-a433-6fc61adbe2ff",
+    apiKey: "W3h4T3zXu.d247ff01-dfb3-4b6f-b625-e577ee86c612",//"oHik6iZ8O.190d879d-0e2f-4cd5-a433-6fc61adbe2ff",
     chainId: '4',
-    address: "0xbB27592c01Ff9CEd92468f4C4976874D07414f76",
+    address: "0xB639D9De7fBB41D0Be561F670B92356E9b4a53DB",//"0x09dD933F6B43a561CF29D7315fe0Bc2a392307dF", //"0xbB27592c01Ff9CEd92468f4C4976874D07414f76",
     abi: [
         {
             "inputs": [

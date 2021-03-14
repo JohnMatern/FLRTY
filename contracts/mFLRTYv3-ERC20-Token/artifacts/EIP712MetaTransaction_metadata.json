@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.7.6+commit.7338295f"
+		"version": "0.7.4+commit.3f05b770"
 	},
 	"language": "Solidity",
 	"output": {
@@ -118,7 +118,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"localhost/FLRTY/contracts/v3/EIP712MetaTransaction.sol": "EIP712MetaTransaction"
+			"localhost/FLRTY/contracts/mFLRTYv3-ERC20-Token/EIP712MetaTransaction.sol": "EIP712MetaTransaction"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -132,26 +132,26 @@
 		"remappings": []
 	},
 	"sources": {
-		"localhost/FLRTY/contracts/openzeppelin/math/SafeMath.sol": {
-			"keccak256": "0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://526dc85e1f9b9b45830e202568d267d93dde7a4fcccf4ad7798dadcd92304d3c",
-				"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR"
-			]
-		},
-		"localhost/FLRTY/contracts/v3/EIP712Base.sol": {
+		"localhost/FLRTY/contracts/mFLRTYv3-ERC20-Token/EIP712Base.sol": {
 			"keccak256": "0x4406081253d3a38e6ad2ef660a4c1bc7ec2af6d6f7acf07cb439ada791566956",
 			"urls": [
 				"bzz-raw://dfac55415078ac8c5a6c4274ebac9fafb262db5cf13269cf1f76fd907b14b7ea",
 				"dweb:/ipfs/QmaKtg6YsBC5r4CC14ktSUu6RnsU1npr7rSA1RVyXgmuoz"
 			]
 		},
-		"localhost/FLRTY/contracts/v3/EIP712MetaTransaction.sol": {
+		"localhost/FLRTY/contracts/mFLRTYv3-ERC20-Token/EIP712MetaTransaction.sol": {
 			"keccak256": "0x9836d0513da9b2039b65ca6e5662df0b615662a376ea02bf63d1fe5bc87859c9",
 			"urls": [
 				"bzz-raw://01dac6e47a4751d6dae2222f41671718b75b308da4101995ff198aace4200173",
 				"dweb:/ipfs/QmYDBpVRfzXYZGD8CqWMMXjugRTFH96JQERfVa3mJJarz5"
+			]
+		},
+		"localhost/FLRTY/contracts/openzeppelin/math/SafeMath.sol": {
+			"keccak256": "0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://526dc85e1f9b9b45830e202568d267d93dde7a4fcccf4ad7798dadcd92304d3c",
+				"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR"
 			]
 		}
 	},

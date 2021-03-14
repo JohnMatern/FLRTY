@@ -466,6 +466,22 @@
 		"remappings": []
 	},
 	"sources": {
+		"localhost/FLRTY/contracts/AddressProxy/AddressProxy.sol": {
+			"keccak256": "0xf55d78a7adc9f7e265320047549866f31ba19a470fe092fd6ce2fb1ffab4d0c8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://548a839a979fc068e0b5d63fe59ebf90c9f87ed76128998b51e18bc3bf0bff23",
+				"dweb:/ipfs/Qmat7WWyWNJzdEydrHNyNX7WbJDpthix6MoywAzUsf3w4P"
+			]
+		},
+		"localhost/FLRTY/contracts/AddresslistManager/AddresslistManager.sol": {
+			"keccak256": "0xd473a6df0864fa168bccd085871aab23d6a2666db2b32869c122c1d8ce884863",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b714af2fbb05e858ff95614ca794c3ea96797e3509a67180052e4290cf83b2e9",
+				"dweb:/ipfs/QmZByXF2DgkhVAicqF7DZcYd4Er1N5Vjfuj2edQuG5CiKV"
+			]
+		},
 		"localhost/FLRTY/contracts/mFLRTYv3-ERC20-Token/EIP712Base.sol": {
 			"keccak256": "0x4406081253d3a38e6ad2ef660a4c1bc7ec2af6d6f7acf07cb439ada791566956",
 			"urls": [
@@ -481,11 +497,11 @@
 			]
 		},
 		"localhost/FLRTY/contracts/mFLRTYv3-ERC20-Token/mFLRTYv3.sol": {
-			"keccak256": "0xf52793ffb40b6f381a3754bc30bbb0464fef2ba4e2e92b5bf22d24705a55ccfb",
+			"keccak256": "0x00dad15ccf77f6f1ea4a008b71885e8365c52dd9613b626b8d4aec329496f4cc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://20fd0a3497b276613dfea0035de20e33cd10386e033efb82dfaa077fe945b778",
-				"dweb:/ipfs/QmdeSCPQcjFAPwpNEBE9aZJhToKZH4SwrNnTwTo1bwJGiY"
+				"bzz-raw://c48a0f11f8b5c8c705a295b1b48b75e1f2d4c2ec32712152d1a4de4bb4414cbc",
+				"dweb:/ipfs/QmSVkqhhU924a5QGWaekxYDu4PbfJw2GTctQrnyGcMh5jn"
 			]
 		},
 		"localhost/FLRTY/contracts/openzeppelin/math/SafeMath.sol": {

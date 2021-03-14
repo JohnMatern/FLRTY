@@ -124,6 +124,25 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "getAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "owner",
 				"outputs": [
@@ -205,6 +224,12 @@
 				"constructor": {
 					"details": "Set owner to msg.sender and add msg.sender to admins mapping."
 				},
+				"getAddress(string)": {
+					"details": "Returns a address by its name",
+					"params": {
+						"name": "The name of a saved address"
+					}
+				},
 				"removeAdmin(address)": {
 					"details": "Removes an admin from admins mapping.      Function can only called by admins or owner.      Admins can't remove themself.      Owner of this smart contract can't be removed drom admins list.      Set admins[<address>] to 0.      Emits an { adminModified } event.",
 					"params": {
@@ -236,7 +261,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"localhost/FLRTY/contracts/AddressProxy/AdressProxy.sol": "AddressProxy"
+			"localhost/FLRTY/contracts/AddressProxy/AddressProxy.sol": "AddressProxy"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -250,12 +275,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"localhost/FLRTY/contracts/AddressProxy/AdressProxy.sol": {
-			"keccak256": "0xbb67a8a1393eb24015c839fcba67826ee9671f6f8983c4d47e0bd1e386e32ac5",
+		"localhost/FLRTY/contracts/AddressProxy/AddressProxy.sol": {
+			"keccak256": "0xf55d78a7adc9f7e265320047549866f31ba19a470fe092fd6ce2fb1ffab4d0c8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6aa15455c8f0baab92809b44cb6e6facdb2fa36a6c3a449dbe0dd12d3c311daf",
-				"dweb:/ipfs/QmRQhepqQvPBkp4X8vMPgbVUzX5hC84UtKuJHmSfnEo1b7"
+				"bzz-raw://548a839a979fc068e0b5d63fe59ebf90c9f87ed76128998b51e18bc3bf0bff23",
+				"dweb:/ipfs/Qmat7WWyWNJzdEydrHNyNX7WbJDpthix6MoywAzUsf3w4P"
 			]
 		}
 	},

@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity  <0.8.0;
-//port "../openzeppelin/utils/Context.sol";
 import "../openzeppelin/token/ERC20/IERC20.sol";
 import "./EIP712MetaTransaction.sol";
-
+import "../AddresslistManager/AddresslistManager.sol";
+import "../AddressProxy/AddressProxy.sol";
 
 /**
  * @dev Flarity meta tx enabled ERC-20 Token
@@ -12,13 +12,18 @@ import "./EIP712MetaTransaction.sol";
  
 contract mFLRTYv3 is IERC20, EIP712MetaTransaction {
     mapping (address => uint256) private _balances;
-
     mapping (address => mapping (address => uint256)) private _allowances;
 
+    uint256 public initialSupply = 100000000 ether;
     uint256 private _totalSupply;
+    uint8 private once;
+
     string private _name;
     string private _symbol;
-    uint256 public initialSupply = 100000000 ether;
+    string private whitelistName;
+    
+    //AddressProxy ap = AddressProxy(0xb11c4e311720Fe19a26ff973e04eF0464c119284);
+    //AddresslistManager whitelist;
     
     /**
      * @dev Sets the values for {name} and {symbol}.
@@ -33,6 +38,19 @@ contract mFLRTYv3 is IERC20, EIP712MetaTransaction {
         _name = name_;
         _symbol = symbol_;
         _mint(_msgSender(), initialSupply);
+        whitelistName = "general";
+        //whitelist = AddresslistManager(ap.getAddress("whitelist"));
+        once = 0;
+    }
+
+    modifier onlyMember(address sender) {
+      //  require(whitelist.checkEntry(whitelistName,sender),"sender is not allowed to transfer token");
+        _;
+    }
+    
+    modifier onlyOnce() {
+        require(once == 0);
+        _;
     }
 
     function _msgSender() internal view virtual returns (address payable) {
@@ -43,7 +61,7 @@ contract mFLRTYv3 is IERC20, EIP712MetaTransaction {
         this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
         return msg.data;
     }
-
+    
     /**
      * @dev Returns the name of the token.
      */
@@ -98,7 +116,7 @@ contract mFLRTYv3 is IERC20, EIP712MetaTransaction {
      * - `recipient` cannot be the zero address.
      * - the caller must have a balance of at least `amount`.
      */
-    function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
+    function transfer(address recipient, uint256 amount) public virtual override onlyMember(_msgSender()) returns (bool) {
         _transfer(_msgSender(), recipient, amount);
         return true;
     }
@@ -135,7 +153,7 @@ contract mFLRTYv3 is IERC20, EIP712MetaTransaction {
      * - the caller must have allowance for ``sender``'s tokens of at least
      * `amount`.
      */
-    function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
+    function transferFrom(address sender, address recipient, uint256 amount) public virtual override onlyMember(sender) returns (bool) {
         _transfer(sender, recipient, amount);
 
         uint256 currentAllowance = _allowances[sender][_msgSender()];
@@ -231,8 +249,9 @@ contract mFLRTYv3 is IERC20, EIP712MetaTransaction {
         emit Transfer(address(0), account, amount);
     }
     
-    function mint(uint256 supply) external {
+    function mint(uint256 supply) external onlyOnce {
         _mint(_msgSender(), supply);
+        once = 1;
     }
 
     /**

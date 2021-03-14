@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.7.6+commit.7338295f"
+		"version": "0.7.4+commit.3f05b770"
 	},
 	"language": "Solidity",
 	"output": {
@@ -35,7 +35,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"localhost/FLRTY/contracts/v3/EIP712Base.sol": "EIP712Base"
+			"localhost/FLRTY/contracts/mFLRTYv3-ERC20-Token/EIP712Base.sol": "EIP712Base"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -49,7 +49,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"localhost/FLRTY/contracts/v3/EIP712Base.sol": {
+		"localhost/FLRTY/contracts/mFLRTYv3-ERC20-Token/EIP712Base.sol": {
 			"keccak256": "0x4406081253d3a38e6ad2ef660a4c1bc7ec2af6d6f7acf07cb439ada791566956",
 			"urls": [
 				"bzz-raw://dfac55415078ac8c5a6c4274ebac9fafb262db5cf13269cf1f76fd907b14b7ea",

@@ -1,9 +1,13 @@
 import { Component } from "react";
 import { Biconomy } from "@biconomy/mexa";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const { config } = require("./config");
 const Web3 = require("web3");
 const sigUtil = require("eth-sig-util");
+const provider = new WalletConnectProvider({
+  infuraId: "09bab57197a241c0a3f998bb0d80691b",
+});
 
 const domainType = [
   { name: "name", type: "string" },
@@ -66,13 +70,15 @@ class App extends Component {
 
 
   connect = async () => {
-    this.setState({ biconomy: await new Biconomy(window.ethereum, { apiKey: config.data.apiKey }) });
+    this.setState({biconomy: await new biconomy(provider, {apiKey: config.data.apiKey})});
+    //this.setState({ biconomy: await new Biconomy(window.ethereum, { apiKey: config.data.apiKey }) });
     this.setState({ web3: await new Web3(this.state.biconomy) });
 
     this.state.biconomy.onEvent(this.state.biconomy.READY, async () => {
       // Initialize your dapp here like getting user accounts etc
 
-      await window.ethereum.enable();
+      await provider.enable();
+      //await window.ethereum.enable();
       this.setState({ contract: await new this.state.web3.eth.Contract(config.data.abi, config.data.address) });
     }).onEvent(this.state.biconomy.ERROR, (error, message) => {
       // Handle error while initializing mexa

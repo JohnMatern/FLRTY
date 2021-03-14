@@ -3,9 +3,12 @@ import "react-notifications/lib/notifications.css";
 import Web3 from "web3";
 import { Component } from "react";
 import { Biconomy } from "@biconomy/mexa";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 let sigUtil = require("eth-sig-util");
 const { config } = require("./config");
- 
+let provider = new WalletConnectProvider({
+  infuraId: "09bab57197a241c0a3f998bb0d80691b",
+});
  
 const domainType = [
   { name: "name", type: "string" },
@@ -19,7 +22,7 @@ const metaTransactionType = [
   { name: "functionSignature", type: "bytes" }
 ];
 let domainData = {
-  name: "FLRTY",
+  name: "TEST",
   version: "1",
   chainId: 4,
   verifyingContract: config.data.address
@@ -69,8 +72,9 @@ class App extends Component {
  
  
   connect = async () => {
-
-    biconomyObj = new Biconomy(window["ethereum"],{apiKey: "oHik6iZ8O.190d879d-0e2f-4cd5-a433-6fc61adbe2ff", debug: true});    
+    await provider.enable();
+    biconomyObj = new Biconomy(provider, {apiKey: config.data.apiKey});
+    //biconomyObj = new Biconomy(window["ethereum"],{apiKey: config.data.apiKey, debug: true});    
     web3 = new Web3(biconomyObj);
     
     biconomyObj.onEvent(biconomyObj.READY, async () => {
@@ -78,8 +82,7 @@ class App extends Component {
       this.setState({ biconomy: biconomyObj});
 
       this.setState({ web3: web3 });
-      
-      await window.ethereum.enable();
+      //await window.ethereum.enable();
 
       contract = await new web3.eth.Contract(config.data.abi, config.data.address) ;
       this.setState({ contract: contract});
@@ -96,7 +99,7 @@ class App extends Component {
   componentDidMount = () => {
     this.connect();
   }
- 
+
   executeMetaTransaction = async (functionSignature) => {
     let nonce = await this.state.contract.methods.getNonce(this.state.account).call();
     console.log("nonce: "+nonce);
@@ -197,6 +200,7 @@ class App extends Component {
  
         Recipient Address: {this.state.rcp} <br />
         Amount: {(this.state.web3 !== 'undefined') && this.state.web3.utils.fromWei(this.state.amount,'ether')}
+        <br />
       </div>
     );
   }
