@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.7.6+commit.7338295f"
+		"version": "0.7.4+commit.3f05b770"
 	},
 	"language": "Solidity",
 	"output": {
@@ -9,22 +9,22 @@
 				"inputs": [
 					{
 						"internalType": "string",
-						"name": "name",
+						"name": "name_",
 						"type": "string"
 					},
 					{
 						"internalType": "address",
-						"name": "creator",
+						"name": "creator_",
 						"type": "address"
 					},
 					{
 						"internalType": "string",
-						"name": "shortDesc",
+						"name": "shortDesc_",
 						"type": "string"
 					},
 					{
 						"internalType": "uint256",
-						"name": "minVotes",
+						"name": "minVotes_",
 						"type": "uint256"
 					}
 				],
@@ -55,6 +55,13 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "endNow",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -138,11 +145,11 @@
 	},
 	"sources": {
 		"localhost/FLRTY/prototype/contracts/Project.sol": {
-			"keccak256": "0xb599f0301404f40d2095fb46b515279a5db45cd78839584cf9e0672c2ce867d3",
+			"keccak256": "0x590daab29e4d5ba63518e0bb5a50572dfb74976177f05ba4389065e53b736417",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d72288db905ae28fd0d3cd40012184dc159dcfe49ffd5bfcb81aaf6b2e011ce6",
-				"dweb:/ipfs/QmNWkFj6nFsRLewHXjCAYD1hDqCDgC1NXEmffhsmFRefXC"
+				"bzz-raw://b44c568e351274fe3b4b4ac4f45e758a162d8a5584daa182449f434206f8a1b3",
+				"dweb:/ipfs/QmPQH2Eugof6qfz1u9o1SDNHv3A9qcTwkkZNrLXskLGBVg"
 			]
 		}
 	},

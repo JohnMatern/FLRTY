@@ -7,7 +7,7 @@ import "./Project.sol";
 
 contract Gov {
    address public owner;
-   uint256 public oneToken = 1000000000000000000;
+   uint256 public oneToken = 100;
    
    mapping(address => bool) public admins;          // admin list
    mapping(address => bool) public accessHubs;      // accessHub list
@@ -33,6 +33,7 @@ contract Gov {
        userWhitelist[msg.sender] = true;
        freeProjectSlots.push(0);         // init removedProjects[0] = 0
        conversionFactor = 10;
+       initSupply = 100;
    }
    
    modifier onlyOwner()             { require(owner == msg.sender,                          "msg.sender is not owner");              _; }
@@ -43,7 +44,7 @@ contract Gov {
    
    
    //
-   // init functions
+   // administrative functions
    //
    function initToken(address _currency, address _voteToken) public onlyOwner {
        currency = CurrencyCoin(_currency);
@@ -58,6 +59,9 @@ contract Gov {
    
    function setConversionFactor(uint256 factor) public onlyAdmin { conversionFactor = factor; }
    function getConversionFactor() public view onlyAdmin returns(uint256) { return conversionFactor; }
+   
+   function removeCommunityRestriction() public onlyOwner { currency.removeCommunityRestriction(); }
+   function setTokenGov(address newGov) public onlyOwner { currency.setGov(newGov); voteToken.setGov(newGov); }
    
    //
    // whitelist functions
@@ -79,6 +83,7 @@ contract Gov {
        sendVoteToken(msg.sender);
    }
    function removeUser(address user) public onlyAdminOrAccessHub { delete userWhitelist[user]; }
+   function isUser(address user) external view returns(bool) { return userWhitelist[user]; }
    
    function addInviteCode(bytes32 code) public onlyAdmin { inviteCodes[code] = true; }
    function addMultipleCodes(bytes32[] memory codes) public onlyAdmin { for(uint i=0; i < codes.length; i++) { inviteCodes[codes[i]] = true; } }
@@ -90,7 +95,7 @@ contract Gov {
    //
    function sendInitialCurrencySupply(address recipient) private {
        require(accessHubs[recipient] == true, "initial currency supply recipient is no accessHub");
-       currency.mintInitSupply(recipient, initSupply);
+       currency.mintInitSupply(recipient, initSupply*oneToken);
    }
    
    function sendVoteToken(address recipient) private {
@@ -141,7 +146,6 @@ contract Gov {
    }
    
    function voteForProject(address project, uint256 amount) public onlyUser {
-       require(amount >= oneToken, "vote token amount to low");
        require(voteToken.balanceOf(msg.sender) >= amount, "user amount of vote token to low");
        require(
            (voteHistory[project][msg.sender] == 0 && amount == 1) || (voteHistory[project][msg.sender]**2 == amount),
@@ -152,14 +156,21 @@ contract Gov {
        voteHistory[project][msg.sender] += amount;
    }
    
-   function endProject(address project) public onlyUser() {
+   function endProject(address project) public onlyUser {
        require(Project(project).creator() == msg.sender, "msg.sender is not project creator");
        require(Project(project).endDate() >= block.timestamp, "can't end project, because project is active");
        freeSlot(project);
        uint256 voteCount = voteToken.balanceOf(project);
        voteToken.burnToken(project, voteCount);
-       if(Project(project).minVotes()*oneToken >= voteCount) currency.fundProject(msg.sender, voteCount*conversionFactor);
+       if(Project(project).minVotes() >= voteCount) currency.fundProject(msg.sender, voteCount*oneToken*conversionFactor);
    }
 
+    function demoEndProject(address project) public onlyAdmin {
+       Project(project).endNow();
+    }
+    
+    function projectCanReceive(address project) external view returns(bool) {
+        return(Project(project).endDate() >= block.timestamp);
+    }
 
 }
