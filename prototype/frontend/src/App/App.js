@@ -1,5 +1,6 @@
 import { React, Component } from 'react';
-import { Footer, Header, Main } from '../pages/index';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
+import { Footer, Header, Main, Wallet, Settings, Projects } from '../pages/index';
 import styled from 'styled-components';
 import { Grid } from '@material-ui/core';
 
@@ -49,6 +50,30 @@ class App extends Component {
     return (
       <Page width={this.state.width} height={this.state.height}>
         <Wrapper>
+          <Router basename='/home'>
+
+
+            <Switch>
+              <Route
+                exact path='/projects'
+                render={() => 
+                  <Projects /> 
+                }
+              />
+              <Route
+                exact path='/wallet'
+                render={() => 
+                  <Projects /> 
+                }
+              />
+              <Route
+                exact path='/settings'
+                render={() => 
+                  <Projects /> 
+                }
+              />
+            </Switch>
+          </Router>
           <Grid
             container
             direction='column'

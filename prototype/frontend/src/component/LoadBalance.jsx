@@ -1,8 +1,12 @@
 import { React, Component } from 'react';
 import styled from 'styled-components';
 import Web3 from "web3";
-import { MetaMaskButton, EthAddress, Button, Input } from 'rimble-ui';
+import { EthAddress } from 'rimble-ui';
 import { MFLRTY_ADDRESS, MFLRTY_ABI } from '../utils/const';
+
+const StyledEthAddress = styled(EthAddress)`
+    color: #fffd54; 
+`
 
 
 class LoadBalance extends Component {
@@ -68,7 +72,7 @@ class LoadBalance extends Component {
     render() {
         return (
             <div>
-                <EthAddress address={this.state.account} />
+                <StyledEthAddress address={this.state.account} textLabels />
                 <p> Balance: {this.state.balance} FLRTY</p><br />
             </div>
         )
