@@ -10,16 +10,22 @@ contract Project {
    uint256 public minVotes;
    
     constructor (
-           string memory name,
-           address creator,
-           string memory shortDesc,
-           uint256 minVotes) {
+           string memory name_,
+           address creator_,
+           string memory shortDesc_,
+           uint256 minVotes_) {
                
         gov = msg.sender;
-        name = name;
-        creator = creator;
-        shortDesc = shortDesc;
+        name = name_;
+        creator = creator_;
+        shortDesc = shortDesc_;
         endDate = block.timestamp + 7 days;
-        minVotes = minVotes;  
+        minVotes = minVotes_;  
+    }
+    
+    modifier onlyGov() { require(msg.sender == gov, "msg.sender is not gov"); _; }
+    
+    function endNow() external onlyGov {
+        endDate = block.timestamp;
     }
 }

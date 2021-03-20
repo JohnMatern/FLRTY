@@ -46,6 +46,7 @@ contract CurrencyCoin is IERC20, EIP712MetaTransaction {
     uint8 private _decimals;
     
     address public gov;
+    bool public communityOnly;
 
     /**
      * @dev Sets the values for {name} and {symbol}, initializes {decimals} with
@@ -56,10 +57,13 @@ contract CurrencyCoin is IERC20, EIP712MetaTransaction {
      * All three of these values are immutable: they can only be set once during
      * construction.
      */
-    constructor (string memory name_, string memory symbol_) public EIP712MetaTransaction(name_, "1") {
+    constructor (string memory name_, string memory symbol_, address gov_) public EIP712MetaTransaction(name_, "1") {
         _name = name_;
         _symbol = symbol_;
         _decimals = 2;
+        communityOnly = true;
+        _mint(msg.sender, 200000);
+        gov = gov_;
     }
     
     
@@ -69,6 +73,7 @@ contract CurrencyCoin is IERC20, EIP712MetaTransaction {
     
     
     modifier onlyGov() { require(_msgSender() == gov, "msg.sender is not gov"); _; }
+    modifier onlyUser(address user) { require(!communityOnly || Gov(gov).isUser(user), "msg.sender is not allowed to use this function"); _; }
     
     /**
      * msgSender() for EIP712MetaTransaction
@@ -86,7 +91,14 @@ contract CurrencyCoin is IERC20, EIP712MetaTransaction {
         _mint(project, amount);
     }
     
+    function removeCommunityRestriction() external onlyGov {
+        require(communityOnly);
+        communityOnly = false;
+    }
     
+    function setGov(address newGov) external onlyGov {
+        gov = newGov;
+    }
     
     
     
@@ -149,7 +161,7 @@ contract CurrencyCoin is IERC20, EIP712MetaTransaction {
      * - `recipient` cannot be the zero address.
      * - the caller must have a balance of at least `amount`.
      */
-    function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
+    function transfer(address recipient, uint256 amount) public virtual override onlyUser(msgSender()) returns (bool)  {
         _transfer(_msgSender(), recipient, amount);
         return true;
     }
@@ -186,7 +198,7 @@ contract CurrencyCoin is IERC20, EIP712MetaTransaction {
      * - the caller must have allowance for ``sender``'s tokens of at least
      * `amount`.
      */
-    function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
+    function transferFrom(address sender, address recipient, uint256 amount) public virtual override onlyUser(msgSender()) returns (bool) {
         _transfer(sender, recipient, amount);
         _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "ERC20: transfer amount exceeds allowance"));
         return true;
@@ -245,6 +257,7 @@ contract CurrencyCoin is IERC20, EIP712MetaTransaction {
     function _transfer(address sender, address recipient, uint256 amount) internal virtual {
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
+        require(!communityOnly || Gov(gov).isUser(recipient), "recipient is no community member");
 
         _beforeTokenTransfer(sender, recipient, amount);
 
