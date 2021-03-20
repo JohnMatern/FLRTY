@@ -1,5 +1,6 @@
 import Connect from './Connect'; 
 import Login from './Login'; 
-import UserMain from './UserMain'; 
+import Send from './Send';
+import LoadBalance from './LoadBalance' 
 
-export { Connect, Login, UserMain }; 
+export { Connect, Login, Send, LoadBalance }; 

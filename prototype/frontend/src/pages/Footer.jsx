@@ -1,12 +1,20 @@
 import { React, Component } from 'react'; 
+import styled from 'styled-components'; 
+
+const Wrapper = styled.section`
+  background-color: #ff675d; 
+  padding: 2em; 
+  border-radius: 20px; 
+  margin: 1em; 
+`
 
 class Footer extends Component {
   
   render() {
     return (
-      <div className="footer">    
-        <h1>With ❤️ from Kurt and Valerie</h1>
-      </div>
+      <Wrapper>    
+        <h1>From Flarity Prototype Squad with ❤️</h1>
+      </Wrapper>
     )
   }
 }
