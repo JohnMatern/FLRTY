@@ -1,12 +1,24 @@
 import { React, Component } from 'react'; 
+import styled from 'styled-components'; 
+
+
+const Wrapper = styled.section`
+  text-align: center; 
+`
+
+const Footline = styled.h2`
+  color: black; 
+  font-family: 'Atak Bold'; 
+`
 
 class Footer extends Component {
   
   render() {
     return (
-      <div className="footer">    
-        <h1>With ❤️ from Kurt and Valerie</h1>
-      </div>
+      <Wrapper>    
+        <Footline>from flarity blockchain prototype squad with ❤️ </Footline>
+        
+      </Wrapper>
     )
   }
 }

@@ -1,14 +1,17 @@
 import { React, Component } from 'react'; 
- 
-// import { Connect } from '../component/index'
-// import Button from '../component/Button'
-//import Button from '@material-ui/core/Button';
 import Web3 from "web3"; 
+import styled from 'styled-components'; 
 
 import { MetaMaskButton, EthAddress, Button, Input } from 'rimble-ui'; 
 import {MFLRTY_ADDRESS, MFLRTY_ABI } from '../utils/const'; 
 
- 
+const Wrapper = styled.section`
+  text-align: center; 
+`
+
+const Headline = styled.h2`
+  font-family: 'Atak Bold'; 
+`
  
 class Main extends Component {
  
@@ -160,7 +163,7 @@ class Main extends Component {
   
   render() {
     return (
-      <div className="main">       
+      <Wrapper>       
         <MetaMaskButton variant="contained" onClick={this.connect}> Connect </MetaMaskButton> <br />
         <p> Is Logged In: {this.state.isLoggedIn ? 'yes' : 'njet'}</p><br />
         <EthAddress address={this.state.account} /> {/*textLabels*/}
@@ -204,7 +207,7 @@ class Main extends Component {
         Amount: {this.state.amount}
  
 
-      </div>
+      </Wrapper>
     )
   }
 }

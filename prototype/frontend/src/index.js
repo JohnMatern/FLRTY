@@ -3,9 +3,19 @@ import ReactDOM from 'react-dom';
 import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 
+import * as themes from './media/theme/schema.json';
+import { setToLS } from './media/theme/storage';
+
+const Index = () => {
+  setToLS('all-themes', themes.default);
+  return(
+    <App />
+  )
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Index />
   </React.StrictMode>,
   document.getElementById('root')
 );
