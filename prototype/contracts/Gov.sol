@@ -3,9 +3,11 @@ pragma solidity <=0.8.0;
 
 import "./CurrencyCoin.sol";
 import "./VoteToken.sol";
+import "./Project.sol";
 
 contract Gov {
    address public owner;
+   uint256 public oneToken = 1000000000000000000;
    
    mapping(address => bool) public admins;          // admin list
    mapping(address => bool) public accessHubs;      // accessHub list
@@ -17,27 +19,20 @@ contract Gov {
    
    CurrencyCoin internal currency;
    VoteToken internal voteToken;
+   uint256 public conversionFactor;
    
-   struct Group {
-       address ownedBy;
-       string name;
-       address[] users;
-   }
-   
-   mapping(address => string) public userGroups;
-   mapping(string => uint256) public groupId;
-   Group[] public groups;
+   address[] public activeProjects;
+   uint256[] internal freeProjectSlots;
+   mapping(address => uint256) private slotHistory;
+   mapping(address => mapping(address => uint256)) private voteHistory; // Project => (User => voteCount)
    
    constructor () {
        owner = msg.sender;
        admins[msg.sender] = true;
        accessHubs[msg.sender] = true;
        userWhitelist[msg.sender] = true;
-       Group storage g;
-       g.ownedBy = msg.sender;
-       g.name = "Admin";
-       g.users.push(msg.sender);
-       groups.push(g);
+       freeProjectSlots.push(0);         // init removedProjects[0] = 0
+       conversionFactor = 10;
    }
    
    modifier onlyOwner()             { require(owner == msg.sender,                          "msg.sender is not owner");              _; }
@@ -45,6 +40,7 @@ contract Gov {
    modifier onlyAccessHub()         { require(accessHubs[msg.sender] == true,               "msg.sender is not accessHub");          _; }
    modifier onlyUser()              { require(userWhitelist[msg.sender] == true,            "msg.sender is not User");               _; }
    modifier onlyAdminOrAccessHub()  { require(admins[msg.sender] || accessHubs[msg.sender], "msg.sender is not admin or accessHub"); _; }
+   
    
    //
    // init functions
@@ -59,6 +55,9 @@ contract Gov {
    
    function setVoteTokenAmount(uint256 amount) public onlyAdmin { voteTokenAmount = amount; }
    function getVoteTokenAmount() public view onlyAdmin returns(uint256) { return voteTokenAmount; }
+   
+   function setConversionFactor(uint256 factor) public onlyAdmin { conversionFactor = factor; }
+   function getConversionFactor() public view onlyAdmin returns(uint256) { return conversionFactor; }
    
    //
    // whitelist functions
@@ -98,23 +97,69 @@ contract Gov {
        require(userWhitelist[recipient] == true, "initial currency supply recipient is no accessHub");
        voteToken.mintToken(recipient, voteTokenAmount);
    }
+
+
+   //
+   // Project functions
+   //
    
-   //
-   // group functions
-   //
-   function addGroup(string memory name) public onlyUser {
-       require(groupId[name] == 0,"group already exists");
-       Group storage g;
-       g.name = name;
-       g.ownedBy = msg.sender;
-       groups.push(g);
-       groupId[name] = groups.length-1;
+   function createProject(string memory name, string memory shortDesc, uint256 minVotes) public onlyUser {
+       address newProject = address(new Project(name, msg.sender, shortDesc, minVotes));
+       bool set = false;
+       for(uint i = 0; i < freeProjectSlots.length; i++) {           // add project address on first free slot of activeProjects
+           if(freeProjectSlots[i] != uint(-1)) {
+               uint256 slot = freeProjectSlots[i];
+                 activeProjects[slot] = newProject;
+                 slotHistory[newProject] = slot;
+                 freeProjectSlots[slot] = uint(-1);
+                 set = true;
+           }
+       }
+       if(!set) {
+           activeProjects.push(newProject);                         // push newProject address, if there is no free slot
+           slotHistory[newProject] = activeProjects.length-1;
+       }
    }
    
-   function addUserToGroup(string memory name, address[] memory user) public onlyUser {
-       require(groups[groupId[name]].ownedBy == msg.sender, "group is not owned by msg.sender");
-       Group storage g = groups[groupId[name]];
-       g.users.push(address);
+   function freeSlot(address oldProject) internal {
+       uint256 slot = slotHistory[oldProject];
+       bool set = false;
+       activeProjects[slot] = address(0);
+       for(uint i; i < freeProjectSlots.length; i++) {
+           if(freeProjectSlots[i] == uint(-1)) {
+               freeProjectSlots[i] = slot;
+               set = true;
+           }
+       }
+       if(!set) {
+           freeProjectSlots.push(slot);
+       }
    }
    
+   function getProjectList() public view onlyUser() returns(address[] memory) {
+       return activeProjects;
+   }
+   
+   function voteForProject(address project, uint256 amount) public onlyUser {
+       require(amount >= oneToken, "vote token amount to low");
+       require(voteToken.balanceOf(msg.sender) >= amount, "user amount of vote token to low");
+       require(
+           (voteHistory[project][msg.sender] == 0 && amount == 1) || (voteHistory[project][msg.sender]**2 == amount),
+           "wrong amount of voting token"
+           );
+        require(Project(project).endDate() <= block.timestamp, "project runtime expired ");
+       voteToken.transferToken(msg.sender, project, amount);
+       voteHistory[project][msg.sender] += amount;
+   }
+   
+   function endProject(address project) public onlyUser() {
+       require(Project(project).creator() == msg.sender, "msg.sender is not project creator");
+       require(Project(project).endDate() >= block.timestamp, "can't end project, because project is active");
+       freeSlot(project);
+       uint256 voteCount = voteToken.balanceOf(project);
+       voteToken.burnToken(project, voteCount);
+       if(Project(project).minVotes()*oneToken >= voteCount) currency.fundProject(msg.sender, voteCount*conversionFactor);
+   }
+
+
 }

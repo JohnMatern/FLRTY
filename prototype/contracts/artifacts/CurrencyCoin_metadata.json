@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.7.4+commit.3f05b770"
+		"version": "0.7.6+commit.7338295f"
 	},
 	"language": "Solidity",
 	"output": {
@@ -16,11 +16,6 @@
 						"internalType": "string",
 						"name": "symbol_",
 						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "gov_",
-						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -248,6 +243,24 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "project",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "fundProject",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "user",
 						"type": "address"
 					}
@@ -412,6 +425,7 @@
 			}
 		],
 		"devdoc": {
+			"details": "Implementation of the {IERC20} interface. This implementation is agnostic to the way tokens are created. This means that a supply mechanism has to be added in a derived contract using {_mint}. For a generic mechanism see {ERC20PresetMinterPauser}. TIP: For a detailed writeup see our guide https://forum.zeppelin.solutions/t/how-to-implement-erc20-supply-mechanisms/226[How to implement supply mechanisms]. We have followed general OpenZeppelin guidelines: functions revert instead of returning `false` on failure. This behavior is nonetheless conventional and does not conflict with the expectations of ERC20 applications. Additionally, an {Approval} event is emitted on calls to {transferFrom}. This allows applications to reconstruct the allowance for all accounts just by listening to said events. Other implementations of the EIP may not emit these events, as it isn't required by the specification. Finally, the non-standard {decreaseAllowance} and {increaseAllowance} functions have been added to mitigate the well-known issues around setting allowances. See {IERC20-approve}.",
 			"kind": "dev",
 			"methods": {
 				"allowance(address,address)": {
@@ -422,6 +436,9 @@
 				},
 				"balanceOf(address)": {
 					"details": "See {IERC20-balanceOf}."
+				},
+				"constructor": {
+					"details": "Sets the values for {name} and {symbol}, initializes {decimals} with a default value of 18. To select a different value for {decimals}, use {_setupDecimals}. All three of these values are immutable: they can only be set once during construction."
 				},
 				"decimals()": {
 					"details": "Returns the number of decimals used to get its user representation. For example, if `decimals` equals `2`, a balance of `505` tokens should be displayed to a user as `5,05` (`505 / 10 ** 2`). Tokens usually opt for a value of 18, imitating the relationship between Ether and Wei. This is the value {ERC20} uses, unless {_setupDecimals} is called. NOTE: This information is only used for _display_ purposes: it in no way affects any of the arithmetic of the contract, including {IERC20-balanceOf} and {IERC20-transfer}."
@@ -473,11 +490,35 @@
 	},
 	"sources": {
 		"localhost/FLRTY/prototype/contracts/CurrencyCoin.sol": {
-			"keccak256": "0x0591a7e179e51bc849298669094fa1d9def4a9f43a8adcd9e17f88606d97448c",
+			"keccak256": "0xa70c40440ff5497de955221369cf7d5ea1b34050497ff1b47f6903f5e26d32f6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://dc12681dde9aab6ba5fdb59311aa5cce76c8d9dc818f614423babaa6c844be04",
-				"dweb:/ipfs/QmXregDL2HJ4miA8yxmnSDYCmjH6K9DacDEv7vBpz5KQES"
+				"bzz-raw://a7dc89d33e7a14d69b2b50f6cc885d61a0b40bd887bca0d4fdfac906cde30556",
+				"dweb:/ipfs/QmZn7U2DNNnA7xbLaoKJXxBNKf6YjEC1XVnHpQt8q7UbNp"
+			]
+		},
+		"localhost/FLRTY/prototype/contracts/Gov.sol": {
+			"keccak256": "0x0b27c9049d814848d0894e4cd725915981e4d88031ed7314f60c2baa2f1795f3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7b4e69c523c8e6c42f059b91714d08a4ffb585fa34e28057bcd565efd62a476e",
+				"dweb:/ipfs/QmUtd9AkEcUHZBHEdstRfu5P2xEiYYjmhfuv4U9af3iEGU"
+			]
+		},
+		"localhost/FLRTY/prototype/contracts/Project.sol": {
+			"keccak256": "0xb599f0301404f40d2095fb46b515279a5db45cd78839584cf9e0672c2ce867d3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d72288db905ae28fd0d3cd40012184dc159dcfe49ffd5bfcb81aaf6b2e011ce6",
+				"dweb:/ipfs/QmNWkFj6nFsRLewHXjCAYD1hDqCDgC1NXEmffhsmFRefXC"
+			]
+		},
+		"localhost/FLRTY/prototype/contracts/VoteToken.sol": {
+			"keccak256": "0x8759abb0b6ed82b3ecd4e13b82a26e840079beb96c181537ab024effbffd31a5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5ed3b9cbf4ea260e77905e7eaa0daab5bbf64dff192fd5698fb3dd12abaa8ba2",
+				"dweb:/ipfs/QmNYr68Wdft6ceBTkCXEehEHW734taejEBMQQy93SgnFnB"
 			]
 		},
 		"localhost/FLRTY/prototype/contracts/lib/EIP712Base.sol": {
