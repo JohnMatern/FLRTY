@@ -1,9 +1,7 @@
-import Header from './Header'; 
-import Main from './Main'; 
-import Footer from './Footer'; 
+import Wallet from './Wallet'; 
 import Projects from './Projects'; 
 import Settings from './Settings'; 
-import Wallet from './Wallet'; 
+import Home from './Home'; 
 
 
-export { Header, Main, Footer, Wallet, Projects, Settings }; 
+export { Home, Wallet, Projects, Settings }; 

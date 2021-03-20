@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   background-color: #ff675d; 
-  padding: 2em; 
+  padding: 1em; 
   border-radius: 20px; 
   margin: 1em; 
 `

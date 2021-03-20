@@ -1,22 +1,12 @@
-import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Footer, Header, Main, Wallet, Settings, Projects } from '../pages/index';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, } from 'react-router-dom';
+import { Home, Wallet, Settings, Projects } from '../pages/index';
 import styled from 'styled-components';
-import { Grid } from '@material-ui/core';
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import { BiHomeHeart, BiCog, BiWallet, BiDonateHeart } from 'react-icons/bi'
 import { IconContext } from 'react-icons/lib';
 
-const Wrapper = styled.section`
-  width: 30%; 
-  background-color: #119962; 
-  border-radius: 20px; 
-  text-align: center; 
-  margin-left: 650px; 
-  padding: 2em; 
-  font-family: sans-serif; 
-`
 
 const Page = styled.section`
   width: ${props => props.width}; 
@@ -31,7 +21,8 @@ class App extends Component {
     super(props);
     this.state = {
       width: window.innerWidth,
-      height: window.innerHeight
+      height: window.innerHeight, 
+      isLoggedIn: false, 
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
@@ -53,7 +44,7 @@ class App extends Component {
 
     return (
       <Page width={this.state.width} height={this.state.height}>
-        <Wrapper>
+        <div>
           <Router>
 
             <Route render={({ location, history }) => (
@@ -68,7 +59,7 @@ class App extends Component {
                 >
                   <SideNav.Toggle />
 
-                  <SideNav.Nav defaultSelected="home">
+                  <SideNav.Nav defaultSelected="wallet">
                     <NavItem eventKey="home">
                       <NavIcon>
                         <IconContext.Provider value={{ size: '30px' }}>
@@ -120,7 +111,7 @@ class App extends Component {
                   </SideNav.Nav>
                 </SideNav>
                 <main>
-                  <Route path="/home" exact component={props => <Main />} />
+                  <Route path="/home" exact component={props => <Home />} />
                   <Route path="/settings" component={props => <Settings />} />
                   <Route path="/wallet" component={props => <Wallet />} />
                   <Route path="/projects" component={props => <Projects />} />
@@ -129,25 +120,7 @@ class App extends Component {
             )}
             />
           </Router>
-          <Grid
-            container
-            direction='column'
-            justify='center'
-            alignItems='center'
-          >
-            <Grid item xs={12}>
-              <Header />
-            </Grid>
-
-            <Grid item xs={12}>
-              <Main />
-            </Grid>
-
-            <Grid item xs={12}>
-              <Footer />
-            </Grid>
-          </Grid>
-        </Wrapper>
+        </div >
       </Page>
     )
   }
