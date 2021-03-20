@@ -7,15 +7,25 @@ import "./lib/EIP712MetaTransaction.sol";
 
 contract VoteToken is ERC20, EIP712MetaTransaction {
     
-     constructor (string memory name_, string memory symbol_) public EIP712MetaTransaction(name_, "1") ERC20(name_, symbol_) {
+    address public gov;
+    
+     constructor (string memory name_, string memory symbol_, address gov_) public EIP712MetaTransaction(name_, "1") ERC20(name_, symbol_) {
         _setupDecimals(0);
+        gov = gov_;
     }
     
+    modifier onlyGov() { require(_msgSender() == gov, "msg.sender is not gov"); _; }
+    
     /**
-     * _msgSender() for EIP712MetaTransaction
+     * msgSender() for EIP712MetaTransaction
      */
      
      function _msgSender() internal view override returns (address payable) {
          return payable(msgSender());
      }  
+     
+    function mintToken(address account, uint256 amount) external onlyGov {
+         _mint(account, amount);
+    }
+    
 }

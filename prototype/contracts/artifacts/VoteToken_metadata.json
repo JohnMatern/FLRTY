@@ -16,6 +16,11 @@
 						"internalType": "string",
 						"name": "symbol_",
 						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "gov_",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -259,6 +264,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "gov",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -279,6 +297,24 @@
 						"type": "bool"
 					}
 				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "mintToken",
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -437,11 +473,11 @@
 	},
 	"sources": {
 		"localhost/FLRTY/prototype/contracts/VoteToken.sol": {
-			"keccak256": "0x45624bbbec3aac90b4e905bd92b0c19b3a212344b0ef7ec6397fdc562401309f",
+			"keccak256": "0xd8ce835465b6efbd25e263ceec64e0bd2851deafbac16d42d9006916350f28c1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e03a166932fbd34a32e2844393f5f23a354ba9189f4f597216fcc6760e422660",
-				"dweb:/ipfs/Qma81A3mheSBxeZgQ9ZDXCeES35aHirD8cVxyznDKv7He8"
+				"bzz-raw://979dc357946422d658a8c17a191d7f319ef00014ebd306817724999fe871b94f",
+				"dweb:/ipfs/QmQqEhQ8WYAay725QvnDs7ak1K7rPS1fdL2WifhWYx6vKc"
 			]
 		},
 		"localhost/FLRTY/prototype/contracts/lib/EIP712Base.sol": {

@@ -16,6 +16,11 @@
 						"internalType": "string",
 						"name": "symbol_",
 						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "gov_",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -259,6 +264,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "gov",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -279,6 +297,24 @@
 						"type": "bool"
 					}
 				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "mintInitSupply",
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -437,11 +473,11 @@
 	},
 	"sources": {
 		"localhost/FLRTY/prototype/contracts/CurrencyCoin.sol": {
-			"keccak256": "0x3fac107b971bf63358fd16bca8f2d37a91cbfe8da39d159ea738c67bc4e5750a",
+			"keccak256": "0x0591a7e179e51bc849298669094fa1d9def4a9f43a8adcd9e17f88606d97448c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1839af32eb93c5ddd2a01d47e2373a9f2cf7fbca7dc0d0b5ceb48f096a5a225b",
-				"dweb:/ipfs/QmPbSfqUx5pLkArZCSDGYHpPKTzgYfmphiiw2t91yZEBwo"
+				"bzz-raw://dc12681dde9aab6ba5fdb59311aa5cce76c8d9dc818f614423babaa6c844be04",
+				"dweb:/ipfs/QmXregDL2HJ4miA8yxmnSDYCmjH6K9DacDEv7vBpz5KQES"
 			]
 		},
 		"localhost/FLRTY/prototype/contracts/lib/EIP712Base.sol": {
