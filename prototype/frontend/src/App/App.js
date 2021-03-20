@@ -1,8 +1,12 @@
-import { React, Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Footer, Header, Main, Wallet, Settings, Projects } from '../pages/index';
 import styled from 'styled-components';
 import { Grid } from '@material-ui/core';
+import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import { BiHomeHeart, BiCog, BiWallet, BiDonateHeart } from 'react-icons/bi'
+import { IconContext } from 'react-icons/lib';
 
 const Wrapper = styled.section`
   width: 30%; 
@@ -50,29 +54,80 @@ class App extends Component {
     return (
       <Page width={this.state.width} height={this.state.height}>
         <Wrapper>
-          <Router basename='/home'>
+          <Router>
 
+            <Route render={({ location, history }) => (
+              <React.Fragment>
+                <SideNav
+                  onSelect={(selected) => {
+                    const to = '/' + selected;
+                    if (location.pathname !== to) {
+                      history.push(to);
+                    }
+                  }}
+                >
+                  <SideNav.Toggle />
 
-            <Switch>
-              <Route
-                exact path='/projects'
-                render={() => 
-                  <Projects /> 
-                }
-              />
-              <Route
-                exact path='/wallet'
-                render={() => 
-                  <Projects /> 
-                }
-              />
-              <Route
-                exact path='/settings'
-                render={() => 
-                  <Projects /> 
-                }
-              />
-            </Switch>
+                  <SideNav.Nav defaultSelected="home">
+                    <NavItem eventKey="home">
+                      <NavIcon>
+                        <IconContext.Provider value={{ size: '30px' }}>
+                          <div>
+                            <BiHomeHeart />
+                          </div>
+                        </IconContext.Provider>
+                      </NavIcon>
+                      <NavText>
+                        Home
+                        </NavText>
+                    </NavItem>
+                    <NavItem eventKey="projects">
+                      <NavIcon>
+                        <IconContext.Provider value={{ size: '30px' }}>
+                          <div>
+                            <BiDonateHeart />
+                          </div>
+                        </IconContext.Provider>
+                      </NavIcon>
+                      <NavText>
+                        Projekte
+                        </NavText>
+                    </NavItem>
+                    <NavItem eventKey="wallet">
+                      <NavIcon>
+                        <IconContext.Provider value={{ size: '30px' }}>
+                          <div>
+                            <BiWallet />
+                          </div>
+                        </IconContext.Provider>
+                      </NavIcon>
+                      <NavText>
+                        Wallet
+                        </NavText>
+                    </NavItem>
+                    <NavItem eventKey="settings">
+                      <NavIcon>
+                        <IconContext.Provider value={{ size: '30px' }}>
+                          <div>
+                            <BiCog />
+                          </div>
+                        </IconContext.Provider>
+                      </NavIcon>
+                      <NavText>
+                        Einstellungen
+                        </NavText>
+                    </NavItem>
+                  </SideNav.Nav>
+                </SideNav>
+                <main>
+                  <Route path="/home" exact component={props => <Main />} />
+                  <Route path="/settings" component={props => <Settings />} />
+                  <Route path="/wallet" component={props => <Wallet />} />
+                  <Route path="/projects" component={props => <Projects />} />
+                </main>
+              </React.Fragment>
+            )}
+            />
           </Router>
           <Grid
             container
