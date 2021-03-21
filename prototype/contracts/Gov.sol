@@ -4,8 +4,9 @@ pragma solidity <=0.8.0;
 import "./CurrencyCoin.sol";
 import "./VoteToken.sol";
 import "./Project.sol";
+import "./lib/EIP712MetaTransaction.sol";
 
-contract Gov {
+contract Gov is EIP712MetaTransaction {
    address public owner;
    uint256 public oneToken = 100;
    
@@ -13,6 +14,9 @@ contract Gov {
    mapping(address => bool) public accessHubs;      // accessHub list
    mapping(address => bool) public userWhitelist;   // user whitelist
    mapping(bytes32 => bool) internal inviteCodes;   // invite code list
+
+   mapping(string => address) public resolveName;
+   mapping(address => string) public resolveAddress;
    
    uint256 internal initSupply;
    uint256 internal voteTokenAmount;
@@ -26,7 +30,7 @@ contract Gov {
    mapping(address => uint256) private slotHistory;
    mapping(address => mapping(address => uint256)) private voteHistory; // Project => (User => voteCount)
    
-   constructor () {
+   constructor () EIP712MetaTransaction("Flarity Gov", "1") {
        owner = msg.sender;
        admins[msg.sender] = true;
        accessHubs[msg.sender] = true;
@@ -34,13 +38,14 @@ contract Gov {
        freeProjectSlots.push(0);         // init removedProjects[0] = 0
        conversionFactor = 10;
        initSupply = 100;
+       voteTokenAmount = 100;
    }
    
-   modifier onlyOwner()             { require(owner == msg.sender,                          "msg.sender is not owner");              _; }
-   modifier onlyAdmin()             { require(admins[msg.sender] == true,                   "msg.sender is not admin");              _; }
-   modifier onlyAccessHub()         { require(accessHubs[msg.sender] == true,               "msg.sender is not accessHub");          _; }
-   modifier onlyUser()              { require(userWhitelist[msg.sender] == true,            "msg.sender is not User");               _; }
-   modifier onlyAdminOrAccessHub()  { require(admins[msg.sender] || accessHubs[msg.sender], "msg.sender is not admin or accessHub"); _; }
+   modifier onlyOwner()             { require(owner == msgSender(),                          "msgSender() is not owner");              _; }
+   modifier onlyAdmin()             { require(admins[msgSender()] == true,                   "msgSender() is not admin");              _; }
+   modifier onlyAccessHub()         { require(accessHubs[msgSender()] == true,               "msgSender() is not accessHub");          _; }
+   modifier onlyUser()              { require(userWhitelist[msgSender()] == true,            "msgSender() is not User");               _; }
+   modifier onlyAdminOrAccessHub()  { require(admins[msgSender()] || accessHubs[msgSender()], "msgSender() is not admin or accessHub"); _; }
    
    
    //
@@ -79,8 +84,8 @@ contract Gov {
    function addUserByCode(string memory code) public { 
        require(inviteCodes[keccak256(abi.encodePacked(code))] == true,"invite code is invalid"); 
        delete inviteCodes[keccak256(abi.encodePacked(code))];
-       userWhitelist[msg.sender] = true; 
-       sendVoteToken(msg.sender);
+       userWhitelist[msgSender()] = true; 
+       sendVoteToken(msgSender());
    }
    function removeUser(address user) public onlyAdminOrAccessHub { delete userWhitelist[user]; }
    function isUser(address user) external view returns(bool) { return userWhitelist[user]; }
@@ -89,7 +94,15 @@ contract Gov {
    function addMultipleCodes(bytes32[] memory codes) public onlyAdmin { for(uint i=0; i < codes.length; i++) { inviteCodes[codes[i]] = true; } }
    function removeInviteCode(bytes32 code) public onlyAdmin { delete inviteCodes[code]; }
    
-   
+   //
+   // signup functions
+   //
+   function setName(string memory name) public onlyUser {
+       resolveName[name] = msgSender();
+       resolveAddress[msgSender()] = name;
+   }
+
+
    //
    // initial supplies: currency + token
    //
@@ -109,7 +122,7 @@ contract Gov {
    //
    
    function createProject(string memory name, string memory shortDesc, uint256 minVotes) public onlyUser {
-       address newProject = address(new Project(name, msg.sender, shortDesc, minVotes));
+       address newProject = address(new Project(name, msgSender(), shortDesc, minVotes));
        bool set = false;
        for(uint i = 0; i < freeProjectSlots.length; i++) {           // add project address on first free slot of activeProjects
            if(freeProjectSlots[i] != uint(-1)) {
@@ -146,23 +159,23 @@ contract Gov {
    }
    
    function voteForProject(address project, uint256 amount) public onlyUser {
-       require(voteToken.balanceOf(msg.sender) >= amount, "user amount of vote token to low");
+       require(voteToken.balanceOf(msgSender()) >= amount, "user amount of vote token to low");
        require(
-           (voteHistory[project][msg.sender] == 0 && amount == 1) || (voteHistory[project][msg.sender]**2 == amount),
+           (voteHistory[project][msgSender()] == 0 && amount == 1) || (voteHistory[project][msgSender()]**2 == amount),
            "wrong amount of voting token"
            );
         require(Project(project).endDate() <= block.timestamp, "project runtime expired ");
-       voteToken.transferToken(msg.sender, project, amount);
-       voteHistory[project][msg.sender] += amount;
+       voteToken.transferToken(msgSender(), project, amount);
+       voteHistory[project][msgSender()] += amount;
    }
    
    function endProject(address project) public onlyUser {
-       require(Project(project).creator() == msg.sender, "msg.sender is not project creator");
+       require(Project(project).creator() == msgSender(), "msgSender() is not project creator");
        require(Project(project).endDate() >= block.timestamp, "can't end project, because project is active");
        freeSlot(project);
        uint256 voteCount = voteToken.balanceOf(project);
        voteToken.burnToken(project, voteCount);
-       if(Project(project).minVotes() >= voteCount) currency.fundProject(msg.sender, voteCount*oneToken*conversionFactor);
+       if(Project(project).minVotes() >= voteCount) currency.fundProject(msgSender(), voteCount*oneToken*conversionFactor);
    }
 
     function demoEndProject(address project) public onlyAdmin {
