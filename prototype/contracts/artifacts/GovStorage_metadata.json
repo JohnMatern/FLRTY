@@ -6,7 +6,13 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "govAddressManager",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -102,6 +108,42 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "newFriend",
+						"type": "address"
+					}
+				],
+				"name": "addFriend",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "addGroupToUser",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "bytes32",
 						"name": "code",
 						"type": "bytes32"
@@ -134,6 +176,24 @@
 					}
 				],
 				"name": "addNewProject",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "photo",
+						"type": "string"
+					}
+				],
+				"name": "addPhoto",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -286,6 +346,62 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "friends",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getFriends",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getGroups",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "user",
 						"type": "address"
 					}
@@ -296,6 +412,25 @@
 						"internalType": "uint256",
 						"name": "nonce",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getPhoto",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -315,11 +450,30 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getUserGroups",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "gov",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "contract GovAddressManager",
 						"name": "",
 						"type": "address"
 					}
@@ -331,13 +485,38 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "gov_",
+						"name": "",
 						"type": "address"
 					}
 				],
-				"name": "initGov",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "groupIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "groups",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -363,6 +542,25 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					}
+				],
+				"name": "isGroup",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "user",
 						"type": "address"
 					}
@@ -379,16 +577,21 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "once",
-				"outputs": [
+				"inputs": [
 					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
 					}
 				],
-				"stateMutability": "view",
+				"name": "newGroup",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -420,12 +623,79 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "oldFriend",
+						"type": "address"
+					}
+				],
+				"name": "removeFriend",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "removeGroup",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "removeGroupFromUser",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "bytes32",
 						"name": "code",
 						"type": "bytes32"
 					}
 				],
 				"name": "removeInviteCode",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "removePhoto",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -484,19 +754,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "newGov",
-						"type": "address"
-					}
-				],
-				"name": "setGov",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "string",
 						"name": "name",
 						"type": "string"
@@ -526,6 +783,49 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "userGroups",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "userPhoto",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -602,12 +902,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"localhost/FLRTY/prototype/contracts/GovStorage.sol": {
-			"keccak256": "0x42fde22033c05e08b416cac77a18879aa388b0b6954d12ccd592271fe27654fe",
+		"localhost/FLRTY/prototype/contracts/GovAddressManager.sol": {
+			"keccak256": "0x5995f0c43e74a2d4fc2a8cf37c732d3be9ac6e7b79781fbb7cbb9946e036a1d3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0f444343c103122fbdf7fbdff63c3520a654318aeeb8add978f5be439c053b6e",
-				"dweb:/ipfs/QmZ3YcnrjTZeahVZxVHdPJwvxdoxwtayZ8pKYhQarNXQKm"
+				"bzz-raw://7c98ec90b7984c1e6b4059f24ec2622218e4d8e9d3fcc86ebac892413248e3a4",
+				"dweb:/ipfs/QmcZuY4yFfyyyokPPVo9A3yG6Z7xUnQdXJknva5xKGgAfR"
+			]
+		},
+		"localhost/FLRTY/prototype/contracts/GovStorage.sol": {
+			"keccak256": "0x30fab5b2462810e4f4c10d1480cf24309d5e30157a2b211cd6f96d8967d35913",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ebe7ef61f97e19444f120788a8cbaec0813b6bf9b1e7421ecf6497b10cd79475",
+				"dweb:/ipfs/QmXhmFr5U3TNEWhe3bbduMoWdudZk1syyhmv9ZB9MzTXgz"
 			]
 		},
 		"localhost/FLRTY/prototype/contracts/lib/EIP712Base.sol": {

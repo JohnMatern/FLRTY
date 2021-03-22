@@ -1,0 +1,90 @@
+{
+	"compiler": {
+		"version": "0.7.4+commit.3f05b770"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "gov",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "gov_",
+						"type": "address"
+					}
+				],
+				"name": "init",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newGov",
+						"type": "address"
+					}
+				],
+				"name": "setGov",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"localhost/FLRTY/prototype/contracts/GovAddressManager.sol": "GovAddressManager"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"localhost/FLRTY/prototype/contracts/GovAddressManager.sol": {
+			"keccak256": "0x5995f0c43e74a2d4fc2a8cf37c732d3be9ac6e7b79781fbb7cbb9946e036a1d3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7c98ec90b7984c1e6b4059f24ec2622218e4d8e9d3fcc86ebac892413248e3a4",
+				"dweb:/ipfs/QmcZuY4yFfyyyokPPVo9A3yG6Z7xUnQdXJknva5xKGgAfR"
+			]
+		}
+	},
+	"version": 1
+}

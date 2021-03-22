@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity <=0.8.0;
 import "./lib/EIP712MetaTransaction.sol";
+import "./GovAddressManager.sol";
 
 contract GovStorage is EIP712MetaTransaction {
-    bool public once;
-    address public gov;
+    GovAddressManager public gov;
     mapping(address => bool) public admins; // admin list
     mapping(address => bool) public accessHubs; // accessHub list
     mapping(address => bool) public userWhitelist; // user whitelist
@@ -12,30 +12,56 @@ contract GovStorage is EIP712MetaTransaction {
 
     mapping(string => address) public resolveName;
     mapping(address => string) public resolveAddress;
-
+    
+    mapping(address => address[]) public friends;
+    mapping(address => string) public userPhoto;
+    
     address[] public activeProjects;
     uint256[] public freeProjectSlots;
     mapping(address => uint256) public slotHistory;
     mapping(address => mapping(address => uint256)) public voteHistory; // Project => (User => voteCount)
+    
+    mapping(address => address[]) public userGroups;
+    mapping(address => uint256) public groupIndex;
+    address[] public groups;
 
-    constructor() EIP712MetaTransaction("Flarity GovStorage", "1") {
-        once = false;
+    constructor(address govAddressManager) EIP712MetaTransaction("Flarity GovStorage", "1") {
         freeProjectSlots.push(0);
+        groups.push(address(0));
+        gov = GovAddressManager(govAddressManager);
     }
 
     modifier onlyGov() {
-        require(msgSender() == gov, "msg.sender is not gov");
+        require(msgSender() == gov.gov(), "msg.sender is not gov");
         _;
     }
-
-    function initGov(address gov_) public {
-        require(!once);
-        gov = gov_;
-        once = true;
+    
+    function addPhoto(address user, string memory photo) external onlyGov {
+        userPhoto[user] = photo;
     }
-
-    function setGov(address newGov) external onlyGov {
-        gov = newGov;
+    
+    function removePhoto(address user) external onlyGov {
+        delete userPhoto[user];
+    }
+    
+    function getPhoto(address user) external view onlyGov returns (string memory) {
+        return userPhoto[user];
+    }
+    
+    function addFriend(address user, address newFriend) external onlyGov {
+        friends[user].push(newFriend);
+    }
+    
+    function removeFriend(address user, address oldFriend) external onlyGov {
+        for(uint i; i < friends[user].length; i++) {
+            if(friends[user][i] == oldFriend) {
+                friends[user][i] = address(0);
+            }
+        }
+    }
+    
+    function getFriends(address user) external view onlyGov returns(address[] memory) {
+        return friends[user];
     }
 
     function getProjectList() external view onlyGov returns(address[] memory) {
@@ -143,4 +169,53 @@ contract GovStorage is EIP712MetaTransaction {
         resolveName[name] = sender;
         resolveAddress[sender] = name;
     }
+    
+    //
+    // group functions
+    //
+    
+    function newGroup(address group, address creator) external onlyGov {
+        groups.push(group);
+        groupIndex[group] = groups.length-1;
+        userGroups[creator].push(group);
+    }
+
+    function addGroupToUser(address group, address user) external onlyGov {
+        userGroups[user].push(group);
+    }
+    
+    function removeGroupFromUser(address group, address user) external onlyGov {
+        for(uint i; i < userGroups[user].length; i++) {
+            if(userGroups[user][i] == group) {
+                userGroups[user][i] = address(0); 
+            }
+        }
+    }
+    
+    function removeGroup(address group, address user) external onlyGov {
+        for(uint i; i < userGroups[user].length; i++) {
+            if(userGroups[user][i] == group) {
+                userGroups[user][i] = address(0); 
+            }
+        }
+        groups[groupIndex[group]] = address(0);
+        groupIndex[group] = 0;
+    }
+    
+    function getGroups() external view onlyGov returns(address[] memory) {
+        return groups;
+    }
+    
+    function getUserGroups(address user) external view onlyGov returns(address[] memory) {
+        return userGroups[user];
+    }
+    
+    function isGroup(address group) external onlyGov returns(bool) {
+        return groupIndex[group] != 0;
+    }
+    
+    /*
+    mapping(address => address[]) public userGroups;
+    mapping(address => uint256) public groupIndex;
+    address[] public groups; */
 }

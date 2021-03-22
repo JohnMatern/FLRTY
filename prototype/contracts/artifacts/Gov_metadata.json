@@ -11,42 +11,29 @@
 				"type": "constructor"
 			},
 			{
+				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
 						"internalType": "address",
-						"name": "",
+						"name": "userAddress",
 						"type": "address"
-					}
-				],
-				"name": "accessHubs",
-				"outputs": [
+					},
 					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "activeProjects",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
+						"indexed": false,
+						"internalType": "address payable",
+						"name": "relayerAddress",
 						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "functionSignature",
+						"type": "bytes"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
+				"name": "MetaTransactionExecuted",
+				"type": "event"
 			},
 			{
 				"inputs": [
@@ -70,6 +57,19 @@
 					}
 				],
 				"name": "addAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newFriend",
+						"type": "address"
+					}
+				],
+				"name": "addFriend",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -104,6 +104,37 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address[]",
+						"name": "users",
+						"type": "address[]"
+					}
+				],
+				"name": "addMultipleUsersToGroup",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "photo",
+						"type": "string"
+					}
+				],
+				"name": "addPhoto",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "user",
 						"type": "address"
 					}
@@ -130,19 +161,90 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "groupAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "user",
 						"type": "address"
 					}
 				],
-				"name": "admins",
-				"outputs": [
+				"name": "addUserToGroup",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
 					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
+						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "newDesc",
+						"type": "string"
 					}
 				],
-				"stateMutability": "view",
+				"name": "changeGroupDescription",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "newName",
+						"type": "string"
+					}
+				],
+				"name": "changeGroupName",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "projectAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "newDesc",
+						"type": "string"
+					}
+				],
+				"name": "changeProjectDescription",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "projectAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "newName",
+						"type": "string"
+					}
+				],
+				"name": "changeProjectName",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -169,16 +271,52 @@
 						"internalType": "string",
 						"name": "shortDesc",
 						"type": "string"
+					}
+				],
+				"name": "createGroup",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "shortDesc",
+						"type": "string"
 					},
 					{
 						"internalType": "uint256",
 						"name": "minVotes",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
 					}
 				],
 				"name": "createProject",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "data",
+				"outputs": [
+					{
+						"internalType": "contract GovStorage",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -208,6 +346,45 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes",
+						"name": "functionSignature",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "sigR",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "sigS",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint8",
+						"name": "sigV",
+						"type": "uint8"
+					}
+				],
+				"name": "executeMetaTransaction",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "getConversionFactor",
 				"outputs": [
@@ -215,6 +392,114 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getFriends",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					}
+				],
+				"name": "getGroupCreator",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					}
+				],
+				"name": "getGroupDesc",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					}
+				],
+				"name": "getGroupName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					}
+				],
+				"name": "getGroupUsers",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getGroups",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
 					}
 				],
 				"stateMutability": "view",
@@ -234,8 +519,122 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getNonce",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "nonce",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getPhoto",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "project",
+						"type": "address"
+					}
+				],
+				"name": "getProjectCreator",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "project",
+						"type": "address"
+					}
+				],
+				"name": "getProjectDesc",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "getProjectList",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "project",
+						"type": "address"
+					}
+				],
+				"name": "getProjectName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getUserGroups",
 				"outputs": [
 					{
 						"internalType": "address[]",
@@ -263,6 +662,11 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "data_",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
 						"name": "_currency",
 						"type": "address"
 					},
@@ -270,11 +674,88 @@
 						"internalType": "address",
 						"name": "_voteToken",
 						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_gmngr",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "conversionFactor_",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "initSupply_",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteTokenAmount_",
+						"type": "uint256"
 					}
 				],
-				"name": "initToken",
+				"name": "init",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "accessHub",
+						"type": "address"
+					}
+				],
+				"name": "isAccessHub",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					}
+				],
+				"name": "isAdmin",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "code",
+						"type": "string"
+					}
+				],
+				"name": "isInvitecode",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -294,6 +775,24 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "newCreator",
+						"type": "address"
+					}
+				],
+				"name": "newGroupCreator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -377,12 +876,45 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "oldFriend",
+						"type": "address"
+					}
+				],
+				"name": "removeFriend",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					}
+				],
+				"name": "removeGroup",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "bytes32",
 						"name": "code",
 						"type": "bytes32"
 					}
 				],
 				"name": "removeInviteCode",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "removePhoto",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -398,6 +930,62 @@
 				"name": "removeUser",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					}
+				],
+				"name": "removeUserFromGroup",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "resolveAddress",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "resolveName",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -429,12 +1017,25 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "setName",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "newGov",
 						"type": "address"
 					}
 				],
-				"name": "setTokenGov",
+				"name": "setNewGov",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -450,25 +1051,6 @@
 				"name": "setVoteTokenAmount",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "userWhitelist",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -518,27 +1100,51 @@
 	},
 	"sources": {
 		"localhost/FLRTY/prototype/contracts/CurrencyCoin.sol": {
-			"keccak256": "0x56a314940786b2e418fbe78d9afbfeaba09c7fa359bda32c4dc6904e5dd8c1d3",
+			"keccak256": "0x40b90a9b8fa930a7a0175c128ce86c525933cfbc01820fc8a3c4fcfc317cee09",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9a11662972d5000b82d5c26432d86790bca92ef471c30f70a4c146248fd25035",
-				"dweb:/ipfs/QmVvyLnfhuN8JDi8KAd1Eng99BxzPQNJFTGfw9Z3sBiKYA"
+				"bzz-raw://b9f769133fbe96344c13f2ca08693313591dd9ea249c6dfa7b5997066b6aca20",
+				"dweb:/ipfs/QmNa55RDStka2Uneoha1BpH4GjAwpuJaki9Jp5YbYkmukC"
 			]
 		},
 		"localhost/FLRTY/prototype/contracts/Gov.sol": {
-			"keccak256": "0xac2975f4ada00f2da5722eaa68eff421aa2a0546f0110cdd2f47efd60523d574",
+			"keccak256": "0x5e955baabf839160972e2c305affe20f14dbc7017d90a2f1cb8cf08603fdc3b1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3c4db01b546445d4fe04bb8637742b5dd0e628b92ce0e7eae4087c75982812bb",
-				"dweb:/ipfs/QmNZ4vFbokpwe3SvqtDkykiDmuBkMzwMv9LxepPVsYrKFQ"
+				"bzz-raw://dc308cd2bea6cf602fca7d527e51b8026209947d0bdd60b517bc9e5b97a1aeb3",
+				"dweb:/ipfs/QmdfB7GW4VPKZdZWCUQBWqdqZayZVffDPr7MR7eUhEXk1T"
+			]
+		},
+		"localhost/FLRTY/prototype/contracts/GovAddressManager.sol": {
+			"keccak256": "0x5995f0c43e74a2d4fc2a8cf37c732d3be9ac6e7b79781fbb7cbb9946e036a1d3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7c98ec90b7984c1e6b4059f24ec2622218e4d8e9d3fcc86ebac892413248e3a4",
+				"dweb:/ipfs/QmcZuY4yFfyyyokPPVo9A3yG6Z7xUnQdXJknva5xKGgAfR"
+			]
+		},
+		"localhost/FLRTY/prototype/contracts/GovStorage.sol": {
+			"keccak256": "0x30fab5b2462810e4f4c10d1480cf24309d5e30157a2b211cd6f96d8967d35913",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ebe7ef61f97e19444f120788a8cbaec0813b6bf9b1e7421ecf6497b10cd79475",
+				"dweb:/ipfs/QmXhmFr5U3TNEWhe3bbduMoWdudZk1syyhmv9ZB9MzTXgz"
+			]
+		},
+		"localhost/FLRTY/prototype/contracts/Group.sol": {
+			"keccak256": "0x91896b49f60bb8f3e6ffac0666eaf5a512513f3c68b82d9a488f603c22cd1b99",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://418c3196364b4df2c0d22ab786a7796ccdb6fa23e84d53ec6a9cb1bfdf131e1d",
+				"dweb:/ipfs/QmPCaePGn7fe42MobukgizFDLySHBqXQNiQJKxHfHkexNg"
 			]
 		},
 		"localhost/FLRTY/prototype/contracts/Project.sol": {
-			"keccak256": "0x590daab29e4d5ba63518e0bb5a50572dfb74976177f05ba4389065e53b736417",
+			"keccak256": "0x0bbd53ad6a89f5c0f2e9936283e1e0c34b3b4c0ea7808f5cf375b67d3fc061e5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b44c568e351274fe3b4b4ac4f45e758a162d8a5584daa182449f434206f8a1b3",
-				"dweb:/ipfs/QmPQH2Eugof6qfz1u9o1SDNHv3A9qcTwkkZNrLXskLGBVg"
+				"bzz-raw://97432e66d183eda25e735fa20e135566ea90fdd14d671db87d0f6a18f16c9fc4",
+				"dweb:/ipfs/QmPVkarZakJdLZjJtHQ2SGPJq3P95XRZDDmyRzzYKbMken"
 			]
 		},
 		"localhost/FLRTY/prototype/contracts/VoteToken.sol": {

@@ -9,6 +9,11 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "creator_",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
 						"name": "gov_",
 						"type": "address"
 					},
@@ -18,28 +23,46 @@
 						"type": "string"
 					},
 					{
-						"internalType": "address",
-						"name": "creator_",
-						"type": "address"
-					},
-					{
 						"internalType": "string",
 						"name": "shortDesc_",
 						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "minVotes_",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "group_",
-						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "users_",
+						"type": "address[]"
+					}
+				],
+				"name": "addMultipleUsers",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user_",
+						"type": "address"
+					}
+				],
+				"name": "addUser",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "clear",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
 				"inputs": [],
@@ -56,22 +79,15 @@
 			},
 			{
 				"inputs": [],
-				"name": "endDate",
+				"name": "getUserList",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "address[]",
 						"name": "",
-						"type": "uint256"
+						"type": "address[]"
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "endNow",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -88,26 +104,38 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "group",
-				"outputs": [
+				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "user",
 						"type": "address"
+					}
+				],
+				"name": "isCreator",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "minVotes",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "isUser",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "bool",
 						"name": "",
-						"type": "uint256"
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -124,6 +152,32 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user_",
+						"type": "address"
+					}
+				],
+				"name": "removeUser",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newCreator",
+						"type": "address"
+					}
+				],
+				"name": "setCreator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -164,6 +218,44 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "userIndex",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "users",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -179,7 +271,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"localhost/FLRTY/prototype/contracts/Project.sol": "Project"
+			"localhost/FLRTY/prototype/contracts/Group.sol": "Group"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -201,12 +293,12 @@
 				"dweb:/ipfs/QmcZuY4yFfyyyokPPVo9A3yG6Z7xUnQdXJknva5xKGgAfR"
 			]
 		},
-		"localhost/FLRTY/prototype/contracts/Project.sol": {
-			"keccak256": "0x0bbd53ad6a89f5c0f2e9936283e1e0c34b3b4c0ea7808f5cf375b67d3fc061e5",
+		"localhost/FLRTY/prototype/contracts/Group.sol": {
+			"keccak256": "0x91896b49f60bb8f3e6ffac0666eaf5a512513f3c68b82d9a488f603c22cd1b99",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://97432e66d183eda25e735fa20e135566ea90fdd14d671db87d0f6a18f16c9fc4",
-				"dweb:/ipfs/QmPVkarZakJdLZjJtHQ2SGPJq3P95XRZDDmyRzzYKbMken"
+				"bzz-raw://418c3196364b4df2c0d22ab786a7796ccdb6fa23e84d53ec6a9cb1bfdf131e1d",
+				"dweb:/ipfs/QmPCaePGn7fe42MobukgizFDLySHBqXQNiQJKxHfHkexNg"
 			]
 		}
 	},

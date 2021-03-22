@@ -91,6 +91,24 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address[]",
+						"name": "users",
+						"type": "address[]"
+					}
+				],
+				"name": "addMultipleUsersToGroup",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "user",
 						"type": "address"
 					}
@@ -114,6 +132,60 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "addUserToGroup",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "newDesc",
+						"type": "string"
+					}
+				],
+				"name": "changeGroupDescription",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "newName",
+						"type": "string"
+					}
+				],
+				"name": "changeGroupName",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "conversionFactor",
 				"outputs": [
@@ -124,6 +196,24 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "shortDesc",
+						"type": "string"
+					}
+				],
+				"name": "createGroup",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -241,6 +331,38 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					}
+				],
+				"name": "getGroupUsers",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getGroups",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "getInitSupply",
 				"outputs": [
@@ -275,6 +397,25 @@
 			{
 				"inputs": [],
 				"name": "getProjectList",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getUserGroups",
 				"outputs": [
 					{
 						"internalType": "address[]",
@@ -413,6 +554,24 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "newCreator",
+						"type": "address"
+					}
+				],
+				"name": "newGroupCreator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "oneToken",
 				"outputs": [
@@ -493,6 +652,19 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					}
+				],
+				"name": "removeGroup",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "bytes32",
 						"name": "code",
 						"type": "bytes32"
@@ -512,6 +684,24 @@
 					}
 				],
 				"name": "removeUser",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "groupAddress",
+						"type": "address"
+					}
+				],
+				"name": "removeUserFromGroup",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -682,27 +872,35 @@
 			]
 		},
 		"localhost/FLRTY/prototype/contracts/GovStorage.sol": {
-			"keccak256": "0x42fde22033c05e08b416cac77a18879aa388b0b6954d12ccd592271fe27654fe",
+			"keccak256": "0xd0d0a66f595c776b8a8f10fe7b056cac3a5f2beb58819d1c2f07017f1f110493",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0f444343c103122fbdf7fbdff63c3520a654318aeeb8add978f5be439c053b6e",
-				"dweb:/ipfs/QmZ3YcnrjTZeahVZxVHdPJwvxdoxwtayZ8pKYhQarNXQKm"
+				"bzz-raw://5ad7777f5b127a530b9f02182adefee19992db21a9f0ad0ba0890b4cbb22405a",
+				"dweb:/ipfs/QmX8QmR3nGtVcuc7Y1acuZx8FArkf1j7eDcQUvLY4ReQUQ"
 			]
 		},
 		"localhost/FLRTY/prototype/contracts/Gov_v2.sol": {
-			"keccak256": "0xdb9a3d84b43a2c277e294f92b113b0046d9f2f4d894870f5f79fd869ef09b254",
+			"keccak256": "0x97b6d7c6085de03c6b49bcf53ba4b58e5adc11739c5cdecc1d08bc794d264e67",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://293493017471af02e0e48123c87acb239b2baaf766da1f22fb0eab3247a49750",
-				"dweb:/ipfs/QmXgqRPRUyaVGfzPimp9vUwXmdJXkoRuJ5KWzfRXEM9hBV"
+				"bzz-raw://9ba6b126698e31ec86d35fb1987c13a72fbb1fda05b6cdac0efa752bf381cab2",
+				"dweb:/ipfs/QmbkSDVCsbd5mwhL6vZH67pXoLE2VrtMMEtyfx6JQfchoE"
+			]
+		},
+		"localhost/FLRTY/prototype/contracts/Group.sol": {
+			"keccak256": "0x1937caeb1480db395202521f4d9e75785a3af4c79592b108e861cab86bcf1880",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1f4ecf81d1debd42e20e1d31745ae52e1b0e4fb0261737e7939edf2debc70ea6",
+				"dweb:/ipfs/QmNYQs9KWbaMb9hckiQtveHCvvgbikNXdZ6kLUJGX79box"
 			]
 		},
 		"localhost/FLRTY/prototype/contracts/Project.sol": {
-			"keccak256": "0x590daab29e4d5ba63518e0bb5a50572dfb74976177f05ba4389065e53b736417",
+			"keccak256": "0x64d2329c2c17f7eea5f83524d6f3e928bffd84df487e699ddeec09974de47f76",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b44c568e351274fe3b4b4ac4f45e758a162d8a5584daa182449f434206f8a1b3",
-				"dweb:/ipfs/QmPQH2Eugof6qfz1u9o1SDNHv3A9qcTwkkZNrLXskLGBVg"
+				"bzz-raw://30c7eb2241385a4c3ab986058c7221e01cd46ff94b83a0be3e9a75c04d0bec6a",
+				"dweb:/ipfs/Qma5LkUC2gQ6Lm7UoveAvtfYbKLUvAX2foXP2FwMtccCnX"
 			]
 		},
 		"localhost/FLRTY/prototype/contracts/VoteToken.sol": {
