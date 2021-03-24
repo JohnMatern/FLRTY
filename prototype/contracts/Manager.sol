@@ -104,7 +104,7 @@ contract Manager is EIP712MetaTransaction {
     function voteForProject(address project, uint256 amount) public {
         require((FunctionsM(whitelist).isUser(msgSender())) && 
         (FunctionsM(vote()).balanceOf(msgSender()) >= amount) && 
-        (FunctionsM(project).getEndDate() <= block.timestamp) && (
+        (FunctionsM(project).getEndDate() >= block.timestamp) && (
             (FunctionsM(store()).getVoteHistory(project, msgSender()) == 0 && amount == 1) || 
             (FunctionsM(store()).getVoteHistory(project, msgSender())**2 == amount)
         ));
@@ -113,11 +113,11 @@ contract Manager is EIP712MetaTransaction {
     }
 
     function endProject(address project) public {
-        require((FunctionsM(whitelist).isUser(msgSender())) && (FunctionsM(project).getCreator() == msgSender()) && (FunctionsM(project).getEndDate() >= block.timestamp));
+        require((FunctionsM(whitelist).isUser(msgSender())) && (FunctionsM(project).getCreator() == msgSender()) && (FunctionsM(project).getEndDate() <= block.timestamp));
         FunctionsM(store()).freeSlot(project);
         uint256 voteCount = FunctionsM(vote()).balanceOf(project);
         FunctionsM(vote()).burnToken(project, voteCount);
-        if (FunctionsM(project).getMinVotes() >= voteCount)
+        if (FunctionsM(project).getMinVotes() <= voteCount)
             FunctionsM(currency()).mintToken(msgSender(),voteCount*conversationFactor*100);
     }
 
