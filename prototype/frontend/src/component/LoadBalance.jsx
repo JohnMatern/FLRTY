@@ -2,7 +2,7 @@ import { React, Component } from 'react';
 import styled from 'styled-components';
 import Web3 from "web3";
 import { EthAddress } from 'rimble-ui';
-import { MFLRTY_ADDRESS, MFLRTY_ABI } from '../utils/const';
+import { MOKI, MOKI_ABI } from '../utils/const';
 
 const StyledEthAddress = styled(EthAddress)`
     color: #fffd54; 
@@ -29,10 +29,11 @@ class LoadBalance extends Component {
     }
 
     manageState = async () => {
-        this.setState({
+        await this.setState({
             web3: await this.props.web3, 
             account: await this.props.account
         })
+        this.loadBalance();
     }
 
     onClickHandler = async (event) => {
@@ -56,12 +57,12 @@ class LoadBalance extends Component {
    */
     loadBalance = async () => {
 
-        const contract = new this.state.web3.eth.Contract(MFLRTY_ABI, MFLRTY_ADDRESS)
+        const contract = new this.state.web3.eth.Contract(MOKI_ABI, MOKI)
         const balance = await contract.methods.balanceOf(this.state.account).call()
         console.log(balance)
         this.setState({
             tokenInstance: contract,
-            balance: Math.floor(Web3.utils.fromWei(balance, 'ether') * 10000) / 10000
+            balance: (Math.round(balance) / 100).toFixed(2)
         })
 
         console.log("tokenInstance: " + this.state.tokenInstance)
@@ -73,7 +74,7 @@ class LoadBalance extends Component {
         return (
             <div>
                 <StyledEthAddress address={this.state.account} textLabels />
-                <p> Balance: {this.state.balance} FLRTY</p><br />
+                <p> Balance: {this.state.balance} MOKI</p><br />
             </div>
         )
     }

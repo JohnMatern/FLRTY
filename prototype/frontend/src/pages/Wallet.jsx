@@ -91,12 +91,11 @@ class Wallet extends Component {
 
             <Grid item xs={12}>
               <PinkWrapper>
-                <LoadBalance
+               <Send
                   web3={this.state.web3}
                   account={this.state.account}
                 />
-
-                <Send
+                 <LoadBalance
                   web3={this.state.web3}
                   account={this.state.account}
                 />

@@ -95,7 +95,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FLRTY/prototype/contracts/VoteToken.sol": "Functions"
+			"FLRTY/prototype/contracts/CurrencyCoin.sol": "Functions"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -103,18 +103,18 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
-			"runs": 400
+			"enabled": false,
+			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"FLRTY/prototype/contracts/VoteToken.sol": {
-			"keccak256": "0x8ac615b3d82b56b2f923b5898411ef374b013d38430a69de3a9195104f8b83fa",
+		"FLRTY/prototype/contracts/CurrencyCoin.sol": {
+			"keccak256": "0x3db6f557349ae9c1d60b2138c096dc3c7d0d3ab12a13d6fc7016eef272081186",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://926e311ee07b55868d909d8fe905df2e6c597fb2a5c08e0c433e58d62af43391",
-				"dweb:/ipfs/QmVoyunBbasCGWHNxaWGE5AkS1P3NNHoBtESFtqo9vaJL3"
+				"bzz-raw://1268575f501d27b3499da2bd9c510603df74ac3beaa534a863891677540e5dfa",
+				"dweb:/ipfs/QmVWTPxXfyxoRoXoSrJuDRvQ17dn4Bp7CxJ9G24nFLf6Sg"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

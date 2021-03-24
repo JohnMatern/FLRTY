@@ -8,7 +8,8 @@ class Login extends Component {
         super(props); 
 
         this.state = {
-            account: '', 
+            account: '',
+            isMetamask: false, 
         }
 
         this.connect = this.connect.bind(this); 
@@ -26,6 +27,7 @@ class Login extends Component {
 
     // Metamask connection
         if (window.web3.currentProvider.isMetaMask === true) {
+            this.setState({isMetaMask: true})
         await window.ethereum.enable();
         this.setState({web3: window.web3});
         console.log("web3: " + this.state.web3);
@@ -51,14 +53,18 @@ class Login extends Component {
         // No web 3 provider
         }
 
-        this.passData(); 
+        await this.passData(); 
     }
 
-    passData = () => {
+    passData = async () => {
         this.props.setUserAccount(this.state.account); 
         this.props.setWeb3(this.state.web3); 
         this.props.setLoggedIn(); 
 
+    }
+
+    componentDidMount = () => {
+        this.connect();
     }
 
     render() {
@@ -67,13 +73,13 @@ class Login extends Component {
 
                 <p>Please connect your MetaMask Wallet. </p>
                 <br /> 
-                <MetaMaskButton 
+                {false && <MetaMaskButton 
                     variant="contained" 
                     onClick={this.connect}
 
                 > 
                     Connect 
-                </MetaMaskButton>
+                </MetaMaskButton> }
                 <br /> 
             </div>
             
