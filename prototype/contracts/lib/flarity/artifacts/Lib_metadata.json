@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"FLRTY/prototype/contracts/lib/flarity/erc20Lib.sol": "Lib"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"FLRTY/prototype/contracts/lib/flarity/erc20Lib.sol": {
+			"keccak256": "0x32dffc58a69dc4092b40acd44b867ab1edceb5929833fd9f5f9d6b11cf0739ca",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://928d34e7d191b76b4dc68e336991ee180fe4fc4e4de794b30e42051b7d35042f",
+				"dweb:/ipfs/QmZ1EERh6dme8yPMMyESvuegKSMeuScGN5YVAzSpjCE6u9"
+			]
+		}
+	},
+	"version": 1
+}

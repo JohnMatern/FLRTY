@@ -6,7 +6,14 @@ import "./lib/openzeppelin/utils/Context.sol";
 import "./lib/openzeppelin/token/ERC20/IERC20.sol";
 import "./lib/openzeppelin/math/SafeMath.sol";
 import "./lib/EIP712MetaTransaction.sol";
-import "./Gov.sol";
+
+contract Functions {
+    function isManager(address) public view returns(bool) {}
+    function isUser(address) public view returns(bool) {}
+    function isAdmin(address) public view returns(bool) {}
+    function isOwner(address) public view returns(bool) {}
+}
+
 
 /**
  * @dev Implementation of the {IERC20} interface.
@@ -44,9 +51,9 @@ contract VoteToken is IERC20, EIP712MetaTransaction {
     string private _name;
     string private _symbol;
     uint8 private _decimals;
-    
-    address public gov;
+
     bool public communityOnly;
+    address public whitelist = 0x4F177Ef371DE589B2574c070f05D24d9f9839A1d;
 
     /**
      * @dev Sets the values for {name} and {symbol}, initializes {decimals} with
@@ -57,66 +64,52 @@ contract VoteToken is IERC20, EIP712MetaTransaction {
      * All three of these values are immutable: they can only be set once during
      * construction.
      */
-    constructor (string memory name_, string memory symbol_, address gov_) public EIP712MetaTransaction(name_, "1") {
+    constructor (string memory name_, string memory symbol_) EIP712MetaTransaction(name_, "1") {
         _name = name_;
         _symbol = symbol_;
         _decimals = 0;
         communityOnly = true;
         _mint(msg.sender, 2000);
-        gov = gov_;
     }
     
-    
-    
-    
-    
-    
-    
-    modifier onlyGov() { require(_msgSender() == gov, "msg.sender is not gov"); _; }
-    modifier onlyUser(address user) { require(!communityOnly || Gov(gov).isUser(user), "msg.sender is not allowed to use this function"); _; }
-    
-    /**
+    modifier onlyManager() { require((Functions(whitelist).isManager(msg.sender)) || (Functions(whitelist).isOwner(msgSender())), "msg.sender is not manager"); _; }
+    modifier onlyAdmin() { require(Functions(whitelist).isAdmin(msg.sender), "msg.sender is not admin"); _; }
+    modifier onlyUser() { require(!communityOnly || Functions(whitelist).isUser(msg.sender), "msg.sender is not user"); _; }
+    modifier onlyWhitelist() { require((msgSender() == whitelist) || (Functions(whitelist).isOwner(msgSender())), "msg.sender is not whitelist"); _; }
+
+   /**
      * msgSender() for EIP712MetaTransaction
      */
      
-     function _msgSender() internal view returns (address payable) {
-         return payable(msgSender());
-     }  
-     
-    function mintInitSupply(address account, uint256 amount) external onlyGov {
-         _mint(account, amount);
+    function _msgSender() internal view returns (address payable) {
+        return payable(msgSender());
+    }  
+
+    function mintInitToken(address receiver, uint256 amount) external onlyWhitelist {
+        _mint(receiver, amount);
     }
-    
-    function mintToken(address receiver, uint256 amount) external onlyGov {
+
+    function mintToken(address receiver, uint256 amount) external onlyManager {
         _mint(receiver, amount);
     }
     
-    function transferToken(address from_, address to_, uint256 amount_) external onlyGov {
+    function transferToken(address from_, address to_, uint256 amount_) external onlyManager {
         _transfer(from_, to_, amount_);
     }
     
-    function burnToken(address from_, uint256 amount_) external onlyGov {
+    function burnToken(address from_, uint256 amount_) external onlyManager {
         _burn(from_, amount_);
     }
-    function removeCommunityRestriction() external onlyGov {
+
+    function removeCommunityRestriction() external onlyWhitelist {
         require(communityOnly);
         communityOnly = false;
     }
     
-    function setGov(address newGov) external onlyGov {
-        gov = newGov;
+    function setWhitelist(address newWhitelist) external onlyWhitelist {
+        whitelist = newWhitelist;
     }
     
-    
-    
-    
-    
-    
-    
-
-    
-    
-
     /**
      * @dev Returns the name of the token.
      */
@@ -171,7 +164,7 @@ contract VoteToken is IERC20, EIP712MetaTransaction {
      * - `recipient` cannot be the zero address.
      * - the caller must have a balance of at least `amount`.
      */
-    function transfer(address recipient, uint256 amount) public virtual override onlyUser(msgSender()) returns (bool)  {
+    function transfer(address recipient, uint256 amount) public virtual override returns (bool)  {
         _transfer(_msgSender(), recipient, amount);
         return true;
     }
@@ -208,7 +201,7 @@ contract VoteToken is IERC20, EIP712MetaTransaction {
      * - the caller must have allowance for ``sender``'s tokens of at least
      * `amount`.
      */
-    function transferFrom(address sender, address recipient, uint256 amount) public virtual override onlyUser(msgSender()) returns (bool) {
+    function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
         _transfer(sender, recipient, amount);
         _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "ERC20: transfer amount exceeds allowance"));
         return true;
@@ -267,7 +260,7 @@ contract VoteToken is IERC20, EIP712MetaTransaction {
     function _transfer(address sender, address recipient, uint256 amount) internal virtual {
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
-        require(!communityOnly || Gov(gov).projectCanReceive(recipient), "project is not allowed to receive token");
+        require(!communityOnly || Functions(whitelist).isUser(msgSender()) || Functions(whitelist).isManager(msgSender()));
         _beforeTokenTransfer(sender, recipient, amount);
 
         _balances[sender] = _balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
