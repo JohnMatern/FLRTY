@@ -2,7 +2,8 @@ import { React, Component } from 'react';
 import styled from 'styled-components';
 import Web3 from "web3";
 import { EthAddress } from 'rimble-ui';
-import { MOKI, MOKI_ABI } from '../utils/const';
+import { MOKI, MOKI_ABI, VOTE, VOTE_ABI } from '../utils/const';
+import M_moki from '../media/img/M_moki.png';
 
 const StyledEthAddress = styled(EthAddress)`
     color: #fffd54; 
@@ -57,24 +58,27 @@ class LoadBalance extends Component {
    */
     loadBalance = async () => {
 
-        const contract = new this.state.web3.eth.Contract(MOKI_ABI, MOKI)
-        const balance = await contract.methods.balanceOf(this.state.account).call()
-        console.log(balance)
+        const moki = new this.state.web3.eth.Contract(MOKI_ABI, MOKI)
+        const vote = new this.state.web3.eth.Contract(VOTE_ABI, VOTE)
+        const mokiBalance = await moki.methods.balanceOf(this.state.account).call()
+        const voteBalance = await vote.methods.balanceOf(this.state.account).call()
+        
         this.setState({
-            tokenInstance: contract,
-            balance: (Math.round(balance) / 100).toFixed(2)
+            mokiInstance: moki,
+            mokiBalance: (Math.round(mokiBalance) / 100).toFixed(2),
+            voteInstance: vote,
+            voteBalance: voteBalance,
         })
-
-        console.log("tokenInstance: " + this.state.tokenInstance)
-        console.log("balance: " + this.state.balance)
-
     }
 
     render() {
         return (
-            <div>
+            <div style={{fontSize:'30px'}}>
                 <StyledEthAddress address={this.state.account} textLabels />
-                <p> Balance: {this.state.balance} MOKI</p><br />
+                <br />
+                {this.state.mokiBalance} <img src={M_moki} style={{width: '30px', height: '23px'}}/> 
+                <br />
+                {this.state.voteBalance} Votes 
             </div>
         )
     }
