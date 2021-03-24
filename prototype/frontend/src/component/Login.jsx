@@ -29,19 +29,17 @@ class Login extends Component {
         await window.ethereum.enable();
         this.setState({web3: window.web3});
         console.log("web3: " + this.state.web3);
-        window.web3.eth.getAccounts((error, accounts) => {
+        await window.web3.eth.getAccounts((error, accounts) => {
             if (accounts.length === 0) {
             console.log("no active accounts");
-            // there is no active accounts in MetaMask
-            this.setState({account: accounts[0]})
+            this.setState({account: 'undefined'});
             } else {
             // it's ok
             console.log("found account");
             this.setState({account: accounts[0]});
-            console.log(this.state.account);
+            console.log(this.state.account)
             }
         });
-
         // for other providers
         } else {
         console.log("other web3 provider");
@@ -58,7 +56,7 @@ class Login extends Component {
 
     passData = () => {
         this.props.setUserAccount(this.state.account); 
-        this.props.setWeb3(this.state.setWeb3); 
+        this.props.setWeb3(this.state.web3); 
         this.props.setLoggedIn(); 
 
     }
