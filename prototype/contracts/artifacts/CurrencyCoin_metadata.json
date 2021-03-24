@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.7.4+commit.3f05b770"
+		"version": "0.7.6+commit.7338295f"
 	},
 	"language": "Solidity",
 	"output": {
@@ -16,11 +16,6 @@
 						"internalType": "string",
 						"name": "symbol_",
 						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "gov_",
-						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -169,6 +164,24 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from_",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount_",
+						"type": "uint256"
+					}
+				],
+				"name": "burnToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "communityOnly",
 				"outputs": [
@@ -261,24 +274,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "project",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "fundProject",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "user",
 						"type": "address"
 					}
@@ -289,19 +284,6 @@
 						"internalType": "uint256",
 						"name": "nonce",
 						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "gov",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -335,7 +317,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "account",
+						"name": "receiver",
 						"type": "address"
 					},
 					{
@@ -344,7 +326,25 @@
 						"type": "uint256"
 					}
 				],
-				"name": "mintInitSupply",
+				"name": "mintInitToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "mintToken",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -373,11 +373,11 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "newGov",
+						"name": "newWhitelist",
 						"type": "address"
 					}
 				],
-				"name": "setGov",
+				"name": "setWhitelist",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -460,6 +460,42 @@
 				],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from_",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to_",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount_",
+						"type": "uint256"
+					}
+				],
+				"name": "transferToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "whitelist",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -513,7 +549,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"localhost/FLRTY/prototype/contracts/CurrencyCoin.sol": "CurrencyCoin"
+			"FLRTY/prototype/contracts/CurrencyCoin.sol": "CurrencyCoin"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -521,59 +557,35 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
-			"runs": 200
+			"enabled": true,
+			"runs": 400
 		},
 		"remappings": []
 	},
 	"sources": {
-		"localhost/FLRTY/prototype/contracts/CurrencyCoin.sol": {
-			"keccak256": "0x56a314940786b2e418fbe78d9afbfeaba09c7fa359bda32c4dc6904e5dd8c1d3",
+		"FLRTY/prototype/contracts/CurrencyCoin.sol": {
+			"keccak256": "0x3db6f557349ae9c1d60b2138c096dc3c7d0d3ab12a13d6fc7016eef272081186",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9a11662972d5000b82d5c26432d86790bca92ef471c30f70a4c146248fd25035",
-				"dweb:/ipfs/QmVvyLnfhuN8JDi8KAd1Eng99BxzPQNJFTGfw9Z3sBiKYA"
+				"bzz-raw://1268575f501d27b3499da2bd9c510603df74ac3beaa534a863891677540e5dfa",
+				"dweb:/ipfs/QmVWTPxXfyxoRoXoSrJuDRvQ17dn4Bp7CxJ9G24nFLf6Sg"
 			]
 		},
-		"localhost/FLRTY/prototype/contracts/Gov.sol": {
-			"keccak256": "0x5bc75249f7140545732162870e4971c1a24fcbb9b91f3667fbdbdc26c9e39acb",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://e1e0965fcb5dcf1ce76ea6a6269584776af7837dede4380351eb28d9adb4adb9",
-				"dweb:/ipfs/QmUnC666ZoeoUpQSDGqn4CRMh3kkVWzFFFQspHxegrKaec"
-			]
-		},
-		"localhost/FLRTY/prototype/contracts/Project.sol": {
-			"keccak256": "0x590daab29e4d5ba63518e0bb5a50572dfb74976177f05ba4389065e53b736417",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://b44c568e351274fe3b4b4ac4f45e758a162d8a5584daa182449f434206f8a1b3",
-				"dweb:/ipfs/QmPQH2Eugof6qfz1u9o1SDNHv3A9qcTwkkZNrLXskLGBVg"
-			]
-		},
-		"localhost/FLRTY/prototype/contracts/VoteToken.sol": {
-			"keccak256": "0x8c1e49ee6678ea31c6fba27366901d32fe27abae05c6049f22b8a57fc447a2c0",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://a52dd10672b1681b10a5039a692bff380e1579e4e708f0e9a42dfe2337adb051",
-				"dweb:/ipfs/Qmd1ZLojdF4Ma2doYScV7FTJc96Gf8qedBYdkxEuE77NZY"
-			]
-		},
-		"localhost/FLRTY/prototype/contracts/lib/EIP712Base.sol": {
+		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {
 			"keccak256": "0x4406081253d3a38e6ad2ef660a4c1bc7ec2af6d6f7acf07cb439ada791566956",
 			"urls": [
 				"bzz-raw://dfac55415078ac8c5a6c4274ebac9fafb262db5cf13269cf1f76fd907b14b7ea",
 				"dweb:/ipfs/QmaKtg6YsBC5r4CC14ktSUu6RnsU1npr7rSA1RVyXgmuoz"
 			]
 		},
-		"localhost/FLRTY/prototype/contracts/lib/EIP712MetaTransaction.sol": {
+		"FLRTY/prototype/contracts/lib/EIP712MetaTransaction.sol": {
 			"keccak256": "0xb3b3b5f92624bca704b92ce1679df52822ab3f95088ce9d94418e40290c78fb8",
 			"urls": [
 				"bzz-raw://69b4180e8f52177c5aa5d2f37e7e8c16d8bbf7a0eaee17bb46efe09f786195cd",
 				"dweb:/ipfs/QmVgFak4wd67Z8nv6o7wyhC1MFYhV6eVkTN1xWg55RK49k"
 			]
 		},
-		"localhost/FLRTY/prototype/contracts/lib/openzeppelin/math/SafeMath.sol": {
+		"FLRTY/prototype/contracts/lib/openzeppelin/math/SafeMath.sol": {
 			"keccak256": "0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52",
 			"license": "MIT",
 			"urls": [
@@ -581,7 +593,7 @@
 				"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR"
 			]
 		},
-		"localhost/FLRTY/prototype/contracts/lib/openzeppelin/token/ERC20/IERC20.sol": {
+		"FLRTY/prototype/contracts/lib/openzeppelin/token/ERC20/IERC20.sol": {
 			"keccak256": "0x5f02220344881ce43204ae4a6281145a67bc52c2bb1290a791857df3d19d78f5",
 			"license": "MIT",
 			"urls": [
@@ -589,7 +601,7 @@
 				"dweb:/ipfs/QmTLDqpKRBuxGxRAmjgXt9AkXyACW3MtKzi7PYjm5iMfGC"
 			]
 		},
-		"localhost/FLRTY/prototype/contracts/lib/openzeppelin/utils/Context.sol": {
+		"FLRTY/prototype/contracts/lib/openzeppelin/utils/Context.sol": {
 			"keccak256": "0x8d3cb350f04ff49cfb10aef08d87f19dcbaecc8027b0bed12f3275cd12f38cf0",
 			"license": "MIT",
 			"urls": [

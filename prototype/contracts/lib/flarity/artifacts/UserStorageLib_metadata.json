@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.7.6+commit.7338295f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"FLRTY/prototype/contracts/lib/flarity/UserStorageLib.sol": "UserStorageLib"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 400
+		},
+		"remappings": []
+	},
+	"sources": {
+		"FLRTY/prototype/contracts/lib/flarity/UserStorageLib.sol": {
+			"keccak256": "0xde8edb4beeb8f17b6e91fb17a4f17f6d04ddbb79f54ea4787dcb614e70f33aae",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://765034e3280269eca23b1996837f8d28a689224e1529581eb3d5006ae5bbd003",
+				"dweb:/ipfs/QmfUgdyPQiiiP1bfaj2sgs1xxQctG5dFXcMkCh1DeSL2gj"
+			]
+		}
+	},
+	"version": 1
+}

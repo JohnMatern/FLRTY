@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.7.4+commit.3f05b770"
+		"version": "0.7.6+commit.7338295f"
 	},
 	"language": "Solidity",
 	"output": {
@@ -9,27 +9,57 @@
 				"inputs": [
 					{
 						"internalType": "string",
-						"name": "name_",
+						"name": "newName",
 						"type": "string"
 					},
 					{
 						"internalType": "address",
-						"name": "creator_",
+						"name": "newCreator",
 						"type": "address"
 					},
 					{
 						"internalType": "string",
-						"name": "shortDesc_",
+						"name": "newDesc",
 						"type": "string"
 					},
 					{
 						"internalType": "uint256",
-						"name": "minVotes_",
+						"name": "newMinVotes",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "newGroup",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "userAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address payable",
+						"name": "relayerAddress",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "functionSignature",
+						"type": "bytes"
+					}
+				],
+				"name": "MetaTransactionExecuted",
+				"type": "event"
 			},
 			{
 				"inputs": [],
@@ -65,8 +95,144 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes",
+						"name": "functionSignature",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "sigR",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "sigS",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint8",
+						"name": "sigV",
+						"type": "uint8"
+					}
+				],
+				"name": "executeMetaTransaction",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
-				"name": "gov",
+				"name": "getCreator",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getDesc",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getEndDate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getGroup",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMinVotes",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getNonce",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "nonce",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "group",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -104,6 +270,45 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "newDesc",
+						"type": "string"
+					}
+				],
+				"name": "setDesc",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "newName",
+						"type": "string"
+					}
+				],
+				"name": "setName",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newWhitelist",
+						"type": "address"
+					}
+				],
+				"name": "setWhitelist",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "shortDesc",
 				"outputs": [
@@ -130,7 +335,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"localhost/FLRTY/prototype/contracts/Project.sol": "Project"
+			"FLRTY/prototype/contracts/Project.sol": "Project"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -138,18 +343,40 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
-			"runs": 200
+			"enabled": true,
+			"runs": 400
 		},
 		"remappings": []
 	},
 	"sources": {
-		"localhost/FLRTY/prototype/contracts/Project.sol": {
-			"keccak256": "0x590daab29e4d5ba63518e0bb5a50572dfb74976177f05ba4389065e53b736417",
+		"FLRTY/prototype/contracts/Project.sol": {
+			"keccak256": "0x0c720670634c7ee6ca930a2fb586b1029d0ddfe15a636c83c48137057a9b9f99",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b44c568e351274fe3b4b4ac4f45e758a162d8a5584daa182449f434206f8a1b3",
-				"dweb:/ipfs/QmPQH2Eugof6qfz1u9o1SDNHv3A9qcTwkkZNrLXskLGBVg"
+				"bzz-raw://8cbabf17a41d5a2a8ada971f2fb8f49d862ae63459a745ba20fe4560c8d2e6f2",
+				"dweb:/ipfs/QmbxeqLC59QDqG1vQRWD4A2JmLrq5B96hzTZyLPECpMHW4"
+			]
+		},
+		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {
+			"keccak256": "0x4406081253d3a38e6ad2ef660a4c1bc7ec2af6d6f7acf07cb439ada791566956",
+			"urls": [
+				"bzz-raw://dfac55415078ac8c5a6c4274ebac9fafb262db5cf13269cf1f76fd907b14b7ea",
+				"dweb:/ipfs/QmaKtg6YsBC5r4CC14ktSUu6RnsU1npr7rSA1RVyXgmuoz"
+			]
+		},
+		"FLRTY/prototype/contracts/lib/EIP712MetaTransaction.sol": {
+			"keccak256": "0xb3b3b5f92624bca704b92ce1679df52822ab3f95088ce9d94418e40290c78fb8",
+			"urls": [
+				"bzz-raw://69b4180e8f52177c5aa5d2f37e7e8c16d8bbf7a0eaee17bb46efe09f786195cd",
+				"dweb:/ipfs/QmVgFak4wd67Z8nv6o7wyhC1MFYhV6eVkTN1xWg55RK49k"
+			]
+		},
+		"FLRTY/prototype/contracts/lib/openzeppelin/math/SafeMath.sol": {
+			"keccak256": "0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://526dc85e1f9b9b45830e202568d267d93dde7a4fcccf4ad7798dadcd92304d3c",
+				"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR"
 			]
 		}
 	},
