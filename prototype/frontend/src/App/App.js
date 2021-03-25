@@ -19,22 +19,15 @@ class App extends Component {
 
     return (
       <div className="app">
+
         <div className="login">
           <h2>Login</h2>
           <button>Connect with wallet here</button>
         </div>
+
         <br /> 
         <br /> 
-        <div className="projects">
-          <h2>Projects</h2>
-          <p>List of Projects</p>
-          <br /> 
-          <p>Create Own Project</p>
-          <form>
-            <label>Name</label>
-            <input type='text' /> 
-          </form>
-        </div>
+  
         <div className="user">
           Username: {this.state.userName}
           <br/>
@@ -45,6 +38,23 @@ class App extends Component {
             Balance Vote: {this.state.balanceVote}
           </div>
         </div>
+
+        <br /> 
+        <br /> 
+  
+        <div className="projects">
+          <h2>Projects</h2>
+          <p>List of Projects</p>
+          <br /> 
+          <p>Create Own Project</p>
+          <form>
+            <label>Name</label>
+            <input type='text' /> 
+          </form>
+        </div>
+
+        <br /> 
+        <br /> 
       </div>
     )
   }
