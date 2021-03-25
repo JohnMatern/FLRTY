@@ -73,7 +73,8 @@ class Send extends Component {
 
     render() {
         return (
-            <div>
+            <div className="send">
+                <h2>Send</h2>
                 <label className="input">
 
                     <input

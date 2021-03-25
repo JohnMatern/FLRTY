@@ -93,8 +93,8 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-
+            <div className="login">
+                <h2>Login</h2>
                 <p>Please connect your MetaMask Wallet. </p>
                 <br /> 
                 <Button 

@@ -5,8 +5,8 @@ class Footer extends Component {
   
   render() {
     return (
-      <div className='Footer'>       
-        <h1>Footer  </h1>
+      <div className='footer'>       
+        <h2>From the Flarity Blockchain Prototype Squad with ❤️ </h2>
       </div>
     )
   }

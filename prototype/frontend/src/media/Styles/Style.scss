@@ -9,13 +9,56 @@ $yellow: #fffd54;
     width: 100%; 
     font-family: sans-serif;
     text-align: center; 
+    background-color: black; 
     
 }
 
 .app {
 
-    background-color: white; 
-    color: black; 
+    height: 100%; 
+    width: 100%; 
+    background-color: black; 
+    text-align: center; 
+
+    .appContainer {
+        text-align: center; 
+        width: 30%; 
+        background-color: $green; 
+
+        .header {
+
+            background-color: $pink;
+            padding: 1em; 
+
+        }
+
+        .footer {
+
+            background-color: $pink;
+            padding: 1em; 
+
+        }
+
+        .login {
+            
+            background-color: $yellow;
+
+        }
+
+        .loadBalance {
+
+            background-color: $red;
+
+        }
+
+        .send {
+
+            background-color: $pink;
+
+        }
+
+
+    }
 
 }
 
