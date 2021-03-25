@@ -65,7 +65,26 @@ class App extends Component {
     this.setState({
       whitelist: whitelist
     })
+  }  
+  
+  setStore = (store) => {
+    this.setState({
+      store: store
+    })
   }
+  
+  setGroupInstance = (group) => {
+    this.setState({
+      groupInstance: group
+    })
+  }
+
+  setProjectInstance = (project) => {
+    this.setState({
+      projectInstance: project
+    })
+  }
+  
 
   afterLogin = async () => {
     this.setState({
@@ -86,13 +105,16 @@ class App extends Component {
               setLoggedIn={this.setLoggedIn}
               setToken={this.setToken}
               setWhitelist={this.setWhitelist}
+              setStore={this.setStore}
+              setGroupInstance={this.setGroupInstance}
+              setProjectInstance={this.setProjectInstance}
               afterLogin={this.afterLogin}
             />}
 
           {!this.state.isUser && this.state.isLoggedIn && <MustWhitelist account={this.state.account} />}
           {this.state.isUser && this.state.isLoggedIn && <Send />}
 
-          {this.state.isUser && this.state.isLoggedIn && <Projects />}
+          {this.state.isUser && this.state.isLoggedIn && <Projects store={this.state.store} group={this.state.groupInstance} project={this.state.projectInstance}/>}
           <Footer />
 
 

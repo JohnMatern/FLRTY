@@ -31,7 +31,7 @@ contract Group is EIP712MetaTransaction {
     modifier onlyWhitelist() { require(msgSender() == whitelist); _; }
 
     function addUser(address user_) external onlyManager {
-        require(userIndex[user_] > 0, "user already in list");
+        require(userIndex[user_] == 0, "user already in list");
         users.push(user_);
         userIndex[user_] = users.length-1;
     }

@@ -25,4 +25,20 @@ contract DeployGroup {
     function setWhitelist(address newWhitelist) external onlyWhitelist {
         whitelist = newWhitelist;
     }
+    
+    function getName() public view returns (string memory) {
+        return name;
+    }
+    
+    function getDesc() public view returns(string memory)  {
+        return shortDesc;
+    }    
+    
+    function getCreator() public view returns(address) {
+        return creator;
+    }
+    
+    function getUserList() public view returns(address[] memory) {
+        return users;
+    }
 }

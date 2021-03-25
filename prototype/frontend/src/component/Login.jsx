@@ -1,7 +1,7 @@
 import { React, Component } from 'react'; 
 import Web3 from "web3"; 
 import { Button } from '@material-ui/core'
-import { MOKI, MOKI_ABI, VOTE, VOTE_ABI, WHITELIST, WHITELIST_ABI } from '../utils/const';
+import { MOKI, MOKI_ABI, VOTE, VOTE_ABI, WHITELIST, WHITELIST_ABI, STORE, STORE_ABI, GROUP_ABI, PROJECT_ABI } from '../utils/const';
 
 class Login extends Component {
 
@@ -55,6 +55,9 @@ class Login extends Component {
         }
         await this.loadBalance();
         await this.loadWhitelist();
+        await this.loadStore();
+        await this.loadGroupInstance();
+        await this.loadProjectInstance();
         await this.passData(); 
         this.props.afterLogin();
     }
@@ -83,12 +86,41 @@ class Login extends Component {
         })
     }
 
+    loadStore = async () => {
+        const store = new this.state.web3.eth.Contract(STORE_ABI, STORE)
+
+        await this.setState({
+            store: store
+        })
+    }
+
+    loadGroupInstance = async () => {
+        const group = new this.state.web3.eth.Contract(GROUP_ABI)
+
+        await this.setState({
+            group: group
+        })
+    }
+
+    loadProjectInstance = async () => {
+        const project = new this.state.web3.eth.Contract(PROJECT_ABI)
+
+        await this.setState({
+            project: project
+        })
+    }
+
+
+
     passData = async () => {
         this.props.setUserAccount(this.state.account); 
         this.props.setWeb3(this.state.web3); 
         this.props.setLoggedIn();
         this.props.setToken(this.state.mokiBalance, this.state.mokiInstance, this.state.voteBalance, this.state.voteInstance); 
         this.props.setWhitelist(this.state.whitelist);
+        this.props.setStore(this.state.store);
+        this.props.setGroupInstance(this.state.group)
+        this.props.setProjectInstance(this.state.project)
     }
 
     render() {
