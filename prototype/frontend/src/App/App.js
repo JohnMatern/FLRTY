@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
 import { Home, Wallet, Settings, Projects } from '../pages/index';
-import styled from 'styled-components';
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-import { BiHomeHeart, BiCog, BiWallet, BiDonateHeart } from 'react-icons/bi'
+import { BiHomeHeart, BiCog, BiWallet, BiDonateHeart } from 'react-icons/bi'; 
 import { IconContext } from 'react-icons/lib';
-
-
-const Page = styled.section`
-  width: ${props => props.width}; 
-  height: ${props => props.height}; 
-  background-color: black; 
-  padding: 1em; 
-`
+import '../media/Styles/Style.scss'; 
 
 class App extends Component {
 
@@ -43,85 +35,83 @@ class App extends Component {
   render() {
 
     return (
-      <Page width={this.state.width} height={this.state.height}>
-        <div>
-          <Router>
+      <div classname="app">
+        <Router>
 
-            <Route render={({ location, history }) => (
-              <React.Fragment>
-                <SideNav
-                  onSelect={(selected) => {
-                    const to = '/' + selected;
-                    if (location.pathname !== to) {
-                      history.push(to);
-                    }
-                  }}
-                >
-                  <SideNav.Toggle />
+          <Route render={({ location, history }) => (
+            <React.Fragment>
+              <SideNav
+                onSelect={(selected) => {
+                  const to = '/' + selected;
+                  if (location.pathname !== to) {
+                    history.push(to);
+                  }
+                }}
+              >
+                <SideNav.Toggle />
 
-                  <SideNav.Nav defaultSelected="wallet">
-                    <NavItem eventKey="home">
-                      <NavIcon>
-                        <IconContext.Provider value={{ size: '30px' }}>
-                          <div>
-                            <BiHomeHeart />
-                          </div>
-                        </IconContext.Provider>
-                      </NavIcon>
-                      <NavText>
-                        Home
-                        </NavText>
-                    </NavItem>
-                    <NavItem eventKey="projects">
-                      <NavIcon>
-                        <IconContext.Provider value={{ size: '30px' }}>
-                          <div>
-                            <BiDonateHeart />
-                          </div>
-                        </IconContext.Provider>
-                      </NavIcon>
-                      <NavText>
-                        Projekte
-                        </NavText>
-                    </NavItem>
-                    <NavItem eventKey="wallet">
-                      <NavIcon>
-                        <IconContext.Provider value={{ size: '30px' }}>
-                          <div>
-                            <BiWallet />
-                          </div>
-                        </IconContext.Provider>
-                      </NavIcon>
-                      <NavText>
-                        Wallet
-                        </NavText>
-                    </NavItem>
-                    <NavItem eventKey="settings">
-                      <NavIcon>
-                        <IconContext.Provider value={{ size: '30px' }}>
-                          <div>
-                            <BiCog />
-                          </div>
-                        </IconContext.Provider>
-                      </NavIcon>
-                      <NavText>
-                        Einstellungen
-                        </NavText>
-                    </NavItem>
-                  </SideNav.Nav>
-                </SideNav>
-                <main>
-                  <Route path="/home" exact component={props => <Home />} />
-                  <Route path="/settings" component={props => <Settings />} />
-                  <Route path="/wallet" component={props => <Wallet />} />
-                  <Route path="/projects" component={props => <Projects />} />
-                </main>
-              </React.Fragment>
-            )}
-            />
-          </Router>
-        </div >
-      </Page>
+                <SideNav.Nav defaultSelected="wallet">
+                  <NavItem eventKey="home">
+                    <NavIcon>
+                      <IconContext.Provider value={{ size: '30px' }}>
+                        <div>
+                          <BiHomeHeart />
+                        </div>
+                      </IconContext.Provider>
+                    </NavIcon>
+                    <NavText>
+                      Home
+                      </NavText>
+                  </NavItem>
+                  <NavItem eventKey="projects">
+                    <NavIcon>
+                      <IconContext.Provider value={{ size: '30px' }}>
+                        <div>
+                          <BiDonateHeart />
+                        </div>
+                      </IconContext.Provider>
+                    </NavIcon>
+                    <NavText>
+                      Projekte
+                      </NavText>
+                  </NavItem>
+                  <NavItem eventKey="wallet">
+                    <NavIcon>
+                      <IconContext.Provider value={{ size: '30px' }}>
+                        <div>
+                          <BiWallet />
+                        </div>
+                      </IconContext.Provider>
+                    </NavIcon>
+                    <NavText>
+                      Wallet
+                      </NavText>
+                  </NavItem>
+                  <NavItem eventKey="settings">
+                    <NavIcon>
+                      <IconContext.Provider value={{ size: '30px' }}>
+                        <div>
+                          <BiCog />
+                        </div>
+                      </IconContext.Provider>
+                    </NavIcon>
+                    <NavText>
+                      Einstellungen
+                      </NavText>
+                  </NavItem>
+                </SideNav.Nav>
+              </SideNav>
+              <main>
+                <Route path="/home" exact component={props => <Home />} />
+                <Route path="/settings" component={props => <Settings />} />
+                <Route path="/wallet" component={props => <Wallet />} />
+                <Route path="/projects" component={props => <Projects />} />
+              </main>
+            </React.Fragment>
+          )}
+          />
+        </Router>
+      </div>
     )
   }
 }

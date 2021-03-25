@@ -68,17 +68,17 @@ class Wallet extends Component {
 
     if (!this.state.isLoggedIn) {
       return (
-        <GreenWrapper>
+        <div className="wallet">
           <Login
             setUserAccount={this.setUserAccount}
             setWeb3={this.setWeb3}
             setLoggedIn={this.setLoggedIn}
           />
-        </GreenWrapper>
+        </div>
       )
     } else {
       return (
-        <GreenWrapper>
+        <div className="wallet">
           <Grid
             container
             direction='column'
@@ -86,11 +86,11 @@ class Wallet extends Component {
             alignItems='center'
           >
             <Grid item xs={12}>
-              <Header />
+              <h2>Wallet</h2> 
             </Grid>
 
             <Grid item xs={12}>
-              <PinkWrapper>
+              <div className="send">
                <Send
                   web3={this.state.web3}
                   account={this.state.account}
@@ -99,14 +99,14 @@ class Wallet extends Component {
                   web3={this.state.web3}
                   account={this.state.account}
                 />
-              </PinkWrapper>
+              </div>
             </Grid>
 
             <Grid item xs={12}>
               <Footer />
             </Grid>
           </Grid>
-        </GreenWrapper>
+        </div>
       )
     }
   }
