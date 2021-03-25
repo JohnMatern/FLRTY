@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../media/Styles/Style.scss';
 import { Header, Footer, LoadBalance, Login, Send, MustWhitelist, Projects } from '../component/index'
-import { Button } from '@material-ui/core';
+import { Button,Container } from '@material-ui/core';
 
 class App extends Component {
 
@@ -78,8 +78,6 @@ class App extends Component {
     return (
       <div className="app">
         <Container maxWidth="md" className="appContainer">
-          <Header />
-
           <Header moki={this.state.moki} vote={this.state.vote} account={this.state.account} />
           {!this.state.isLoggedIn &&
             <Login
@@ -92,9 +90,9 @@ class App extends Component {
             />}
 
           {!this.state.isUser && this.state.isLoggedIn && <MustWhitelist account={this.state.account} />}
-          {this.state.isUser && <Send />}
+          {this.state.isUser && this.state.isLoggedIn && <Send />}
 
-          <Projects />
+          {this.state.isUser && this.state.isLoggedIn && <Projects />}
           <Footer />
 
 
