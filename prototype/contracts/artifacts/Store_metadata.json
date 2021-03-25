@@ -264,6 +264,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "getOldProjectList",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "getProjectList",
 				"outputs": [
 					{
@@ -391,6 +404,25 @@
 				"name": "newGroup",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "oldProjects",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -576,18 +608,18 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
-			"runs": 400
+			"enabled": false,
+			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
 		"FLRTY/prototype/contracts/Store.sol": {
-			"keccak256": "0x18820111b056be2255958e5c40920641523eb5783b5672de32030d38b06b3302",
+			"keccak256": "0xac9b337c6ce11e8da3599f2a09f357fff85e962ec443eb7331789d03295d5d50",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6258c44308f52f093357b5923cc5e781b3aa4e3144fcd460bf2a96d415bba941",
-				"dweb:/ipfs/QmSVKLDjjrLeudsZiCjG9WpBpBN9AsM8SAmGdzojqFr6A3"
+				"bzz-raw://4a248cf6a0f70469e942e6250da6fa952cf4898c5e7860a1e6b72310d17e82a6",
+				"dweb:/ipfs/QmRTjGZak2M96xu5L9LHqKdd3z9FbP5gJYJseg4ew5BjH6"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

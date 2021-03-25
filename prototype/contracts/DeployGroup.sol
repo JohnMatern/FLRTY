@@ -19,7 +19,7 @@ contract DeployGroup {
     modifier onlyManager() { require(FunctionsD(whitelist).isManager(msg.sender), "msg.sender is not manager"); _; }
     
     function createGroup( address sender, string memory name, string memory shortDesc) public onlyManager returns(address) {
-        return address(new Group(sender, name, shortDesc));
+        return address(new Group(sender, name, shortDesc, whitelist));
     }
     
     function setWhitelist(address newWhitelist) external onlyWhitelist {

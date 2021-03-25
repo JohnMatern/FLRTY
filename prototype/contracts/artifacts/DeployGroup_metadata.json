@@ -85,7 +85,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FLRTY/prototype/contracts/DeploayGroup.sol": "DeployGroup"
+			"FLRTY/prototype/contracts/DeployGroup.sol": "DeployGroup"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -93,26 +93,26 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
-			"runs": 400
+			"enabled": false,
+			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
-		"FLRTY/prototype/contracts/DeploayGroup.sol": {
-			"keccak256": "0xd2e5838dbf9214b36d90af23531e7b3850c152c078c1a2fa9010b162f8a8dff2",
+		"FLRTY/prototype/contracts/DeployGroup.sol": {
+			"keccak256": "0x6e3883af2950931bfec045194b740549285df81203f72f74a618163dac998dbd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e8960c5919e7aa5bc7b920d0c3e6f69d88ff07cc81c1ce2a53dc06685bfe3e93",
-				"dweb:/ipfs/QmTSpqd4TY5zXsTgGUHdwCToNsksPUXxi9ZZViNVvBuCL7"
+				"bzz-raw://b004f7c6df9e236f023c05fc80a879a648b7874c2bdac04096d763b41d0328cd",
+				"dweb:/ipfs/QmSd6uVd5iPk2cWhwvazs3zRDVpbCZmEFpgXjUrQ17ss7g"
 			]
 		},
 		"FLRTY/prototype/contracts/Group.sol": {
-			"keccak256": "0x331059f336daf384fc80a8a0c3441ee0b3627aa3d3aa6ec01167327b8c989beb",
+			"keccak256": "0xdaefec6de8df85d6917347bbb2b7a667746ca00a8fc282055424d42c55218fb4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://596b0f95a9bb3b4510889b8a57b3c870083686c0e96f1ec1159fdcbcd951de45",
-				"dweb:/ipfs/QmbjD2NAH4Y49R7qZwD3Pbt29wo1pkpi1W1sZmuTazPG55"
+				"bzz-raw://87607457a349d586f48db5cdd2f003f79e5bde8da109140897daabcdc6533fbf",
+				"dweb:/ipfs/Qmdf8j5HtDp2Hpf4WM2VNQkERDS4PDGY61c5jBwBw5nTCf"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

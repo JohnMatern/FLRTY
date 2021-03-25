@@ -11,16 +11,17 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
-				"name": "mintInitToken",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "isAdmin",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -31,16 +32,15 @@
 						"type": "address"
 					}
 				],
-				"name": "pushUser",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "removeCommunityRestriction",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "isManager",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -51,9 +51,15 @@
 						"type": "address"
 					}
 				],
-				"name": "setWhitelist",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "isUser",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -70,7 +76,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FLRTY/prototype/contracts/Whitelist.sol": "Functions"
+			"FLRTY/prototype/contracts/DeployProject.sol": "Functions"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -84,12 +90,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"FLRTY/prototype/contracts/Whitelist.sol": {
-			"keccak256": "0x5d32b02ae0452d0e9e0923941bb6d8f65110485186ed82915050cd8fe450a087",
+		"FLRTY/prototype/contracts/DeployProject.sol": {
+			"keccak256": "0x57f1e23558a3e120236580a87f0cb8df0c11381ba0d9b4ae99f113772623efef",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a773608f1459a504d455b13c12c0adc0f57685e11804265b3fd241309cced2e2",
-				"dweb:/ipfs/QmSJkHSE3kXAFdVxYfXLzsdhnQ7d5ECaXnnwMMki8VFYUV"
+				"bzz-raw://684ea94a5389fddb25c8b11380708bf0380399f180b08ca449b68df36a31442a",
+				"dweb:/ipfs/QmfPcmMhD9fq6HhE5r3rLtUmgBBKDDbfSde4Kcf7dQ5Nek"
+			]
+		},
+		"FLRTY/prototype/contracts/Project.sol": {
+			"keccak256": "0xd27313e49f36012f9ebecbeca5313b1f45331b6e5bb53c7cd1da51fff8521104",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a1069e26c3e07a55a9fcd7f99e9f18d3453324e69caa75d0049dd8fcd9557ec3",
+				"dweb:/ipfs/QmTqiWqh7hzEPd7wvAvVSofxQDhV95kcDKZw5Z1F8FT12P"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

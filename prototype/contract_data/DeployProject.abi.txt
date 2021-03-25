@@ -2,17 +2,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "newWhitelist",
-				"type": "address"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "string",
 				"name": "name",
 				"type": "string"
@@ -36,6 +25,11 @@
 				"internalType": "address",
 				"name": "group",
 				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "week",
+				"type": "uint256"
 			}
 		],
 		"name": "createProject",
@@ -61,6 +55,17 @@
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newWhitelist",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"inputs": [],

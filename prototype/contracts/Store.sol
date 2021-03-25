@@ -13,6 +13,7 @@ contract Store is EIP712MetaTransaction {
 
     address[] public activeProjects;
     uint256[] public freeProjectSlots;
+    address[] public oldProjects;
     mapping(address => uint256) public slotHistory;
     mapping(address => mapping(address => uint256)) public voteHistory; // Project => (User => voteCount)
     
@@ -72,8 +73,12 @@ contract Store is EIP712MetaTransaction {
     function getProjectList() public view returns(address[] memory) {
         return activeProjects;
     }
+    function getOldProjectList() public view returns (address[] memory) {
+        return oldProjects;
+    }
 
     function freeSlot(address oldProject) public onlyManager {
+        oldProjects.push(oldProject);
         uint256 slot = slotHistory[oldProject];
         bool set = false;
         activeProjects[slot] = address(0);

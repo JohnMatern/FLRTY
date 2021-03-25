@@ -14,13 +14,14 @@ contract Group is EIP712MetaTransaction {
    string public shortDesc;
    address[] public users;
    mapping(address => uint256) public userIndex;
-   address whitelist = 0x4F177Ef371DE589B2574c070f05D24d9f9839A1d;
+   address whitelist;
    
-    constructor (address creator_, string memory name_, string memory shortDesc_) EIP712MetaTransaction("Flarity Group", "1") {
+    constructor (address creator_, string memory name_, string memory shortDesc_, address newWhitelist) EIP712MetaTransaction("Flarity Group", "1") {
         name = name_;
         creator = creator_;
         shortDesc = shortDesc_;
         users.push(creator_);
+        whitelist = newWhitelist;
     }
     
     modifier onlyManager() { require(FunctionsG(whitelist).isManager(msg.sender), "msg.sender is not manager"); _; }

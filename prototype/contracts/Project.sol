@@ -15,15 +15,16 @@ contract Project is EIP712MetaTransaction {
     string public shortDesc;
     uint public endDate;
     uint256 public minVotes;
-    address whitelist = 0x4F177Ef371DE589B2574c070f05D24d9f9839A1d;
+    address whitelist;
    
-    constructor (string memory newName, address newCreator, string memory newDesc, uint256 newMinVotes, address newGroup) EIP712MetaTransaction("Flarity Project", "1") {
+    constructor (string memory newName, address newCreator, string memory newDesc, uint256 newMinVotes, address newGroup, address newWhitelist, uint256 week) EIP712MetaTransaction("Flarity Project", "1") {
         name = newName;
         creator = newCreator;
         shortDesc = newDesc;
-        endDate = block.timestamp + 7 days;
+        endDate = block.timestamp + ((7 days)*week);
         minVotes = newMinVotes;  
         group = newGroup;
+        whitelist = newWhitelist;
     }
     
     modifier onlyManager() { require(FunctionsP(whitelist).isManager(msg.sender), "msg.sender is not manager"); _; }

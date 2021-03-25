@@ -36,7 +36,7 @@ contract FunctionsM {
     function mintToken(address,uint256) external {}
     
     // Deploy Project
-    function createProject(string memory, address, string memory, uint256, address) public returns(address) {}
+    function createProject(string memory, address, string memory, uint256, address, uint256) public returns(address) {}
     
     // Deploy Group
     function createGroup(address, string memory, string memory) public returns(address) {}
@@ -95,10 +95,10 @@ contract Manager is EIP712MetaTransaction {
         FunctionsM(vote()).mintToken(msgSender(), initSupply-voteAmount);
     }
 
-    function createProject(string memory name, string memory shortDesc, uint256 minVotes, address group) public {
-        require((FunctionsM(whitelist).isUser(msgSender())) && (FunctionsM(group).isCreator(msgSender())), "errorr");
+    function createProject(string memory name, string memory shortDesc, uint256 minVotes, address group, uint256 week) public {
+        require((FunctionsM(whitelist).isUser(msgSender())) && (FunctionsM(group).isCreator(msgSender())), "error");
         FunctionsM(store()).addNewProject(
-            FunctionsM(newProject()).createProject(name, msgSender(), shortDesc, minVotes, group)
+            FunctionsM(newProject()).createProject(name, msgSender(), shortDesc, minVotes, group, week)
         );
     }
     function voteForProject(address project, uint256 amount) public {

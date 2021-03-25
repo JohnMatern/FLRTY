@@ -18,8 +18,8 @@ contract DeployProject {
     modifier onlyWhitelist() { require(msg.sender == whitelist, "msg.sender is not manager"); _; }
     modifier onlyManager() { require(FunctionsP(whitelist).isManager(msg.sender), "msg.sender is not manager"); _; }
     
-    function createProject(string memory name, address sender, string memory shortDesc, uint256 minVotes, address group) public onlyManager returns(address) {
-        return address(new Project(name, sender, shortDesc, minVotes, group));
+    function createProject(string memory name, address sender, string memory shortDesc, uint256 minVotes, address group, uint256 week) public onlyManager returns(address) {
+        return address(new Project(name, sender, shortDesc, minVotes, group, whitelist, week));
     }
     
     function setWhitelist(address newWhitelist) external onlyWhitelist {
