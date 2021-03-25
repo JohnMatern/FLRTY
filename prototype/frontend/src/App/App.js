@@ -89,7 +89,7 @@ class App extends Component {
           afterLogin={this.afterLogin}
         />}
 
-          {!this.state.isUser && this.state.isLoggedIn && <MustWhitelist />}
+          {!this.state.isUser && this.state.isLoggedIn && <MustWhitelist account={this.state.account}/>}
           {this.state.isUser && <Send />}
         <Footer />
 
