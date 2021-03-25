@@ -20,7 +20,9 @@ class App extends Component {
       mokiBalance: '',
       voteInstance: '',
       voteBalance: '',
-      isLoggedIn: false, 
+      isLoggedIn: false,
+      recipient: '',
+      amount: '',
     }
 
     this.connect = this.connect.bind(this);
@@ -99,6 +101,60 @@ class App extends Component {
     })
   }
 
+  /*
+    * send magic
+    */
+  send = async () => {
+    console.log("send();");
+    console.log("recipient: " + this.state.recipient);
+    console.log("amount" + this.state.amount);
+
+    const account = this.state.account;
+
+    this.state.tokenInstance.methods.transfer(this.state.recipient, Web3.utils.toWei(this.state.amount))
+      .send({
+        from: account
+      })
+      .once('transactionHash', function (hash) {
+        console.log(("transactionHash: "));
+        console.log(hash);
+      })
+      .once('receipt', function (receipt) {
+        console.log(("receipt: "));
+        console.log(receipt);
+      })
+      .once('confirmation', function (confirmationNumber, receipt) {
+        console.log("confirmation");
+        console.log("confirmationNumber: " + confirmationNumber);
+        console.log("receipt: " + receipt)
+      })
+      .on('error', console.error); // If a out of gas error, the second parameter is the receipt.
+
+  }
+
+  onChangeRcp = (e) => {
+    e.preventDefault();
+
+    const address = e.target.value;
+
+    this.setState({
+      recipient: address,
+    })
+  }
+
+  onChangeAmount = (e) => {
+    e.preventDefault();
+
+    console.log(e.target.value)
+
+    const amount = e.target.value;
+    console.log(amount)
+
+    this.setState({
+      amount: amount,
+    })
+  }
+
   render() {
 
     return (
@@ -127,7 +183,44 @@ class App extends Component {
           <br />
           <div className="wallet">
             Balance Moki: {this.state.mokiBalance}
+            <br /> 
             Balance Vote: {this.state.voteBalance}
+          </div>
+
+          <div className="send">
+            <label className="input">
+
+              <input
+                type="text"
+                name="recipient"
+                required={true}
+                placeholder="Recipient address"
+                onChange={this.onChangeRcp}
+              />
+
+              <br />
+
+              <input
+                type="decimal"
+                name="amount"
+                required={true}
+                placeholder="Amount to send"
+                onChange={this.onChangeAmount}
+              />
+
+              <br />
+
+              <Button
+                type="submit"
+                value="Submit"
+                onClick={this.send}
+                icon="Send"
+              >
+                Send
+              </Button>
+
+              <br />
+            </label>
           </div>
         </div>
 
