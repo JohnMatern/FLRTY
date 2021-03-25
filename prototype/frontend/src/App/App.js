@@ -3,6 +3,18 @@ import '../media/Styles/Style.scss'
 
 class App extends Component {
 
+  constructor(props) {
+    super(props); 
+
+    this.state = {
+      web3: '', 
+      account: '', 
+      balance: '', 
+      userName: '', 
+      userRole: '', 
+    }
+  }
+
   render() {
 
     return (
@@ -22,6 +34,16 @@ class App extends Component {
             <label>Name</label>
             <input type='text' /> 
           </form>
+        </div>
+        <div className="user">
+          Username: {this.state.userName}
+          <br/>
+          User Status: {this.state.userRole} {/**User, Access Hub, Admin?  */}
+          <br/>
+          <div className="wallet">
+            Balance Moki: {this.state.balanceMoki}
+            Balance Vote: {this.state.balanceVote}
+          </div>
         </div>
       </div>
     )
