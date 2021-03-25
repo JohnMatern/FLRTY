@@ -49,6 +49,82 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					}
+				],
+				"name": "getCreator",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					}
+				],
+				"name": "getDesc",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					}
+				],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "group",
+						"type": "address"
+					}
+				],
+				"name": "getUserList",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "newWhitelist",
 						"type": "address"
 					}
@@ -100,11 +176,11 @@
 	},
 	"sources": {
 		"FLRTY/prototype/contracts/DeployGroup.sol": {
-			"keccak256": "0xb478fa002595d50ec48d012495ea2522ea50f47bd793db9f37220e24ce8566a2",
+			"keccak256": "0x6f276609d6aecdcbb3324bac281eebb4aa2673be5b3e7ae6b14adc6dbfd6836f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://58a4b866d71d16fcc262093c7ce3a1c1a276dc5acd6c66b5cbbfc0553b329874",
-				"dweb:/ipfs/QmZA3pjsVsjuKpqDj8KxpVXC8UoxTCFVpKg8wyKuMQTP6n"
+				"bzz-raw://8f3dd1847235a174f74b69f855e3dc3c01583ef060251d1dd9fb118601562717",
+				"dweb:/ipfs/QmYXFDCRcUZ4gJcKbXoLgZuiXff8WbrL2HhocTty9Cx7BA"
 			]
 		},
 		"FLRTY/prototype/contracts/Group.sol": {

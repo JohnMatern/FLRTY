@@ -26,19 +26,19 @@ contract DeployGroup {
         whitelist = newWhitelist;
     }
     
-    function getName() public view returns (string memory) {
-        return name;
+    function getName(address group) public view returns (string memory) {
+        return Group(group).getName();
     }
     
-    function getDesc() public view returns(string memory)  {
-        return shortDesc;
+    function getDesc(address group) public view returns(string memory)  {
+        return Group(group).getDesc();
     }    
     
-    function getCreator() public view returns(address) {
-        return creator;
+    function getCreator(address group) public view returns(address) {
+        return Group(group).getCreator();
     }
     
-    function getUserList() public view returns(address[] memory) {
-        return users;
+    function getUserList(address group) public view returns(address[] memory) {
+        return Group(group).getUserList();
     }
 }

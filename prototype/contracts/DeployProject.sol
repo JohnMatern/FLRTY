@@ -25,4 +25,28 @@ contract DeployProject {
     function setWhitelist(address newWhitelist) external onlyWhitelist {
         whitelist = newWhitelist;
     }
+    
+    function getName(address project) public view returns (string memory) {
+        return Project(project).getName();
+    }
+    
+    function getDesc(address project) public view returns(string memory)  {
+        return Project(project).getDesc();
+    }    
+
+    function getCreator(address project) public view returns(address) {
+        return Project(project).getCreator();
+    }
+    
+    function getEndDate(address project) public view returns(uint256) {
+        return Project(project).getEndDate();
+    }
+
+    function getMinVotes(address project) public view returns(uint256) {
+        return Project(project).getMinVotes();
+    }
+    
+    function getGroup(address project) public view returns(address) {
+        return Project(project).getGroup();
+    }
 }

@@ -1,7 +1,7 @@
 import { React, Component } from 'react'; 
 import Web3 from "web3"; 
 import { Button } from '@material-ui/core'
-import { MOKI, MOKI_ABI, VOTE, VOTE_ABI, WHITELIST, WHITELIST_ABI, STORE, STORE_ABI, GROUP_ABI, PROJECT_ABI } from '../utils/const';
+import { MOKI, MOKI_ABI, VOTE, VOTE_ABI, WHITELIST, WHITELIST_ABI, STORE, STORE_ABI, DEPLOYGROUP_ABI, DEPLOYPROJECT_ABI, DEPLOYGROUP, DEPLOYPROJECT } from '../utils/const';
 
 class Login extends Component {
 
@@ -95,7 +95,7 @@ class Login extends Component {
     }
 
     loadGroupInstance = async () => {
-        const group = new this.state.web3.eth.Contract(GROUP_ABI)
+        const group = new this.state.web3.eth.Contract(DEPLOYGROUP_ABI, DEPLOYGROUP)
 
         await this.setState({
             group: group
@@ -103,7 +103,7 @@ class Login extends Component {
     }
 
     loadProjectInstance = async () => {
-        const project = new this.state.web3.eth.Contract(PROJECT_ABI)
+        const project = new this.state.web3.eth.Contract(DEPLOYPROJECT_ABI, DEPLOYPROJECT)
 
         await this.setState({
             project: project

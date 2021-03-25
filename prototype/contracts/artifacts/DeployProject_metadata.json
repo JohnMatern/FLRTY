@@ -64,6 +64,120 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "project",
+						"type": "address"
+					}
+				],
+				"name": "getCreator",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "project",
+						"type": "address"
+					}
+				],
+				"name": "getDesc",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "project",
+						"type": "address"
+					}
+				],
+				"name": "getEndDate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "project",
+						"type": "address"
+					}
+				],
+				"name": "getGroup",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "project",
+						"type": "address"
+					}
+				],
+				"name": "getMinVotes",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "project",
+						"type": "address"
+					}
+				],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "newWhitelist",
 						"type": "address"
 					}
@@ -115,11 +229,11 @@
 	},
 	"sources": {
 		"FLRTY/prototype/contracts/DeployProject.sol": {
-			"keccak256": "0x57f1e23558a3e120236580a87f0cb8df0c11381ba0d9b4ae99f113772623efef",
+			"keccak256": "0xd90e8984b738a9cbe6c2642e59a42030fcf9f4a909486143f036c1b3845c1a7e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://684ea94a5389fddb25c8b11380708bf0380399f180b08ca449b68df36a31442a",
-				"dweb:/ipfs/QmfPcmMhD9fq6HhE5r3rLtUmgBBKDDbfSde4Kcf7dQ5Nek"
+				"bzz-raw://e8c4c8989a815117bc5ced6bba2569ed8531ca9b01adbbe9926d6a910d7510b8",
+				"dweb:/ipfs/QmX6SCKU3tctVnbupvAQuGiNZr7adfwxf8jmajXDN5m6AD"
 			]
 		},
 		"FLRTY/prototype/contracts/Project.sol": {
