@@ -57,23 +57,18 @@ class LoadBalance extends Component {
         const mokiBalance = await moki.methods.balanceOf(this.state.account).call()
         const voteBalance = await vote.methods.balanceOf(this.state.account).call()
         
-        this.setState({
+        await this.setState({
             mokiInstance: moki,
             mokiBalance: (Math.round(mokiBalance) / 100).toFixed(2),
             voteInstance: vote,
             voteBalance: voteBalance,
         })
+        this.props.setBalances(this.state.mokiBalance, this.state.voteBalance);
     }
 
     render() {
         return (
             <div className="loadBalance" style={{fontSize:'30px'}}>
-                Address: {this.state.account} 
-                <br/> 
-                <br />
-                {this.state.mokiBalance} <img src={M_moki} style={{width: '30px', height: '23px'}}/> 
-                <br />
-                {this.state.voteBalance} Votes 
             </div>
         )
     }

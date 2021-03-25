@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../media/Styles/Style.scss';
-import { Header, Footer, LoadBalance, Login, Send } from '../component/index'
+import { Header, Footer, LoadBalance, Login, Send, MustWhitelist } from '../component/index'
 import { Button } from '@material-ui/core';
 
 class App extends Component {
@@ -13,11 +13,13 @@ class App extends Component {
       web3: '',
       tokenInstance: '',
       account: '',
-      balance: 0.00,
+      moki: 0.00,
+      vote: 0.00,
       recipient: '',
       amount: 0.00,
       addressInfo: '',
       amountInfo: '',
+      isUser: false,
     }
 
     this.setUserAccount = this.setUserAccount.bind(this);
@@ -50,29 +52,45 @@ class App extends Component {
     })
   }
 
+  setToken = (currency, currencyInstance, vote, voteInstance) => {
+    this.setState({
+      moki: currency,
+      mokiInstance: currencyInstance,
+      vote: vote,
+      voteInstance: voteInstance,
+    })
+  }
+
+  setWhitelist = (whitelist) => {
+    this.setState({
+      whitelist: whitelist
+    })
+  }
+
+  afterLogin = async () => {
+    this.setState({
+      isUser: await this.state.whitelist.methods.isUser(this.state.account).call()
+    })
+  }
+
   render() {
 
     return (
       <div className="app">
 
-        <Header />
-
+        <Header moki={this.state.moki} vote={this.state.vote} account={this.state.account}/>
+        {!this.state.isLoggedIn &&
         <Login
           setUserAccount={this.setUserAccount}
           setWeb3={this.setWeb3}
           setLoggedIn={this.setLoggedIn}
-        />
+          setToken={this.setToken}
+          setWhitelist={this.setWhitelist}
+          afterLogin={this.afterLogin}
+        />}
 
-        <LoadBalance
-          web3={this.state.web3}
-          account={this.state.account}
-        />
-
-        <Send
-          web3={this.state.web3}
-          account={this.state.account}
-        />
-
+          {!this.state.isUser && this.state.isLoggedIn && <MustWhitelist />}
+          {this.state.isUser && <Send />}
         <Footer />
 
       </div>

@@ -6,7 +6,9 @@ class Header extends Component {
   render() {
     return (
       <div className='header'>       
-        <h1>Header  </h1>
+        Account: {this.props.account} <br />
+        Moki: {this.props.moki} <br />
+        Vote: {this.props.vote} <br />
       </div>
     )
   }
