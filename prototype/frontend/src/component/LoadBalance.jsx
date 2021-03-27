@@ -17,7 +17,7 @@ class LoadBalance extends Component {
         }
 
         this.manageState = this.manageState.bind(this); 
-        this.onClickHandler = this.onClickHandler.bind(this); 
+        //this.onClickHandler = this.onClickHandler.bind(this); 
         this.loadBalance = this.loadBalance.bind(this); 
     }
 

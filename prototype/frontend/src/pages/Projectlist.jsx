@@ -2,15 +2,16 @@ import { React, Component } from 'react';
 import { Projects } from '../component/index'
 
 
-class ProjectPage extends Component {
+class Projectlist extends Component {
 
     render() {
         return (
             <div>
-                <Projects /> 
+                <h1>Projectlist</h1>
+               {/* <Projects /> */} 
             </div>
         )    
   }
 }
 
-export default ProjectPage;
+export default Projectlist;

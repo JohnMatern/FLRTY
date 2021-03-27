@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../media/Styles/Style.scss';
-import { Header, Footer, LoadBalance, Send, MustWhitelist } from '../component/index'
+import { Header, Footer, } from '../component/index'
 import { Button, Container } from '@material-ui/core';
-import { Wallet, ProjectPage, Login } from '../pages/index'
+import { Login, AddUsername, Whitelist, Projectlist } from '../pages/index'
 
 class App extends Component {
 
@@ -10,86 +10,85 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isLoggedIn: false,
       web3: '',
-      tokenInstance: '',
       account: '',
-      moki: 0.00,
-      vote: 0.00,
-      recipient: '',
-      amount: 0.00,
-      addressInfo: '',
-      amountInfo: '',
+
+      mokiContract: '',
+      voteContract: '',
+      whitelistContract: '',
+      managerContract: '',
+      userdataContract: '',
+      storeContract: '',
+      dProjectContract: '',
+      dGroupContract: '',
+
+      username: '',
+      mokiAmount: '',
+      voteAmount: '',
+
       isUser: false,
+      isAccessHub: false,
+      isAdmin: false,
+
+      show: {
+        Login: true,
+        AddUsername: false,
+        Projectlist: false,
+        ProjectDetails: false,
+        MokiReceive: false,
+        MokiSend: false,
+        Groups: false,
+        GroupDetails: false,
+        AddUser: false,
+        AddAccessHub: false,
+        Whitelist: false,
+      }
     }
-
-    this.setUserAccount = this.setUserAccount.bind(this);
-    this.setWeb3 = this.setWeb3.bind(this);
-    this.setLoggedIn = this.setLoggedIn.bind(this);
+    this.show = this.show.bind(this);
 
   }
 
-  toggleShowLogin = () => {
-    this.setState({
-      showLogin: !this.state.showLogin
-    })
+  // example:
+  // toShow = "AddUsername"
+  // shows AddUsername page
+  show = (toShow) => {
+    Object.keys(this.state.show).forEach((key => {
+      this.state.show[key] = false;
+    }))
+    this.state.show[toShow] = true;
   }
 
-  setWeb3 = (w) => {
-    this.setState({
-      web3: w,
-    })
+  // example: 
+  // key = account
+  // value = "0x1234567890..."
+  // sets this.state.account to "0x1234567890..."
+  setKey = (key, value) => {
+    this.state[key] = value;
+    return;
   }
 
-  setUserAccount = (a) => {
+  // sets all data to state after login
+  setStateData = async (json) => {
     this.setState({
-      account: a,
-    })
-  }
+      web3: json.web3,
+      account: json.account,
 
-  setLoggedIn = () => {
-    this.setState({
-      isLoggedIn: true,
-    })
-  }
+      mokiContract: json.mokieContract,
+      voteContract: json.voteContract,
+      whitelistContract: json.whitelistContract,
+      managerContract: json.managerContract,
+      userdataContract: json.userdataContract,
+      storeContract: json.storeContract,
+      dProjectContract: json.dProjectContract,
+      dGroupContract: json.dGroupContract,
 
-  setToken = (currency, currencyInstance, vote, voteInstance) => {
-    this.setState({
-      moki: currency,
-      mokiInstance: currencyInstance,
-      vote: vote,
-      voteInstance: voteInstance,
-    })
-  }
+      username: json.username,
+      mokiAmount: json.mokiAmount,
+      voteAmount: json.voteAmount,
 
-  setWhitelist = (whitelist) => {
-    this.setState({
-      whitelist: whitelist
-    })
-  }
-
-  setStore = (store) => {
-    this.setState({
-      store: store
-    })
-  }
-
-  setGroupInstance = (group) => {
-    this.setState({
-      groupInstance: group
-    })
-  }
-
-  setProjectInstance = (project) => {
-    this.setState({
-      projectInstance: project
-    })
-  }
-
-
-  afterLogin = async () => {
-    this.setState({
-      isUser: await this.state.whitelist.methods.isUser(this.state.account).call()
+      isUser: json.isUser,
+      isAccessHub: json.isAccessHub,
+      isAdmin: json.isAdmin,
     })
   }
 
@@ -98,50 +97,37 @@ class App extends Component {
     return (
       <div className="app">
         <Container maxWidth="md" className="appContainer">
-          <Header moki={this.state.moki} vote={this.state.vote} account={this.state.account} />
+          <Header moki={this.state.mokiAmount} vote={this.state.voteAmount} account={this.state.account} />
 
-          {!this.state.isLoggedIn &&
+
+
+  
+          {this.state.show.Login &&
             <Login
-              setUserAccount={this.setUserAccount}
-              setWeb3={this.setWeb3}
-              setLoggedIn={this.setLoggedIn}
-              setToken={this.setToken}
-              setWhitelist={this.setWhitelist}
-              setStore={this.setStore}
-              setGroupInstance={this.setGroupInstance}
-              setProjectInstance={this.setProjectInstance}
-              afterLogin={this.afterLogin}
+              show={this.show}
+              setStateData={this.setStateData}
             />}
 
-{/** 
-          {!this.state.isUser &&
-            this.state.isLoggedIn &&
-            <Wallet
-              account={this.state.account}
+            {this.state.show.Whitelist &&
+              <Whitelist
+                account={this.state.account}
+              />}
+
+            {this.state.show.AddUsername &&
+              <AddUsername
+                show={this.show}
+                setKey={this.setKey}
+                web3={this.state.web3}
+                account={this.state.account}
+                userdataContract={this.state.userdataContract}
             />}
 
-          {!this.state.isUser &&
-            this.state.isLoggedIn &&
-            <ProjectPage
-              store={this.state.store}
-              group={this.state.groupInstance}
-              project={this.state.projectInstance}
-            />}
-            */}
-            <br/> 
-            <Wallet
-              account={this.state.account}
-            />
-            <br/>
-            <ProjectPage
-              store={this.state.store}
-              group={this.state.groupInstance}
-              project={this.state.projectInstance}
-            />
+            {this.state.show.Projectlist && 
+              <Projectlist />
+            }
+
 
           <Footer />
-
-
         </Container>
 
 
