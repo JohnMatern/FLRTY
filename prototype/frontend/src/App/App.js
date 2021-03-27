@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../media/Styles/Style.scss';
-import { Header, Footer, LoadBalance, Login, Send, MustWhitelist, Projects } from '../component/index'
-import { Button,Container } from '@material-ui/core';
+import { Header, Footer, LoadBalance, Send, MustWhitelist } from '../component/index'
+import { Button, Container } from '@material-ui/core';
+import { Wallet, ProjectPage, Login } from '../pages/index'
 
 class App extends Component {
 
@@ -65,14 +66,14 @@ class App extends Component {
     this.setState({
       whitelist: whitelist
     })
-  }  
-  
+  }
+
   setStore = (store) => {
     this.setState({
       store: store
     })
   }
-  
+
   setGroupInstance = (group) => {
     this.setState({
       groupInstance: group
@@ -84,7 +85,7 @@ class App extends Component {
       projectInstance: project
     })
   }
-  
+
 
   afterLogin = async () => {
     this.setState({
@@ -98,6 +99,7 @@ class App extends Component {
       <div className="app">
         <Container maxWidth="md" className="appContainer">
           <Header moki={this.state.moki} vote={this.state.vote} account={this.state.account} />
+
           {!this.state.isLoggedIn &&
             <Login
               setUserAccount={this.setUserAccount}
@@ -111,10 +113,32 @@ class App extends Component {
               afterLogin={this.afterLogin}
             />}
 
-          {!this.state.isUser && this.state.isLoggedIn && <MustWhitelist account={this.state.account} />}
-          {this.state.isUser && this.state.isLoggedIn && <Send />}
+{/** 
+          {!this.state.isUser &&
+            this.state.isLoggedIn &&
+            <Wallet
+              account={this.state.account}
+            />}
 
-          {this.state.isUser && this.state.isLoggedIn && <Projects store={this.state.store} group={this.state.groupInstance} project={this.state.projectInstance}/>}
+          {!this.state.isUser &&
+            this.state.isLoggedIn &&
+            <ProjectPage
+              store={this.state.store}
+              group={this.state.groupInstance}
+              project={this.state.projectInstance}
+            />}
+            */}
+            <br/> 
+            <Wallet
+              account={this.state.account}
+            />
+            <br/>
+            <ProjectPage
+              store={this.state.store}
+              group={this.state.groupInstance}
+              project={this.state.projectInstance}
+            />
+
           <Footer />
 
 
