@@ -9,7 +9,7 @@ class Footer extends Component {
   render() {
     return (
       <div className='footer'>    
-        <Menubar show={this.props.show} />   
+        {this.props.isUser && <Menubar show={this.props.show} /> }  
         <h2>From the Flarity Blockchain Prototype Squad with ❤️ </h2>
       </div>
     )

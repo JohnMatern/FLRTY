@@ -137,7 +137,7 @@ class App extends Component {
             <Menu />
           }
 
-          <Footer show={this.show} />
+          <Footer show={this.show} isUser={this.state.isUser}/>
         </Container>
 
 
