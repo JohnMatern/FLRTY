@@ -11,6 +11,7 @@ class AddUsername extends Component {
             modal: false,
             tx: '0',
             status: 'transactionHash',
+            button: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -25,23 +26,21 @@ class AddUsername extends Component {
         this.setState({
             [name]: value,
         });
-
-        if (this.props.userdataContract.methods.getAddress(value.toLowerCase()).call() === "0x0000000000000000000000000000000000000000") {
+        if (await this.props.userdataContract.methods.getAddress(value.toLowerCase()).call() !== "0x0000000000000000000000000000000000000000") {
             this.setState({ messageUsername: "Username already exist" })
+            this.setState({button: false})
+        } else if(this.state.username == "") {
+            this.setState({ messageUsername: "please enter username" })
+            this.setState({button: false})
         } else {
-            this.setState({ messageUsername: "", messageSend: "" })
+            this.setState({ messageUsername: "", messageSend: "", button: true })
         }
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        if (this.state.messageUsername === "" && this.state.username !== "") {
             this.setState({modal: true})
             this.send();
-        } else {
-            this.setState({ messageUsername: "Please change username" })
-        }
-
     }
 
     send = async () => {
@@ -66,11 +65,9 @@ class AddUsername extends Component {
     closeModal = () => {
         this.setState({modal: false})
         if (this.props.status == "error") {
-            console.log("close un")
             this.props.show("AddUsername");
         } else {
-            console.log("close pl")
-            this.props.show("Projectlist");        // <------ das funktioniert nicht, why????? im Login component funktioniert das top :(
+            this.props.show("Projectlist");
         }
     }
 
@@ -84,7 +81,7 @@ class AddUsername extends Component {
                     onChange={this.handleChange}
                 />
                 <p>{this.state.messageUsername}</p>
-                <button onClick={this.handleSubmit}>Submit</button>
+                <button onClick={this.handleSubmit} disabled={!this.state.button}>Submit</button> <br />
                 <p>{this.state.messageSend}</p>
                 <TxModal open={this.state.modal} status={this.state.status} tx={this.state.tx} show={this.props.show} onClose={this.closeModal}/>
             </div>

@@ -30,6 +30,7 @@ class App extends Component {
       isAccessHub: false,
       isAdmin: false,
 
+      toggle: true,
       show: {
         Login: true,
         AddUsername: false,
@@ -52,10 +53,13 @@ class App extends Component {
   // toShow = "AddUsername"
   // shows AddUsername page
   show = (toShow) => {
+    console.log("show me: "+toShow)
     Object.keys(this.state.show).forEach((key => {
-      this.state.show[key] = false;
+      this.state.show[key] = false;                 // just for interest: an dieser stelle funktioniert this.setState(..) nicht, wieso auch immer :D
     }))
     this.state.show[toShow] = true;
+    this.setState({toggle: !this.state.toggle})
+    console.log(this.state.show)
   }
 
   // example: 
@@ -63,7 +67,7 @@ class App extends Component {
   // value = "0x1234567890..."
   // sets this.state.account to "0x1234567890..."
   setKey = (key, value) => {
-    this.state[key] = value;
+    this.setState({toShow: value});
     return;
   }
 

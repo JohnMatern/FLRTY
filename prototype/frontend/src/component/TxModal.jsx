@@ -10,7 +10,8 @@ class TxModal extends Component {
         this.state = {
             open: this.props.open,
             img: loading,
-            message: "Tx Hash: " + this.props.tx,
+            message: "Waiting for wallet interaction...",
+            button: false,
         };
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -22,11 +23,7 @@ class TxModal extends Component {
     };
 
     handleClose = () => {
-        if (this.props.status == "confirmation") {
-            this.props.onClose();
-        } else if (this.props.status == "error") {
-            this.props.onClose();
-        }
+        this.props.onClose();
     };
 
     componentDidUpdate = (prevProps) => {
@@ -39,11 +36,11 @@ class TxModal extends Component {
                     break;
                 case "confirmation":
                     console.log("switch confirmation")
-                    this.setState({ img: success, message: "Success :), Tx Hash: " + this.props.tx })
+                    this.setState({ img: success, message: "Success :), Tx Hash: " + this.props.tx, button: true })
                     break;
                 case "error":
                     console.log("switch error")
-                    this.setState({ img: error, message: "Please try again or contact support. Error: 1023, Tx Hash: " + this.props.tx })
+                    this.setState({ img: error, message: "Please try again or contact support. Error: 1023, Tx Hash: " + this.props.tx, button: true  })
                     break;
                 default:
             }
@@ -66,7 +63,7 @@ class TxModal extends Component {
                         <div>
                             <img src={this.state.img} alt="img" /> <br />
                             {this.state.message} <br />
-                            <button onClick={this.handleClose}>close</button>
+                            <button onClick={this.handleClose} disabled={!this.state.button}>close</button>
                         </div>
                     </DialogContent>
                 </Dialog>
