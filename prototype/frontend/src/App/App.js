@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../media/Styles/Style.scss';
-import { Header, Footer, } from '../component/index'
+import { Header, Footer } from '../component/index'
 import { Button, Container } from '@material-ui/core';
-import { Login, AddUsername, Whitelist, Projectlist } from '../pages/index'
+import { Login, AddUsername, Whitelist, Projectlist, Menu, MokiSend } from '../pages/index'
 
 class App extends Component {
 
@@ -43,6 +43,7 @@ class App extends Component {
         AddUser: false,
         AddAccessHub: false,
         Whitelist: false,
+        Menu: false,
       }
     }
     this.show = this.show.bind(this);
@@ -53,12 +54,12 @@ class App extends Component {
   // toShow = "AddUsername"
   // shows AddUsername page
   show = (toShow) => {
-    console.log("show me: "+toShow)
+    console.log("show me: " + toShow)
     Object.keys(this.state.show).forEach((key => {
       this.state.show[key] = false;                 // just for interest: an dieser stelle funktioniert this.setState(..) nicht, wieso auch immer :D
     }))
     this.state.show[toShow] = true;
-    this.setState({toggle: !this.state.toggle})
+    this.setState({ toggle: !this.state.toggle })
     console.log(this.state.show)
   }
 
@@ -67,7 +68,7 @@ class App extends Component {
   // value = "0x1234567890..."
   // sets this.state.account to "0x1234567890..."
   setKey = (key, value) => {
-    this.setState({toShow: value});
+    this.setState({ toShow: value });
     return;
   }
 
@@ -105,33 +106,38 @@ class App extends Component {
 
 
 
-  
+
           {this.state.show.Login &&
             <Login
               show={this.show}
               setStateData={this.setStateData}
             />}
 
-            {this.state.show.Whitelist &&
-              <Whitelist
-                account={this.state.account}
-              />}
-
-            {this.state.show.AddUsername &&
-              <AddUsername
-                show={this.show}
-                setKey={this.setKey}
-                web3={this.state.web3}
-                account={this.state.account}
-                userdataContract={this.state.userdataContract}
+          {this.state.show.Whitelist &&
+            <Whitelist
+              account={this.state.account}
             />}
 
-            {this.state.show.Projectlist && 
-              <Projectlist />
-            }
+          {this.state.show.AddUsername &&
+            <AddUsername
+              show={this.show}
+              setKey={this.setKey}
+              web3={this.state.web3}
+              account={this.state.account}
+              userdataContract={this.state.userdataContract}
+            />}
 
+          {this.state.show.Projectlist &&
+            <Projectlist />
+          }
+          {this.state.show.MokiSend &&
+            <MokiSend />
+          }
+          {this.state.show.Menu &&
+            <Menu />
+          }
 
-          <Footer />
+          <Footer show={this.show} />
         </Container>
 
 
