@@ -13,7 +13,26 @@
 						"type": "address"
 					}
 				],
-				"name": "isOwner",
+				"name": "isAdmin",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "isManager",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -57,7 +76,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FLRTY/prototype/contracts/UserData.sol": "Functions"
+			"FLRTY/prototype/contracts/DeployProject.sol": "Functions"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -71,12 +90,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"FLRTY/prototype/contracts/UserData.sol": {
-			"keccak256": "0x6d4030ddb84fa910c6447b9984487b331e65150ed6f249f919d156382f650f66",
+		"FLRTY/prototype/contracts/DeployProject.sol": {
+			"keccak256": "0xd90e8984b738a9cbe6c2642e59a42030fcf9f4a909486143f036c1b3845c1a7e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d1a3fb58e44bdb45cefa5ef98656e019b02bb332e4baa1e70b23adbc8f38e7cd",
-				"dweb:/ipfs/QmZjkxLSFEQL4QCYgmhbiaanUMxYmL2cuNzYzGFYDCjWfF"
+				"bzz-raw://e8c4c8989a815117bc5ced6bba2569ed8531ca9b01adbbe9926d6a910d7510b8",
+				"dweb:/ipfs/QmX6SCKU3tctVnbupvAQuGiNZr7adfwxf8jmajXDN5m6AD"
+			]
+		},
+		"FLRTY/prototype/contracts/Project.sol": {
+			"keccak256": "0xd27313e49f36012f9ebecbeca5313b1f45331b6e5bb53c7cd1da51fff8521104",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a1069e26c3e07a55a9fcd7f99e9f18d3453324e69caa75d0049dd8fcd9557ec3",
+				"dweb:/ipfs/QmTqiWqh7hzEPd7wvAvVSofxQDhV95kcDKZw5Z1F8FT12P"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

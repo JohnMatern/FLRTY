@@ -102,7 +102,7 @@ class App extends Component {
     return (
       <div className="app">
         <Container maxWidth="md" className="appContainer">
-          <Header moki={this.state.mokiAmount} vote={this.state.voteAmount} account={this.state.account} />
+          <Header moki={this.state.mokiAmount} vote={this.state.voteAmount} account={this.state.account} username={this.state.username} isUser={this.state.isUser} />
 
 
 
@@ -128,7 +128,13 @@ class App extends Component {
             />}
 
           {this.state.show.Projectlist &&
-            <Projectlist />
+            <Projectlist 
+            show={this.show} 
+            web3={this.state.web3} 
+            store={this.state.storeContract} 
+            group={this.state.dGroupContract}
+            project={this.state.dProjectContract}
+            vote={this.state.voteContract}/>
           }
           {this.state.show.MokiSend &&
             <MokiSend />
@@ -137,7 +143,7 @@ class App extends Component {
             <Menu />
           }
 
-          <Footer show={this.show} isUser={this.state.isUser}/>
+          <Footer show={this.show} isUser={this.state.isUser} />
         </Container>
 
 

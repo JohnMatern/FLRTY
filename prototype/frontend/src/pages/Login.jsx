@@ -46,8 +46,8 @@ class Login extends Component {
                         await this.setState({ account: accounts[0] });
                         console.log(this.state.account)
                         await this.loadData();
-                        await this.checkUser();
                         await this.passData(this.state.json);
+                        await this.checkUser();
                     }
                 });
                 // for other providers
@@ -94,8 +94,8 @@ class Login extends Component {
             "managerContract": new this.state.web3.eth.Contract(MANAGER_ABI, MANAGER),
             "userdataContract": userdata,
             "storeContract": new this.state.web3.eth.Contract(STORE_ABI, STORE),
-            "dProjectContract": new this.state.web3.eth.Contract(DEPLOYGROUP_ABI, DEPLOYGROUP),
-            "dGroupContract": new this.state.web3.eth.Contract(DEPLOYPROJECT_ABI, DEPLOYPROJECT),
+            "dGroupContract": new this.state.web3.eth.Contract(DEPLOYGROUP_ABI, DEPLOYGROUP),
+            "dProjectContract": new this.state.web3.eth.Contract(DEPLOYPROJECT_ABI, DEPLOYPROJECT),
 
             "username": await userdata.methods.getName(this.state.account).call(),
             "mokiAmount": await moki.methods.balanceOf(this.state.account).call(),
