@@ -5,7 +5,7 @@ class MokiSend extends Component {
 
     render() {
         return (
-            <div>
+            <div className="mokiSend">
                 <h1>Wallet (send)</h1>
                {/* <Projects /> */} 
             </div>

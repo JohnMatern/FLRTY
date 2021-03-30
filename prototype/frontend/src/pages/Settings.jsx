@@ -1,15 +1,15 @@
 import { React, Component } from 'react';
 
-class Menu extends Component {
+class Settings extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Menu</h1>
+            <div className="settings">
+                <h1>WTF IDK</h1>
                {/* <Projects /> */} 
             </div>
         )    
   }
 }
 
-export default Menu;
+export default Settings;

@@ -10,15 +10,27 @@ class Menubar extends Component {
     }
 
     onClick = (value) => {
-        this.props.show(value);    
+        this.props.show(value);
     }
 
     render() {
         return (
-            <div className='footer'>
-                <button onClick={() => this.onClick("Projectlist")}><img src={list} alt="img" width={40} height={30}/></button>
-                <button onClick={() => this.onClick("MokiSend")}><img src={wallet} alt="img" width={40} height={30}/></button>
-                <button onClick={() => this.onClick("Menu")}><img src={menu} alt="img" width={40} height={30}/></button>
+            <div className='menuBar'>
+                <button
+                    onClick={() =>
+                        this.onClick("Projectlist")}>
+                    <img src={list} alt="img" width={40} height={30} />
+                </button>
+                <button
+                    onClick={() =>
+                        this.onClick("MokiSend")}>
+                    <img src={wallet} alt="img" width={40} height={30} />
+                </button>
+                <button
+                    onClick={() =>
+                        this.onClick("Menu")}>
+                    <img src={menu} alt="img" width={40} height={30} />
+                </button>
             </div>
         )
     }

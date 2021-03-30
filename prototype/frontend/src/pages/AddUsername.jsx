@@ -24,7 +24,7 @@ class AddUsername extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value,
+            [name]: value.toLowerCase(),
         });
         if (await this.props.userdataContract.methods.getAddress(value.toLowerCase()).call() !== "0x0000000000000000000000000000000000000000") {
             this.setState({ messageUsername: "Username already exist" })

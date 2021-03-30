@@ -65,7 +65,7 @@ class Projectlist extends Component {
 
     render() {
         return (
-            <div>
+            <div className="projectList">
                 <h1>Projectlist</h1>
                 <div>
           <table>

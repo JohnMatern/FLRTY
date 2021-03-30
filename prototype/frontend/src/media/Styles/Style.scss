@@ -22,45 +22,78 @@ $yellow: #fffd54;
 
     .appContainer {
         text-align: center; 
-        width: 30%; 
-        background-color: $green; 
+        width: 35%; 
+        background-color: $red; 
+        padding: 1em; 
+        border-radius: 10px;
 
         .header {
 
-            background-color: $pink;
+            background-color: $green;
             padding: 1em; 
-
+            margin: 1em; 
+            border-radius: 10px;
         }
 
         .footer {
 
-            background-color: $pink;
+            background-color: $green;
             padding: 1em; 
+            margin: 1em; 
+            border-radius: 10px;
+        }
 
+        .menuBar {
+            background-color: $yellow; 
+            padding: 1em; 
+            margin: 1em; 
+            border-radius: 10px;
         }
 
         .login {
-            
-            background-color: $yellow;
-            padding: 1em; 
-
-        }
-
-        .loadBalance {
-
-            background-color: $red;
-            padding: 1em; 
-
-        }
-
-        .send {
-
             background-color: $pink;
+            border-radius: 10px;
             padding: 1em; 
-
+            margin: 1em; 
         }
 
+        .mokiSend {
+            background-color: $green; 
+            border-radius: 10px;
+            padding: 1em; 
+            margin: 1em; 
+        }
 
+        .projectList {
+            background-color: $pink; 
+            border-radius: 10px;
+            padding: 1em; 
+            margin: 1em; 
+            
+        }
+
+        .whiteList {
+            background-color: $yellow; 
+            border-radius: 10px;
+            padding: 1em; 
+            margin: 1em; 
+        }
+
+        .wallet {
+            background-color: $pink; 
+            border-radius: 10px;
+            padding: 1em; 
+            margin: 1em; 
+            
+        }
+
+        .settings {
+            background-color: $pink; 
+            border-radius: 10px;
+            padding: 1em; 
+            margin: 1em; 
+
+        }
     }
 
 }
