@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import '../media/Styles/Style.scss';
 import { Header, Footer, Menubar } from '../component/index'
-import { Button, Container } from '@material-ui/core';
-import { Login, AddUsername, Whitelist, Projectlist, Settings, Wallet } from '../pages/index'
+import { Container } from '@material-ui/core';
+import { Login, AddUsername, Whitelist, Projects, Settings, Wallet } from '../pages/index'
 
 class App extends Component {
 
@@ -34,10 +34,10 @@ class App extends Component {
       show: {
         Login: true,
         AddUsername: false,
-        Projectlist: false,
+        Projects: false,
         ProjectDetails: false,
         MokiReceive: false,
-        MokiSend: false,
+        Wallet: false,
         Groups: false,
         GroupDetails: false,
         AddUser: false,
@@ -126,8 +126,8 @@ class App extends Component {
               userdataContract={this.state.userdataContract}
             />}
 
-          {this.state.show.Projectlist &&
-            <Projectlist
+          {this.state.show.Projects &&
+            <Projects
               show={this.show}
               web3={this.state.web3}
               store={this.state.storeContract}
@@ -135,7 +135,7 @@ class App extends Component {
               project={this.state.dProjectContract}
               vote={this.state.voteContract} />
           }
-          {this.state.show.MokiSend &&
+          {this.state.show.Wallet &&
             <Wallet
               moki={this.state.mokiAmount}
               vote={this.state.voteAmount}

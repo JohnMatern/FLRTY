@@ -5,8 +5,7 @@ class Settings extends Component {
     render() {
         return (
             <div className="settings">
-                <h1>WTF IDK</h1>
-               {/* <Projects /> */} 
+                <h1>Settings</h1>
             </div>
         )    
   }

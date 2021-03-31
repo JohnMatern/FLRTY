@@ -17,12 +17,12 @@ class Menubar extends Component {
             <div className='menuBar'>
                 <Button
                     onClick={() =>
-                        this.onClick("Projectlist")}>
+                        this.onClick("Projects")}>
                     <Menu /> 
                 </Button>
                 <Button
                     onClick={() =>
-                        this.onClick("MokiSend")}>
+                        this.onClick("Wallet")}>
                     <AccountBalanceWalletRounded /> 
                 </Button>
                 <Button

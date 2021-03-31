@@ -70,7 +70,7 @@ class Projects extends Component {
               ));
 
             return (
-                <div className='projects'>
+                <div className='projectList'>
                 <table>
                   <thead>
                       <tr>

@@ -1,8 +1,8 @@
 import { React, Component } from 'react';
-import { Projects } from '../component/index'
+import { ProjectList } from '../component/index'; 
 
 
-class Projectlist extends Component {
+class Projects extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -65,7 +65,7 @@ class Projectlist extends Component {
 
     render() {
         return (
-            <div className="projectList">
+            <div className="projects">
                 <h1>Projectlist</h1>
                 <div>
           <table>
@@ -88,4 +88,4 @@ class Projectlist extends Component {
     }
 }
 
-export default Projectlist;
+export default Projects;
