@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../media/Styles/Style.scss';
 import { Header, Footer, Menubar } from '../component/index'
 import { Button, Container } from '@material-ui/core';
-import { Login, AddUsername, Whitelist, Projectlist, Settings, MokiSend, Wallet } from '../pages/index'
+import { Login, AddUsername, Whitelist, Projectlist, Settings, Wallet } from '../pages/index'
 
 class App extends Component {
 
@@ -110,11 +110,7 @@ class App extends Component {
               setStateData={this.setStateData}
             />}
 
-          {this.state.isUser && 
-            <Menubar 
-              show={this.show} 
-              isUser={this.state.isUser} 
-            /> } 
+
 
           {this.state.show.Whitelist &&
             <Whitelist
@@ -140,26 +136,25 @@ class App extends Component {
               vote={this.state.voteContract} />
           }
           {this.state.show.MokiSend &&
-            <MokiSend />
+            <Wallet
+              moki={this.state.mokiAmount}
+              vote={this.state.voteAmount}
+              account={this.state.account}
+              username={this.state.username}
+              isUser={this.state.isUser}
+            />
           }
           {this.state.show.Menu &&
             <Settings />
           }
 
           <br />
-          <br />
-          <br />
 
-          
-
-
-          <Wallet
-            moki={this.state.mokiAmount}
-            vote={this.state.voteAmount}
-            account={this.state.account}
-            username={this.state.username}
-            isUser={this.state.isUser}
-          />
+          {this.state.isUser &&
+            <Menubar
+              show={this.show}
+              isUser={this.state.isUser}
+            />}
 
           <Footer />
         </Container>

@@ -1,7 +1,6 @@
 import { React, Component } from 'react';
-import list from '../media/img/list.png'
-import wallet from '../media/img/wallet.png'
-import menu from '../media/img/menu.png'
+import { Settings, AccountBalanceWalletRounded, Menu} from '@material-ui/icons'; 
+import { Button } from '@material-ui/core'; 
 
 class Menubar extends Component {
     constructor(props) {
@@ -16,21 +15,21 @@ class Menubar extends Component {
     render() {
         return (
             <div className='menuBar'>
-                <button
+                <Button
                     onClick={() =>
                         this.onClick("Projectlist")}>
-                    <img src={list} alt="img" width={40} height={30} />
-                </button>
-                <button
+                    <Menu /> 
+                </Button>
+                <Button
                     onClick={() =>
                         this.onClick("MokiSend")}>
-                    <img src={wallet} alt="img" width={40} height={30} />
-                </button>
-                <button
+                    <AccountBalanceWalletRounded /> 
+                </Button>
+                <Button
                     onClick={() =>
                         this.onClick("Menu")}>
-                    <img src={menu} alt="img" width={40} height={30} />
-                </button>
+                    <Settings /> 
+                </Button>
             </div>
         )
     }
