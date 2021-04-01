@@ -1,68 +1,89 @@
 import { React, Component } from 'react';
 
 
-class Projects extends Component {
+class ProjectsList extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            projects: [],
-            projectsLoaded: false,
-            projectData: '',
+            projectAddresses: '',
+            projectlist: '',
+            contentJson: [],
+            content: '',
         }
 
         this.loadData = this.loadData.bind(this);
-        this.setProjects = this.setProjects.bind(this);
-        this.getProjectData = this.getProjectData.bind(this);
+        this.getProjectAddresses = this.getProjectAddresses.bind(this); 
+        this.tableOutput = this.tableOutput.bind(this); 
     }
 
     componentDidMount = async () => {
+        console.log(this.props)
+        await this.getProjectAddresses();
         await this.loadData();
+        await this.tableOutput();
     }
 
-    loadData = async () => {
-        await this.setProjects();
-        await this.getProjectData();
-    }
-
-    setProjects = async () => {
-        await this.setState({
-            projects: await this.props.store.methods.getProjectList().call()
+    getProjectAddresses = async () => {
+        console.log('inside projectAddress')
+        console.log(this.props)
+        console.log(this.props.store)
+        this.setState({ 
+            projectAddresses:  await this.props.store.methods.getProjectList().call() 
         })
     }
 
-    getProjectData = async () => {
-        let data = [];
-            await this.state.projects.map(async (p) => {
-                const project = this.props.project;
-                const group = this.props.group;
-                const json = {};
-                json['projectAddress'] = p;
-                json['ProjectName'] = await project.methods.getName(p).call();
-                json['endDate'] = await project.methods.getEndDate(p).call();
-                json['minVotes'] = await project.methods.getMinVotes(p).call();
-                json['groupName'] = await group.methods.getName(await project.methods.getGroup(p).call()).call();
-                data.push(json);
-            });
-        this.setState({projectData: await data})
+    loadData = async () => {
+
+        for (let i = 0; i < this.state.projectAddresses.length; i++) {
+            let project = this.state.projectAddresses[i];
+            let projectName = await this.props.project.methods.getName(project).call();
+            let group = await this.props.project.methods.getGroup(project).call();
+            let groupName = await this.props.group.methods.getName(group).call();
+            let votes = await this.props.vote.methods.balanceOf(project).call();
+            let minVotes = await this.props.project.methods.getMinVotes(project).call();
+            let endDate = await this.props.project.methods.getEndDate(project).call();
+
+            await this.state.contentJson.push({
+                "project": project,
+                "projectName": projectName,
+                "group": group,
+                "groupName": groupName,
+                "votes": votes,
+                "minVotes": minVotes,
+                "endDate": endDate,
+            })
+        }
+        // return;
+    }
+
+    tableOutput = async () => {
+        let content = this.state.contentJson.map((c) => (
+            <tr>
+                <td>{c.projectName}</td>
+                <td>{c.groupName}</td>
+                <td>{c.votes}</td>
+                <td>{c.minVotes}</td>
+                <td>{c.endDate}</td>
+            </tr>
+        ));
+        this.setState({ content: content })
     }
 
     render() {
-        console.log("projectdata:")
-        console.log(this.state.projectData)
+        console.log("projectList:")
+        console.log(this.state.contentJson)
       
-        if (this.state.projectData === '') {
+        if (this.state.contentJson === '') {
             return (
-                <div className='projects'>
-                    <p>The projects could not load :( </p>
-                </div>
+                <p>The projects could not load :( </p>
             )
         } else {
 
-            const content = this.state.projectData.map((d) => (
+            const content = this.state.contentJson.map((d) => (
                 <tr>
-                  <td>{d.ProjectName}</td>
+                  <td>{d.projectName}</td>
                   <td>{d.endDate}</td>
                   <td>{d.minVotes}</td>
                   <td>{d.groupName}</td>
@@ -91,4 +112,4 @@ class Projects extends Component {
     }
 }
 
-export default Projects;
+export default ProjectsList;
