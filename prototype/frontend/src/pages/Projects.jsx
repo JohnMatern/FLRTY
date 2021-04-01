@@ -15,11 +15,13 @@ class Projects extends Component {
                     <h1>Projectlist</h1>
                     <div>
                         <ProjectList
+                            show={this.props.show}
                             web3={this.props.web3}
                             store={this.props.store}
                             group={this.props.group}
                             project={this.props.project}
                             vote={this.props.vote}
+                            addressHandler={this.props.addressHandler}
                         />
                     </div>
                 </div>

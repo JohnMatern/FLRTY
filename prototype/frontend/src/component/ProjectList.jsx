@@ -1,5 +1,5 @@
 import { React, Component } from 'react';
-
+const dateOptions = {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' };
 
 class ProjectsList extends Component {
 
@@ -61,14 +61,18 @@ class ProjectsList extends Component {
     tableOutput = async () => {
         let content = this.state.contentJson.map((c) => (
             <tr>
-                <td>{c.projectName}</td>
+                <td><a href="#" onClick={() => {this.projectClick(c.project)}}>{c.projectName}</a></td>
                 <td>{c.groupName}</td>
-                <td>{c.votes}</td>
-                <td>{c.minVotes}</td>
-                <td>{c.endDate}</td>
+                <td>{c.votes} / {c.minVotes}</td>
+                <td>{new Date(c.endDate*1000).toLocaleDateString('de-DE', dateOptions)}</td>
             </tr>
         ));
         this.setState({ content: content })
+    }
+
+    projectClick = (address) => {
+        this.props.addressHandler(address);
+        this.props.show("SingleProject")
     }
 
     render() {
@@ -80,29 +84,19 @@ class ProjectsList extends Component {
                 <p>The projects could not load :( </p>
             )
         } else {
-
-            const content = this.state.contentJson.map((d) => (
-                <tr>
-                  <td>{d.projectName}</td>
-                  <td>{d.endDate}</td>
-                  <td>{d.minVotes}</td>
-                  <td>{d.groupName}</td>
-                </tr>
-              ));
-
             return (
                 <div className='projectList'>
                 <table>
                   <thead>
                       <tr>
                         <th>Name</th>
-                        <th>End Date</th>
-                        <th>Min Votes</th>
                         <th>Group</th>
+                        <th>Votes</th>
+                        <th>End Date</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {content}
+                      {this.state.content}
                     </tbody>
                   </table>
               </div>

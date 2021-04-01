@@ -7,7 +7,8 @@ import ProjectList from './ProjectList';
 import TxModal from './TxModal'; 
 import Menubar from './Menubar'; 
 import AccountInfo from './AccountInfo'; 
+import Project from './Project'
 
 
 
-export { Header, Footer, LoadBalance, Send, MustWhitelist, ProjectList, TxModal, Menubar, AccountInfo}; 
+export { Header, Footer, LoadBalance, Send, MustWhitelist, ProjectList, TxModal, Menubar, AccountInfo, Project}; 

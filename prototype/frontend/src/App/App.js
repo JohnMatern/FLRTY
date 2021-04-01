@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../media/Styles/Style.scss';
 import { Header, Footer, Menubar } from '../component/index'
 import { Container } from '@material-ui/core';
-import { Login, AddUsername, Whitelist, Projects, Settings, Wallet } from '../pages/index'
+import { Login, AddUsername, Whitelist, Projects, Settings, Wallet, SingleProject } from '../pages/index'
 
 class App extends Component {
 
@@ -31,11 +31,12 @@ class App extends Component {
       isAdmin: false,
 
       toggle: true,
+      address: '0',
       show: {
         Login: true,
         AddUsername: false,
         Projects: false,
-        ProjectDetails: false,
+        SingleProject: false,
         MokiReceive: false,
         Wallet: false,
         Groups: false,
@@ -97,6 +98,11 @@ class App extends Component {
     })
   }
 
+  // saves the address for specific group or project detailpages 
+  addressHandler = (address) => {
+    this.setState({ address: address })
+  }
+
   render() {
 
     return (
@@ -133,8 +139,19 @@ class App extends Component {
               store={this.state.storeContract}
               group={this.state.dGroupContract}
               project={this.state.dProjectContract}
-              vote={this.state.voteContract} />
+              vote={this.state.voteContract}
+              addressHandler={this.addressHandler} />
           }
+          {this.state.show.SingleProject &&
+            <SingleProject
+              web3={this.state.web3}
+              store={this.state.storeContract}
+              group={this.state.dGroupContract}
+              project={this.state.dProjectContract}
+              vote={this.state.voteContract}
+              address={this.state.address} />
+          }
+
           {this.state.show.Wallet &&
             <Wallet
               moki={this.state.mokiAmount}

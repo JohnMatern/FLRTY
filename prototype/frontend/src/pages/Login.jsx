@@ -72,7 +72,7 @@ class Login extends Component {
         if(this.state.json.username === "") {
             this.props.show("AddUsername");
         } else {
-            this.props.show("Projectlist")
+            this.props.show("Projects")
         }
         return;
     }

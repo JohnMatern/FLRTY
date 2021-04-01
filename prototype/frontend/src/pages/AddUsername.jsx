@@ -67,7 +67,7 @@ class AddUsername extends Component {
         if (this.props.status == "error") {
             this.props.show("AddUsername");
         } else {
-            this.props.show("Projectlist");
+            this.props.show("Projects");
         }
     }
 
