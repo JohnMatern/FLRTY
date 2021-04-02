@@ -1,5 +1,6 @@
 import { React, Component } from 'react';
-const dateOptions = {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+import { CircularProgress } from '@material-ui/core';
+const dateOptions = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' };
 
 class ProjectsList extends Component {
 
@@ -14,8 +15,8 @@ class ProjectsList extends Component {
         }
 
         this.loadData = this.loadData.bind(this);
-        this.getProjectAddresses = this.getProjectAddresses.bind(this); 
-        this.tableOutput = this.tableOutput.bind(this); 
+        this.getProjectAddresses = this.getProjectAddresses.bind(this);
+        this.tableOutput = this.tableOutput.bind(this);
     }
 
     componentDidMount = async () => {
@@ -29,8 +30,8 @@ class ProjectsList extends Component {
         console.log('inside projectAddress')
         console.log(this.props)
         console.log(this.props.store)
-        this.setState({ 
-            projectAddresses:  await this.props.store.methods.getProjectList().call() 
+        this.setState({
+            projectAddresses: await this.props.store.methods.getProjectList().call()
         })
     }
 
@@ -61,10 +62,10 @@ class ProjectsList extends Component {
     tableOutput = async () => {
         let content = this.state.contentJson.map((c) => (
             <tr>
-                <td><a href="#" onClick={() => {this.projectClick(c.project)}}>{c.projectName}</a></td>
+                <td><a href="#" onClick={() => { this.projectClick(c.project) }}>{c.projectName}</a></td>
                 <td>{c.groupName}</td>
                 <td>{c.votes} / {c.minVotes}</td>
-                <td>{new Date(c.endDate*1000).toLocaleDateString('de-DE', dateOptions)}</td>
+                <td>{new Date(c.endDate * 1000).toLocaleDateString('de-DE', dateOptions)}</td>
             </tr>
         ));
         this.setState({ content: content })
@@ -76,33 +77,32 @@ class ProjectsList extends Component {
     }
 
     render() {
-        console.log("projectList:")
-        console.log(this.state.contentJson)
-      
-        if (this.state.contentJson === '') {
+
+
+
+        if (this.state.content === '') {
             return (
-                <p>The projects could not load :( </p>
-            )
-        } else {
-            return (
-                <div className='projectList'>
-                <table>
-                  <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Group</th>
-                        <th>Votes</th>
-                        <th>End Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {this.state.content}
-                    </tbody>
-                  </table>
-              </div>
+                <CircularProgress />
             )
         }
-        
+        return (
+            <div className='projectList'>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Group</th>
+                            <th>Votes</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.content}
+                    </tbody>
+                </table>
+            </div>
+        )
+
     }
 }
 
