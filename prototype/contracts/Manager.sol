@@ -105,11 +105,11 @@ contract Manager is EIP712MetaTransaction {
         require((FunctionsM(whitelist).isUser(msgSender())) && 
         (FunctionsM(vote()).balanceOf(msgSender()) >= amount) && 
         (FunctionsM(project).getEndDate() >= block.timestamp) && (
-            (FunctionsM(store()).getVoteHistory(project, msgSender()) == 0 && amount == 1) || 
-            (FunctionsM(store()).getVoteHistory(project, msgSender())**2 == amount)
+             ((FunctionsM(store()).getVoteHistory(project, msgSender())+1)**2 == amount)
         ));
         FunctionsM(vote()).transferToken(msgSender(), project, amount);
-        FunctionsM(store()).addVoteHistory(project, msgSender(), amount);
+        uint256 voteAmount = FunctionsM(store()).getVoteHistory(project, msgSender());
+        FunctionsM(store()).addVoteHistory(project, msgSender(), voteAmount+1);
     }
 
     function endProject(address project) public {

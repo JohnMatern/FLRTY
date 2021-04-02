@@ -145,10 +145,12 @@ class App extends Component {
           {this.state.show.SingleProject &&
             <SingleProject
               web3={this.state.web3}
+              account={this.state.account}
               store={this.state.storeContract}
               group={this.state.dGroupContract}
               project={this.state.dProjectContract}
               vote={this.state.voteContract}
+              manager={this.state.managerContract}
               address={this.state.address} />
           }
 

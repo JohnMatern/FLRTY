@@ -18,10 +18,12 @@ class SingleProject extends Component {
                 <Container>
                     <Project
                         web3={this.props.web3}
+                        account={this.props.account}
                         store={this.props.store}
                         group={this.props.group}
                         project={this.props.project}
                         vote={this.props.vote}
+                        manager={this.props.manager}
                         address={this.props.address} />
                 </Container>
             </div>
