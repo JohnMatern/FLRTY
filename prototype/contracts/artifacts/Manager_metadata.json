@@ -322,11 +322,11 @@
 	},
 	"sources": {
 		"FLRTY/prototype/contracts/Manager.sol": {
-			"keccak256": "0x9b5d4a709253738725f37f5b0c12df1d990f51f6c4c6a38c646eece3d8157598",
+			"keccak256": "0x8cc5bedfe14b5547005fba7b438707b01e2430afeea9617331ed5e8e7f880781",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://58dd447adb21569c1b1ae749c5009081c071a92fa51a2260e6f7fedcddb98b94",
-				"dweb:/ipfs/Qmb9fn2MR2hQBsbmVPam5XRRmUzkpEM5jmZYjnqxsqGy9M"
+				"bzz-raw://a76ff6734c3f6ce6ec3a8b85a11472f5228f5ef085f934dd9964535fee8dd930",
+				"dweb:/ipfs/QmXhU4gfYgupSV1sAnj1cYiyR8ebYMJXnEFqjujR3M4xMo"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {
