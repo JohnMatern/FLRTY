@@ -1,5 +1,6 @@
 import { React, Component } from 'react';
 import { Project } from '../component/index';
+import { Container } from '@material-ui/core'; 
 
 
 class SingleProject extends Component {
@@ -14,7 +15,7 @@ class SingleProject extends Component {
         return (
             <div className="projects">
                 <h1>Project Details</h1>
-                <div>
+                <Container>
                     <Project
                         web3={this.props.web3}
                         store={this.props.store}
@@ -22,7 +23,7 @@ class SingleProject extends Component {
                         project={this.props.project}
                         vote={this.props.vote}
                         address={this.props.address} />
-                </div>
+                </Container>
             </div>
         )
     }

@@ -78,8 +78,6 @@ class ProjectsList extends Component {
 
     render() {
 
-
-
         if (this.state.content === '') {
             return (
                 <CircularProgress />

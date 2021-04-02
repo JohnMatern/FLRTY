@@ -1,5 +1,7 @@
 import { React, Component } from 'react';
+import { CircularProgress } from '@material-ui/core'; 
 const dateOptions = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+
 
 class Project extends Component {
     constructor(props) {
@@ -52,6 +54,10 @@ class Project extends Component {
     }
 
     render() {
+
+        if ( this.state.project === '') {
+            return <CircularProgress /> 
+        }
         return (
             <div className="projects">
                 <div>
