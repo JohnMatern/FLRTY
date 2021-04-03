@@ -8,7 +8,8 @@ import TxModal from './TxModal';
 import Menubar from './Menubar'; 
 import AccountInfo from './AccountInfo'; 
 import Project from './Project'
+import Receive from './Receive'
 
 
 
-export { Header, Footer, LoadBalance, Send, MustWhitelist, ProjectList, TxModal, Menubar, AccountInfo, Project}; 
+export { Header, Footer, LoadBalance, Send, MustWhitelist, ProjectList, TxModal, Menubar, AccountInfo, Project, Receive}; 
