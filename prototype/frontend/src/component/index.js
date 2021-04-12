@@ -9,7 +9,8 @@ import Menubar from './Menubar';
 import AccountInfo from './AccountInfo'; 
 import Project from './Project'
 import Receive from './Receive'
+import NewProject from './NewProject'
 
 
 
-export { Header, Footer, LoadBalance, Send, MustWhitelist, ProjectList, TxModal, Menubar, AccountInfo, Project, Receive}; 
+export { Header, Footer, LoadBalance, Send, MustWhitelist, ProjectList, TxModal, Menubar, AccountInfo, Project, Receive, NewProject}; 

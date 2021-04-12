@@ -28,7 +28,7 @@ class Whitelist extends Component {
                 <h1>Please visit an AccessHub to get access</h1> <br />
                 <QRCode
                     value={this.props.account}
-                    size={256}
+                    size={200}
                 />
             </div>
         )

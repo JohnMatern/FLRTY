@@ -557,18 +557,18 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
-			"runs": 400
+			"enabled": false,
+			"runs": 200
 		},
 		"remappings": []
 	},
 	"sources": {
 		"FLRTY/prototype/contracts/VoteToken.sol": {
-			"keccak256": "0x8ac615b3d82b56b2f923b5898411ef374b013d38430a69de3a9195104f8b83fa",
+			"keccak256": "0xad2d6c887d3dbe4384b68b092c4829354f9818a1b079e496e01831368f34e8cb",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://926e311ee07b55868d909d8fe905df2e6c597fb2a5c08e0c433e58d62af43391",
-				"dweb:/ipfs/QmVoyunBbasCGWHNxaWGE5AkS1P3NNHoBtESFtqo9vaJL3"
+				"bzz-raw://02b5949c91da55da507df3f0451f0c306cc2b5a61ac04ed91f531269daf87e79",
+				"dweb:/ipfs/Qmc2ErZUdP2U6TcsnXkyEDNKK5A4TgFX7Vk7hPtoftXSxC"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

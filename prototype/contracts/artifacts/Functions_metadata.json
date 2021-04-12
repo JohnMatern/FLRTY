@@ -6,19 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"name": "getVoteSupply",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -26,7 +13,7 @@
 						"type": "address"
 					}
 				],
-				"name": "isManager",
+				"name": "isOwner",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -45,7 +32,7 @@
 						"type": "address"
 					}
 				],
-				"name": "isOwner",
+				"name": "isUser",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -70,7 +57,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FLRTY/prototype/contracts/Store.sol": "Functions"
+			"FLRTY/prototype/contracts/UserData.sol": "Functions"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -84,12 +71,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"FLRTY/prototype/contracts/Store.sol": {
-			"keccak256": "0xac9b337c6ce11e8da3599f2a09f357fff85e962ec443eb7331789d03295d5d50",
+		"FLRTY/prototype/contracts/UserData.sol": {
+			"keccak256": "0x6d4030ddb84fa910c6447b9984487b331e65150ed6f249f919d156382f650f66",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4a248cf6a0f70469e942e6250da6fa952cf4898c5e7860a1e6b72310d17e82a6",
-				"dweb:/ipfs/QmRTjGZak2M96xu5L9LHqKdd3z9FbP5gJYJseg4ew5BjH6"
+				"bzz-raw://d1a3fb58e44bdb45cefa5ef98656e019b02bb332e4baa1e70b23adbc8f38e7cd",
+				"dweb:/ipfs/QmZjkxLSFEQL4QCYgmhbiaanUMxYmL2cuNzYzGFYDCjWfF"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

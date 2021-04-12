@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../media/Styles/Style.scss';
 import { Header, Footer, Menubar } from '../component/index'
 import { Container } from '@material-ui/core';
-import { Login, AddUsername, Whitelist, Projects, Settings, Wallet, SingleProject } from '../pages/index'
+import { Login, AddUsername, Whitelist, Projects, Menu, Wallet, SingleProject, MyProjects } from '../pages/index'
 
 class App extends Component {
 
@@ -45,6 +45,8 @@ class App extends Component {
         AddAccessHub: false,
         Whitelist: false,
         Menu: false,
+        MyProjects: false,
+        MyGroups: false,
       }
     }
     this.show = this.show.bind(this);
@@ -154,6 +156,19 @@ class App extends Component {
               address={this.state.address} />
           }
 
+          {this.state.show.MyProjects &&
+            <MyProjects
+              show={this.show}
+              web3={this.state.web3}
+              account={this.state.account}
+              store={this.state.storeContract}
+              group={this.state.dGroupContract}
+              project={this.state.dProjectContract}
+              vote={this.state.voteContract}
+              manager={this.state.managerContract}
+              address={this.state.address}
+            />}
+
           {this.state.show.Wallet &&
             <Wallet
               moki={this.state.mokiAmount}
@@ -164,9 +179,8 @@ class App extends Component {
             />
           }
           {this.state.show.Menu &&
-            <Settings />
+            <Menu show={this.show} />
           }
-
           <br />
 
           {this.state.isUser &&

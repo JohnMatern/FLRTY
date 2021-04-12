@@ -1,5 +1,5 @@
 import { React, Component } from 'react';
-import { Settings, AccountBalanceWalletRounded, Menu} from '@material-ui/icons'; 
+import { Person, AccountBalanceWalletRounded, Menu} from '@material-ui/icons'; 
 import { Button } from '@material-ui/core'; 
 
 class Menubar extends Component {
@@ -28,7 +28,7 @@ class Menubar extends Component {
                 <Button
                     onClick={() =>
                         this.onClick("Menu")}>
-                    <Settings /> 
+                    <Person /> 
                 </Button>
             </div>
         )
