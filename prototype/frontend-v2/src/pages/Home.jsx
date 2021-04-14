@@ -1,8 +1,10 @@
+import { Moki } from '../components/Contracts/index.js'
+
 const Home = () => {
 
   return (
     <div className="page">
-      Home
+      <Moki func={'transfer'} />
     </div>
   );
 }

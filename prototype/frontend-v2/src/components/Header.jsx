@@ -1,16 +1,13 @@
 import { Redirect } from 'react-router-dom';
-import { UserData } from '../utils/ContractFunctions'
 import { Context } from '../utils/Store'
 import { useEffect, useContext, useState } from 'react';
 import Person from '../media/person.png'
-import { Moki } from './Contracts/index'
+import { Moki, Vote } from './Contracts/index'
 
 const Header = () => {
   const [state, dispatch] = useContext(Context);
   const [username, setUsername] = useState('');
   const [address, setAddress] = useState('');
-  const [mokiAmount, setMokiAmount] = useState('');
-  const [voteAmount, setVoteAmount] = useState('');
 
   useEffect(async () => {
     if (state === 'undefined' || state.init === false) {
@@ -18,8 +15,6 @@ const Header = () => {
     } else {
       setAddress(state.account);
       setUsername(state.username);
-      setMokiAmount(state.mokiAmount);
-      setVoteAmount(state.voteAmount);
     }
   }, [state])
 
@@ -31,9 +26,16 @@ const Header = () => {
         <div className="adresse">Adresse: &nbsp; {address}</div>
         <div className="tokenWrapper">
           <div className="name">Name: &nbsp; {username}</div>
-          <div className="moki">Moki: &nbsp; {mokiAmount}
+          <div className="moki">Moki: &nbsp;
+            <Moki func={'balanceOf'}
+              payload={{ address: state.account }}
+            />
           </div>
-          <div className="vote">Vote: {voteAmount}</div>
+          <div className="vote">Vote: 
+            <Vote func={'balanceOf'} 
+              payload={{ address: state.account }} 
+            />
+          </div>
         </div>
       </div>
 

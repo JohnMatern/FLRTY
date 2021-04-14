@@ -4,112 +4,133 @@ $maincolor: #fff;
 $lightGrey: rgb(204, 202, 202);
 
 @mixin main($color) {
-    background-color: $color;
-    width: calc(100vw);
-    max-width: 400px;
+  background-color: $color;
+  width: calc(100vw);
+  max-width: 400px;
 }
 
-#root {
-    height: calc(100vh - Xream);
-}
-
-body{
-    margin: 0 !important;
-    display: flex;
-    position: relative;
-    justify-content: center;
+body {
+  margin-top: 0px !important;
+  margin-bottom: opx;
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - Yream) !important;
+  background-color: rgb(104, 100, 100);
 }
 
 .app {
-    display: flex;
-    position: relative;
-    background-color: $backgroundcolor;
-    justify-content: center;
-    border-left-width: 2px;
-    border-left-style: solid;
-    border-left-color: $lightGrey;
-    border-right-width: 2px;
-    border-right-style: solid;
-    border-right-color: $lightGrey;
+  display: flex;
+  position: relative;
+  background-color: $backgroundcolor;
+  justify-content: center;
+  margin: 10px auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  min-height: -webkit-fill-available;
 
-    .appBox{
-        .page {
-            @include main($maincolor);
-            position: flex;
-            height: calc(100vh - 100px);
-       }
-    }    
+  .appBox {
+    .page {
+      @include main($maincolor);
+      position: flex;
+      min-height: calc(100vh - 164px);
+      padding: 10px;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      border-bottom-color: $lightGrey;
+      border-top-width: 2px;
+      border-top-style: solid;
+      border-top-color: $lightGrey;
+    }
+
     .header {
-        @include main($maincolor);  
-        position: flex;
-        height: 50px;
-        border-bottom-width: 2px;
-        border-bottom-style: solid;
-        border-bottom-color: $lightGrey;
+      @include main($maincolor);
+      position: flex;
+      height: 50px;
+      padding: 10px;
 
-        .logo {
-            position: absolute;
-            height: 40px;
-            width: 140px; 
-            background: url(/media/flarity.png) no-repeat;
-            margin: 5px;
-            margin-top: 10px;
-         }
-        .dataWrapper {
-            position: absolute;
-            font-size: 9px;
-            font-weight: 600;
-            width: calc(100% - 130px);
-            height: 100%;
-            margin-left: 130px;
-            margin-top: 10px;
+      .logo {
+        position: absolute;
+        height: 40px;
+        width: 140px;
+        background: url(/media/flarity.png) no-repeat;
+        margin: 5px;
+        margin-top: 10px;
+      }
+      .dataWrapper {
+        position: absolute;
+        font-size: 9px;
+        font-weight: 600;
+        width: calc(100% - 130px);
+        height: 100%;
+        margin-left: 140px;
+        margin-top: 10px;
 
-            .tokenWrapper {
-                display: inline-block;
-                margin-top: 10px;
-                .name {
-                    position: flex;
-                    display: inline-block;
-                    width: 100px;
-                }
-                .moki {
-                    position: flex;
-                    display: inline-block;
-                    width: 80px;
-                }
-                .vote {
-                    position: flex;
-                    display: inline-block;
-                    width: 80px;
-                }
-            }
-        }
-        .photo {
+        .tokenWrapper {
+          display: inline-block;
+          margin-top: 10px;
+          .name {
+            position: flex;
             display: inline-block;
-            width: 40px;
-            margin-left:520px;
-            img {
-                display: absolute;
-                margin-top: 5px;
-
-                max-width: 40px !important;
-                max-height: 40px !important;
-                border-radius: 50%;
-            }
+            width: 100px;
+          }
+          .moki {
+            position: flex;
+            display: inline-block;
+            width: 80px;
+          }
+          .vote {
+            position: flex;
+            display: inline-block;
+            width: 80px;
+          }
         }
+      }
+      .photo {
+        display: inline-block;
+        width: 40px;
+        margin-left: 520px;
+        img {
+          display: absolute;
+          margin-top: 5px;
+          max-width: 40px !important;
+          max-height: 40px !important;
+          border-radius: 50%;
+        }
+      }
     }
     .footer {
-        @include main($maincolor);
-        position: fixed;
-        bottom: 0;
-        height: 50px;
-        border-top-width: 2px;
-        border-top-style: solid;
-        border-top-color: $lightGrey;
-    }  
-    .login {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      @include main($maincolor);
+      position: fixed;
+      height: 50px;
+      padding: 10px;
+      bottom: 0px;
     }
+    .login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .form {
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .input {
+      font-size: 10px;
+      height: 12px;
+    }
+    .input-long {
+      width: 200px;
+    }
+    .input-short {
+      width: 50px;
+    }
+
+    .btn {
+      height: 17px;
+      font-size: 10px;
+    }
+  }
 }

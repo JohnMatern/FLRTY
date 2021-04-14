@@ -1,4 +1,3 @@
-import { UserData } from '../utils/ContractFunctions'
 import { Context } from '../utils/Store'
 import { useEffect, useContext } from 'react';
 

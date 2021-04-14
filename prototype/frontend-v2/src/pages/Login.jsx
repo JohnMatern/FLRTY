@@ -99,7 +99,7 @@ function Login() {
         await connect();
         await init(dispatch, setInit);
         await finished(dispatch);
-    });
+    },[]);
 
     if(isInit && state.account !== null && state.username === null) {
         return <Redirect push to="/addUsername" />
