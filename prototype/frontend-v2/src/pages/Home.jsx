@@ -1,4 +1,4 @@
-import { Moki } from '../components/Contracts/index.js'
+import { Moki } from '../components/index.js'
 
 const Home = () => {
 

@@ -2,7 +2,7 @@ import { Redirect } from 'react-router-dom';
 import { Context } from '../utils/Store'
 import { useEffect, useContext, useState } from 'react';
 import Person from '../media/person.png'
-import { Moki, Vote } from './Contracts/index'
+import { Moki, Vote } from './index'
 
 const Header = () => {
   const [state, dispatch] = useContext(Context);

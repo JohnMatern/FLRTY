@@ -20,6 +20,8 @@ const initialState = {
     isUser: false,
     isAccessHub: false,
     isAdmin: false,
+    modal: false,
+    tx: '',
     error: ''
 };
 

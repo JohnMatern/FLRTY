@@ -13,44 +13,6 @@
 						"type": "address"
 					}
 				],
-				"name": "isAdmin",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "isManager",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
 				"name": "isOwner",
 				"outputs": [
 					{
@@ -95,7 +57,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FLRTY/prototype/contracts/CurrencyCoin.sol": "Functions"
+			"FLRTY/prototype/contracts/UserData.sol": "Functions"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -109,12 +71,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"FLRTY/prototype/contracts/CurrencyCoin.sol": {
-			"keccak256": "0x3db6f557349ae9c1d60b2138c096dc3c7d0d3ab12a13d6fc7016eef272081186",
+		"FLRTY/prototype/contracts/UserData.sol": {
+			"keccak256": "0x6d4030ddb84fa910c6447b9984487b331e65150ed6f249f919d156382f650f66",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1268575f501d27b3499da2bd9c510603df74ac3beaa534a863891677540e5dfa",
-				"dweb:/ipfs/QmVWTPxXfyxoRoXoSrJuDRvQ17dn4Bp7CxJ9G24nFLf6Sg"
+				"bzz-raw://d1a3fb58e44bdb45cefa5ef98656e019b02bb332e4baa1e70b23adbc8f38e7cd",
+				"dweb:/ipfs/QmZjkxLSFEQL4QCYgmhbiaanUMxYmL2cuNzYzGFYDCjWfF"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {
@@ -137,22 +99,6 @@
 			"urls": [
 				"bzz-raw://526dc85e1f9b9b45830e202568d267d93dde7a4fcccf4ad7798dadcd92304d3c",
 				"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR"
-			]
-		},
-		"FLRTY/prototype/contracts/lib/openzeppelin/token/ERC20/IERC20.sol": {
-			"keccak256": "0x5f02220344881ce43204ae4a6281145a67bc52c2bb1290a791857df3d19d78f5",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://24427744bd3e6cb73c17010119af12a318289c0253a4d9acb8576c9fb3797b08",
-				"dweb:/ipfs/QmTLDqpKRBuxGxRAmjgXt9AkXyACW3MtKzi7PYjm5iMfGC"
-			]
-		},
-		"FLRTY/prototype/contracts/lib/openzeppelin/utils/Context.sol": {
-			"keccak256": "0x8d3cb350f04ff49cfb10aef08d87f19dcbaecc8027b0bed12f3275cd12f38cf0",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://ded47ec7c96750f9bd04bbbc84f659992d4ba901cb7b532a52cd468272cf378f",
-				"dweb:/ipfs/QmfBrGtQP7rZEqEg6Wz6jh2N2Kukpj1z5v3CGWmAqrzm96"
 			]
 		}
 	},
