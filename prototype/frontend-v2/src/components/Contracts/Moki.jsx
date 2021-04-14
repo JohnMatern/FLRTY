@@ -1,6 +1,25 @@
 import { Context } from '../../utils/Store'
 import { useEffect, useContext, useState } from 'react';
 
+// General:
+// props:
+//   func={'functionName'}
+//   payload={{key: value}}
+
+// Functions:
+
+//   balanceOf:
+//     props:
+//       func={'balanceOf'}
+//       payload={{address: <address>}}
+//     returns balance: 12.34
+
+//   transfer:
+//     props:
+//       func={'transfer'}
+//       payload={{address: <address>}}
+//     returns form: An [    ], Moki [    ], (senden)
+
 const Moki = (props) => {
   const [state, dispatch] = useContext(Context);
   const [returnValue, setReturnValue] = useState(<></>);
