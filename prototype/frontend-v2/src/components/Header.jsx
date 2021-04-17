@@ -1,8 +1,10 @@
 import { Redirect } from 'react-router-dom';
-import { Context } from '../utils/Store'
+import { Context } from '../utils/Store';
 import { useEffect, useContext, useState } from 'react';
-import Person from '../media/person.png'
-import { Moki, Vote } from './index'
+import Person from '../media/person.png';
+import { Moki, Vote } from './index';
+import { Container, Row, Col, Jumbotron } from 'react-bootstrap';
+import { ReactComponent as Logo } from '../media/flarity.svg';
 
 const Header = () => {
   const [state, dispatch] = useContext(Context);
@@ -19,31 +21,35 @@ const Header = () => {
   }, [state])
 
   return (
-    <div className="header">
-      <div className="logo"></div>
-
-      <div className="dataWrapper">
-        <div className="adresse">Adresse: &nbsp; {address}</div>
-        <div className="tokenWrapper">
-          <div className="name">Name: &nbsp; {username}</div>
-          <div className="moki">Moki: &nbsp;
-            <Moki func={'balanceOf'}
+    <div>
+      <Row>
+        <Jumbotron>
+          <Col>
+            <Logo />
+          </Col>
+          <Col>
+            Adresse: &nbsp; {address}
+          </Col>
+          <Col>
+            Name: &nbsp; {username}
+          </Col>
+          <Col>
+            Moki: &nbsp;
+          <Moki func={'balanceOf'}
               payload={{ address: state.account }}
             />
-          </div>
-          <div className="vote">Vote: 
-            <Vote func={'balanceOf'} 
-              payload={{ address: state.account }} 
+          </Col>
+          <Col>
+            Vote:
+          <Vote func={'balanceOf'}
+              payload={{ address: state.account }}
             />
-          </div>
-        </div>
-      </div>
-
-      {/*<div className="photo">
-        <img src={Person} />
-  </div>*/}
-
-
+          </Col>
+          {/*<div className="photo">
+              <img src={Person} />
+            </div>*/}
+        </Jumbotron>
+      </Row>
     </div>
   );
 }

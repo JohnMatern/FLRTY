@@ -5,7 +5,8 @@ import { Box } from "@material-ui/core";
 import IsLoggedin from './utils/IsLoggedin'
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Login, Home, AddUsername } from "./pages/index"
+import { Login, Home, AddUsername } from "./pages/index";
+import { Container, Row, Col } from 'react-bootstrap';
 import './style.scss';
 
 const App = () => {
@@ -19,31 +20,45 @@ const App = () => {
     <div className="app">
       <Store>
         <Box className="appBox">
-          <Header />
+          <Container fluid>
+            <Row>
+              <Col>
+                <Header />
+              </Col>
+            </Row>
 
-          <BrowserRouter>
-            <IsLoggedin />
-            <Switch>
-              <Route exact path="/login">
-                <Login />
-              </Route>
+            <Row>
+              <Col className="h-100">
+                <BrowserRouter>
+                  <IsLoggedin />
+                  <Switch>
+                    <Route exact path="/login">
+                      <Login />
+                    </Route>
 
-              <Route exact path="/">
-                <Home />
-              </Route>
+                    <Route exact path="/">
+                      <Home />
+                    </Route>
 
-              <Route exact path="/addUsername">
-              <AddUsername />
-              </Route>
+                    <Route exact path="/addUsername">
+                      <AddUsername />
+                    </Route>
 
-              <Route path="/menu">
-                <div>Menu</div>
-              </Route>
+                    <Route path="/menu">
+                      <div>Menu</div>
+                    </Route>
 
-            </Switch>
-          </BrowserRouter>
+                  </Switch>
+                </BrowserRouter>
+              </Col>
+            </Row>
 
-          <Footer />
+            <Row>
+              <Col>
+                <Footer />
+              </Col>
+            </Row>
+          </Container>
         </Box>
       </Store>
     </div>

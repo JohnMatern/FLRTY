@@ -1,9 +1,9 @@
-import { Moki } from '../components/index.js'
+import { Moki } from '../components/index.js';
 
 const Home = () => {
 
   return (
-    <div className="page">
+    <div>
       <Moki func={'transfer'} />
     </div>
   );
