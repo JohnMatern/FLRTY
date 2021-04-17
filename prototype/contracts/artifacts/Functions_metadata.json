@@ -11,17 +11,16 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
-					}
-				],
-				"name": "isOwner",
-				"outputs": [
+					},
 					{
-						"internalType": "bool",
+						"internalType": "uint256",
 						"name": "",
-						"type": "bool"
+						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
+				"name": "mintInitToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -32,15 +31,29 @@
 						"type": "address"
 					}
 				],
-				"name": "isUser",
-				"outputs": [
+				"name": "pushUser",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "removeCommunityRestriction",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
 					{
-						"internalType": "bool",
+						"internalType": "address",
 						"name": "",
-						"type": "bool"
+						"type": "address"
 					}
 				],
-				"stateMutability": "view",
+				"name": "setWhitelist",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -57,7 +70,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FLRTY/prototype/contracts/UserData.sol": "Functions"
+			"FLRTY/prototype/contracts/Whitelist.sol": "Functions"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -71,12 +84,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"FLRTY/prototype/contracts/UserData.sol": {
-			"keccak256": "0x6d4030ddb84fa910c6447b9984487b331e65150ed6f249f919d156382f650f66",
+		"FLRTY/prototype/contracts/Whitelist.sol": {
+			"keccak256": "0x5d32b02ae0452d0e9e0923941bb6d8f65110485186ed82915050cd8fe450a087",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d1a3fb58e44bdb45cefa5ef98656e019b02bb332e4baa1e70b23adbc8f38e7cd",
-				"dweb:/ipfs/QmZjkxLSFEQL4QCYgmhbiaanUMxYmL2cuNzYzGFYDCjWfF"
+				"bzz-raw://a773608f1459a504d455b13c12c0adc0f57685e11804265b3fd241309cced2e2",
+				"dweb:/ipfs/QmSJkHSE3kXAFdVxYfXLzsdhnQ7d5ECaXnnwMMki8VFYUV"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

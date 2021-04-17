@@ -1,7 +1,7 @@
 import { Context } from '../../utils/Store'
 import { TxModal } from '../index'
 import { useEffect, useContext, useState } from 'react';
-import {MOKI} from '../../utils/ContractData'
+import { MOKI } from '../../utils/ContractData'
 let regex = /^(?:[0-9]\d+|\d)(?:\.\d{0,2})?$/;
 
 // General:
@@ -26,24 +26,39 @@ let regex = /^(?:[0-9]\d+|\d)(?:\.\d{0,2})?$/;
 const Moki = (props) => {
   const [state, dispatch] = useContext(Context);
   const [returnValue, setReturnValue] = useState(<></>);
-  const [error, setError] = useState('');
+  const [errorAddress, setErrorAddress] = useState(' ');
+  const [errorAmount, setErrorAmount] = useState(' ');
   const [btnDisabled, setbtnDisabled] = useState(true);
   const [recipient, setRecipient] = useState('');
   const [amount, setAmount] = useState('');
 
+
   const changeHandler = async (e) => {
+    e.preventDefault();
     console.log("onChange")
     switch (e.target.name) {
+      
       case 'recipient':
         let newRecipient = e.target.value;
-        if (!state.web3.utils.isAddress(newRecipient) || !state.web3.utils.isAddress(await state.userdata.methods.getAddress(newRecipient).call())) {
-          setError('invalid recipient')
-        } else {
-          setError('');
-        }
-        setRecipient(e.target.value);
-        console.log("recipient: "+recipient)
+        setRecipient(newRecipient);
+        setTimeout( async () => {
+          if (newRecipient.includes('0x')) {
+            if (!state.web3.utils.isAddress(newRecipient)) {
+              setErrorAddress('invalid recipient')
+            } else {
+              setErrorAddress('')
+            }
+          } else {
+            let nameAddress = await state.userdata.methods.resolveName(newRecipient).call();
+            if (nameAddress === "0x0000000000000000000000000000000000000000") {
+              setErrorAddress('invalid recipient')
+            } else {
+              setErrorAddress('');
+            }
+          }
+        }, 1000)
         break;
+      
       case 'amount':
         let newValue = e.target.value;
         if (e.target.value.includes(',')) {
@@ -51,29 +66,35 @@ const Moki = (props) => {
         }
 
         if (regex.test(newValue) && newValue > 0.00) {
-          setError('')
+          setErrorAmount('')
           let balance = await balanceOf(state.account);
-          if (newValue > balance) setError('insufficient funds.')
+          if (newValue > balance) setErrorAmount('insufficient funds.')
         } else {
-          setError('invalid amount.');
+          setErrorAmount('invalid amount.');
         }
         setAmount(newValue);
         break;
       default:
-        setError('Err: 101');
+        setErrorAddress('Err: 101');
         break;
     }
-    if(error === '') {
-      setbtnDisabled(false);
-    }
+
+    setTimeout(() => {
+      console.log("btn")
+      if (errorAddress === '' && errorAmount === '') {
+        setbtnDisabled(false);
+      } else {
+        setbtnDisabled(true);
+      }
+    }, 1000)
 
   }
 
   const transfer = async () => {
-    const data = state.moki.methods.transfer(state.account, amount*100).encodeABI();
-    const args = {from: state.account, to: MOKI, data};
+    const data = state.moki.methods.transfer(state.account, amount * 100).encodeABI();
+    const args = { from: state.account, to: MOKI, data };
+    await dispatch({ type: 'SET_TX', payload: args });
     await dispatch({ type: 'SET_MODAL', payload: true });
-    await dispatch({ type: 'SET_TX', payload: args});
   }
 
   const balanceOf = async (address) => {
@@ -105,8 +126,9 @@ const Moki = (props) => {
                   name="recipient"
                   value={recipient}
                   onChange={changeHandler}
-                />
-              </p><p>
+                /><div className="error">{errorAddress}</div>
+              </p>
+              <p>
                 <label className="label">
                   Moki:
             </label>  &nbsp; &nbsp;
@@ -121,9 +143,9 @@ const Moki = (props) => {
                   senden
             </button>
               </p>
-              <p className="error">{error}</p>
+              <p className="error">{errorAmount}</p>
             </div>
-            {state.modal && <TxModal/>}
+            {state.modal && <TxModal />}
           </>);
           break;
 
@@ -135,7 +157,7 @@ const Moki = (props) => {
 
   useEffect(async () => {
     renderReturn();
-  },[state.tx, state.init, recipient, amount])
+  }, [state.tx, state.init, recipient, amount, errorAmount, errorAddress, btnDisabled])
 
 
   return (
