@@ -100,6 +100,11 @@ const Reducer = (state, action) => {
 				...state,
 				tx: action.payload
 			}
+		case 'SET_INPUTUSERADDRESS':
+		return {
+			... state,
+			inputAddress: action.payload
+		}
 		default:
 			return state;
 	}
