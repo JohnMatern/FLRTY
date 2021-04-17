@@ -22,7 +22,8 @@ const initialState = {
     isAdmin: false,
     modal: false,
     tx: '',
-    error: ''
+    error: '',
+    inputUserAddress: '',
 };
 
 const Store = ({children}) => {

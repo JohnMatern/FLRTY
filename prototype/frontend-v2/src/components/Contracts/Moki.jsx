@@ -1,5 +1,5 @@
 import { Context } from '../../utils/Store'
-import { TxModal } from '../index'
+import { TxModal, UserAddressField } from '../index'
 import { useEffect, useContext, useState } from 'react';
 import { MOKI } from '../../utils/ContractData'; 
 let regex = /^(?:[0-9]\d+|\d)(?:\.\d{0,2})?$/;
@@ -37,28 +37,6 @@ const Moki = (props) => {
     e.preventDefault();
     console.log("onChange")
     switch (e.target.name) {
-      
-      case 'recipient':
-        let newRecipient = e.target.value;
-        setRecipient(newRecipient);
-        setTimeout( async () => {
-          if (newRecipient.includes('0x')) {
-            if (!state.web3.utils.isAddress(newRecipient)) {
-              setErrorAddress('invalid recipient')
-            } else {
-              setErrorAddress('')
-            }
-          } else {
-            let nameAddress = await state.userdata.methods.resolveName(newRecipient).call();
-            if (nameAddress === "0x0000000000000000000000000000000000000000") {
-              setErrorAddress('invalid recipient')
-            } else {
-              setErrorAddress('');
-            }
-          }
-        }, 1000)
-        break;
-      
       case 'amount':
         let newValue = e.target.value;
         if (e.target.value.includes(',')) {
@@ -78,10 +56,9 @@ const Moki = (props) => {
         setErrorAddress('Err: 101');
         break;
     }
-
     setTimeout(() => {
       console.log("btn")
-      if (errorAddress === '' && errorAmount === '') {
+      if (errorAddress !== '' && errorAmount !== '') {
         setbtnDisabled(false);
       } else {
         setbtnDisabled(true);
@@ -90,8 +67,13 @@ const Moki = (props) => {
 
   }
 
+  const isDisabled = () => {
+    return (state.inputUserAddress === '' &&  errorAmount !== '')
+  }
+
+
   const transfer = async () => {
-    const data = state.moki.methods.transfer(state.account, amount * 100).encodeABI();
+    const data = state.moki.methods.transfer(state.inputUserAddress, amount * 100).encodeABI();
     const args = { from: state.account, to: MOKI, data };
     await dispatch({ type: 'SET_TX', payload: args });
     await dispatch({ type: 'SET_MODAL', payload: true });
@@ -120,13 +102,7 @@ const Moki = (props) => {
                 <label className="label">
                   An:
             </label>&nbsp; &nbsp;
-                <input
-                  className="input input-long"
-                  type="text"
-                  name="recipient"
-                  value={recipient}
-                  onChange={changeHandler}
-                /><div className="error">{errorAddress}</div>
+                <UserAddressField />
               </p>
               <p>
                 <label className="label">
@@ -139,7 +115,7 @@ const Moki = (props) => {
                   value={amount}
                   onChange={changeHandler}
                 /> &nbsp; &nbsp;
-                <button className="btn" onClick={transfer} disabled={btnDisabled}>
+                <button className="btn" onClick={transfer} disabled={isDisabled()}>
                   senden
             </button>
               </p>
