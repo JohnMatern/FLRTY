@@ -1,7 +1,7 @@
 import { Context } from '../../utils/Store'
 import { TxModal, UserAddressField } from '../index'
 import { useEffect, useContext, useState } from 'react';
-import { MOKI } from '../../utils/ContractData'
+import { MOKI } from '../../utils/ContractData'; 
 let regex = /^(?:[0-9]\d+|\d)(?:\.\d{0,2})?$/;
 
 // General:

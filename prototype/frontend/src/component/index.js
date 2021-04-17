@@ -12,5 +12,6 @@ import Receive from './Receive'
 import NewProject from './NewProject'
 
 
+export { Header, Footer, LoadBalance, Send, MustWhitelist, ProjectList, TxModal, Menubar, AccountInfo, Project, Receive}; 
 
 export { Header, Footer, LoadBalance, Send, MustWhitelist, ProjectList, TxModal, Menubar, AccountInfo, Project, Receive, NewProject}; 
