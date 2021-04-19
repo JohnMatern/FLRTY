@@ -2,14 +2,13 @@ import { RiCheckboxCircleFill } from 'react-icons/ri';
 import { HiXCircle } from 'react-icons/hi';
 import { VscLoading } from 'react-icons/vsc';
 import { useEffect, useContext, useState } from 'react';
-import { Context } from '../../utils/Store'
+import { Context } from '../../../utils/Store'
 let regex = /^(?:[0-9]\d+|\d)(?:\.\d{0,2})?$/;
 
 const MokiInputField = () => {
   const [state, dispatch] = useContext(Context);
   const [amount, setAmount] = useState('');
   const [img, setImg] = useState('');
-
 
   const changeHandler = async (e) => {
     e.preventDefault();
@@ -23,19 +22,18 @@ const MokiInputField = () => {
       if (regex.test(newValue) && newValue > 0.00) {
         let balance = (await state.moki.methods.balanceOf(state.account).call() / 100
         ).toFixed(2);
-        if (newValue*100 > balance*100) {
+        if (newValue * 100 > balance * 100) {   // amount > balance
           setImg(<HiXCircle />)
           dispatch({ type: 'SET_INPUTMOKIVALUE', payload: '' });
         } else {
           setImg(<RiCheckboxCircleFill />);
           dispatch({ type: 'SET_INPUTMOKIVALUE', payload: newValue })
         }
-      } else {
+      } else {    // wrong input 
         setImg(<HiXCircle />);
         dispatch({ type: 'SET_INPUTMOKIVALUE', payload: '' });
       }
     }, 1000)
-
   }
 
   useEffect(async () => {
@@ -44,7 +42,8 @@ const MokiInputField = () => {
 
 
   return (
-    <>
+    <div>
+      <label className="label">Moki: &nbsp;</label>
       <input
         className="input input-short"
         type="number"
@@ -54,7 +53,7 @@ const MokiInputField = () => {
         onFocus={() => setImg(<VscLoading />)}
         onBlur={() => { if (amount === '') setImg(''); }}
       /> <div className={"formStatusIcon"}>{img}</div>
-    </>
+    </div>
   );
 }
 

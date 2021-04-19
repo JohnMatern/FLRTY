@@ -2,7 +2,7 @@
 import Login from './Login';
 import Home from './Home';
 import AddUsername from './AddUsername'
-//import Whitelist from './Whitelist'
+import Register from './Register'
 //import Menu from './Menu'
 //import Wallet from './Wallet'
 //import SingleProject from './SingleProject'
@@ -13,7 +13,7 @@ export {
     Login,
     Home,
     AddUsername,
-    //Whitelist,
+    Register,
     //Wallet,
     //Menu,
     //SingleProject,

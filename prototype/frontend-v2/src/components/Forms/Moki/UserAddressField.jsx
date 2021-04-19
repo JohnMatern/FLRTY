@@ -2,7 +2,7 @@ import { RiCheckboxCircleFill } from 'react-icons/ri';
 import { HiXCircle } from 'react-icons/hi';
 import { VscLoading } from 'react-icons/vsc';
 import { useEffect, useContext, useState } from 'react';
-import { Context } from '../../utils/Store'
+import { Context } from '../../../utils/Store'
 
 const UserAddressField = () => {
   const [state, dispatch] = useContext(Context);
@@ -41,7 +41,8 @@ const UserAddressField = () => {
   }
 
   return (
-    <>
+    <div>
+    <label className="label">User: &nbsp;</label>
       <input
         className="input input-long"
         type="text"
@@ -51,7 +52,7 @@ const UserAddressField = () => {
         onFocus={() => setImg(<VscLoading />)}
         onBlur={() => {if(recipient === '') setImg('');} }
       /> <div className={"formStatusIcon"}>{img}</div>
-    </>
+    </div>
   );
 }
 

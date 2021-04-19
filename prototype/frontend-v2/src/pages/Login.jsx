@@ -101,7 +101,9 @@ function Login() {
         await finished(dispatch);
     },[]);
 
-    if(isInit && state.account !== null && state.username === null) {
+    if(isInit && state.account !== null && !state.isUser) {
+        return <Redirect push to="/register" />
+    } else if(isInit && state.account !== null && state.username === "") {
         return <Redirect push to="/addUsername" />
     } else if(isInit) {
         return <Redirect push to="/" />

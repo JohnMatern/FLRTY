@@ -5,7 +5,7 @@ import { Box } from "@material-ui/core";
 import IsLoggedin from './utils/IsLoggedin'
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Login, Home, AddUsername } from "./pages/index";
+import { Login, Home, AddUsername, Register } from "./pages/index";
 import { Container, Row, Col } from 'react-bootstrap';
 import './style.scss';
 
@@ -43,6 +43,11 @@ const App = () => {
                     <Route exact path="/addUsername">
                       <AddUsername />
                     </Route>
+
+                    <Route exact path="/register">
+                      <Register />
+                    </Route>
+
 
                     <Route path="/menu">
                       <div>Menu</div>

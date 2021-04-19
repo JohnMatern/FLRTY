@@ -30,4 +30,11 @@ body {
   margin-bottom: 0px;
   min-height: -webkit-fill-available;
 
+  .formDiv {
+    display: inline-block;
+    .formStatusIcon {
+      display: inline-block;
+    }
+  }
+
 }

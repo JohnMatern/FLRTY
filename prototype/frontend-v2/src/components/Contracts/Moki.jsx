@@ -57,21 +57,11 @@ const Moki = (props) => {
         case 'transfer':
           setReturnValue(<>
             <div className="formDiv">
-              <p>
-                <label className="label">
-                  An:
-            </label>&nbsp; &nbsp;
-                <UserAddressField />
-              </p>
-              <p>
-                <label className="label">
-                  Moki:
-            </label>  &nbsp; &nbsp;
-              <MokiInputField />&nbsp; &nbsp;
-                <button className="btn" onClick={transfer} disabled={isDisabled()}>
-                  senden
+              <UserAddressField />
+              <MokiInputField />
+              <button className="btn" onClick={transfer} disabled={isDisabled()}>
+                senden
             </button>
-              </p>
             </div>
             {state.modal && <TxModal />}
           </>);

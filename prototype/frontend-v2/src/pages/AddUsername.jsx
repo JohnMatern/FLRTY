@@ -1,15 +1,10 @@
-import { Context } from '../utils/Store'
-import { useEffect, useContext } from 'react';
+import { UserData } from '../components/index'
 
 const AddUsername = () => {
-    const [state, dispatch] = useContext(Context);
-    useEffect( async () => {
-        //console.log(await UserData(state, 'getAddress', 'kurt'))
-    })
-
     return (
         <div className="page">
-            AddUsername
+            <h6>Please add new username:</h6>
+            <UserData func={'setName'} />
         </div>
     );
 }
