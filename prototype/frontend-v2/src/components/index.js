@@ -7,6 +7,7 @@ import Vote from './Contracts/Vote'
 import TxModal from './Modals/TxModal'
 // Form Stuff
 import UserAddressField from './Forms/UserAddressField'
+import MokiInputField from './Forms/MokiInputField'
 
 
 export {
@@ -19,4 +20,5 @@ export {
     TxModal,
 
     UserAddressField,
+    MokiInputField,
 }

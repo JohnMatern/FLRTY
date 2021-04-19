@@ -40,7 +40,7 @@ const Header = () => {
             />
           </Col>
           <Col>
-            Vote:
+            Vote: &nbsp;
           <Vote func={'balanceOf'}
               payload={{ address: state.account }}
             />

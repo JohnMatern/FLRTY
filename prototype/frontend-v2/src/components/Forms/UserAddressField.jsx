@@ -4,7 +4,7 @@ import { VscLoading } from 'react-icons/vsc';
 import { useEffect, useContext, useState } from 'react';
 import { Context } from '../../utils/Store'
 
-const AddressField = () => {
+const UserAddressField = () => {
   const [state, dispatch] = useContext(Context);
   const [recipient, setRecipient] = useState('');
   const [img, setImg] = useState('');
@@ -34,7 +34,7 @@ const AddressField = () => {
           dispatch({ type: 'SET_INPUTUSERADDRESS', payload: '' });
         } else {
           setImg(<RiCheckboxCircleFill />);
-          dispatch({ type: 'SET_INPUTUSERADDRESS', payload: newRecipient });
+          dispatch({ type: 'SET_INPUTUSERADDRESS', payload: nameAddress });
         }
       }
     }, 1000)
@@ -55,4 +55,4 @@ const AddressField = () => {
   );
 }
 
-export default AddressField;
+export default UserAddressField;

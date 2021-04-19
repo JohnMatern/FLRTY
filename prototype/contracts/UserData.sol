@@ -53,7 +53,10 @@ contract UserData is EIP712MetaTransaction {
         return friends[user];
     }
 
-    function setName(string memory name) external onlyUser {
+    function setName(string memory name_) external onlyUser {
+        string memory name = _toLower(name_);
+        require(resolveName[name] == address(0x0),"name already exist");
+        require(keccak256(bytes(resolveAddress[msgSender()])) == keccak256(bytes("")),"address already has username");
         resolveName[name] = msgSender();
         resolveAddress[msgSender()] = name;
     }
@@ -61,11 +64,26 @@ contract UserData is EIP712MetaTransaction {
         return resolveAddress[user];
     }
     function getAddress(string memory user) external view returns (address) {
-        return resolveName[user];
+        return resolveName[_toLower(user)];
     }
 
     function setWhitelist(address newWhitelist) public onlyWhitelist {
         whitelist = newWhitelist;
+    }
+    
+   function _toLower(string memory str) internal pure returns (string memory) {
+        bytes memory bStr = bytes(str);
+        bytes memory bLower = new bytes(bStr.length);
+        for (uint i = 0; i < bStr.length; i++) {
+            // Uppercase character...
+            if ((uint8(bStr[i]) >= 65) && (uint8(bStr[i]) <= 90)) {
+                // So we add 32 to make it lowercase
+                bLower[i] = bytes1(uint8(bStr[i]) + 32);
+            } else {
+                bLower[i] = bStr[i];
+            }
+        }
+        return string(bLower);
     }
     
 }

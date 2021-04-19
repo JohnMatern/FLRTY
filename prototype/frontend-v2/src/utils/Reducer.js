@@ -103,8 +103,13 @@ const Reducer = (state, action) => {
 		case 'SET_INPUTUSERADDRESS':
 		return {
 			... state,
-			inputAddress: action.payload
+			inputUserAddress: action.payload
 		}
+		case 'SET_INPUTMOKIVALUE':
+			return {
+				...state,
+				inputMokiValue: action.payload
+			}
 		default:
 			return state;
 	}

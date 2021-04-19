@@ -24,6 +24,7 @@ const initialState = {
     tx: '',
     error: '',
     inputUserAddress: '',
+    inputMokiValue: '',
 };
 
 const Store = ({children}) => {

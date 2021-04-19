@@ -3,7 +3,7 @@ import { Moki } from '../components/index.js';
 const Home = () => {
 
   return (
-    <div>
+    <div className="page">
       <Moki func={'transfer'} />
     </div>
   );

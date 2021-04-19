@@ -287,7 +287,7 @@
 				"inputs": [
 					{
 						"internalType": "string",
-						"name": "name",
+						"name": "name_",
 						"type": "string"
 					}
 				],
@@ -370,11 +370,11 @@
 	},
 	"sources": {
 		"FLRTY/prototype/contracts/UserData.sol": {
-			"keccak256": "0x6d4030ddb84fa910c6447b9984487b331e65150ed6f249f919d156382f650f66",
+			"keccak256": "0xb96ee7d4589523ca153bf0e77a9e3c6a725a4b94bd219ff4903c7a8eb2f3a955",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d1a3fb58e44bdb45cefa5ef98656e019b02bb332e4baa1e70b23adbc8f38e7cd",
-				"dweb:/ipfs/QmZjkxLSFEQL4QCYgmhbiaanUMxYmL2cuNzYzGFYDCjWfF"
+				"bzz-raw://3bc877bd828dd9d7ade6955efa3936090a5d9c6ab129380d56f6dcd0ab7bff2e",
+				"dweb:/ipfs/QmZNpdjgTUf4H5ri9RKuEcX7yiAtDdbaNbvQgAiT5M1Hfr"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

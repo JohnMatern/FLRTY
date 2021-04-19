@@ -1,8 +1,8 @@
 import { Context } from '../../utils/Store'
-import { TxModal, UserAddressField } from '../index'
+import { TxModal, UserAddressField, MokiInputField } from '../index'
 import { useEffect, useContext, useState } from 'react';
-import { MOKI } from '../../utils/ContractData'; 
-let regex = /^(?:[0-9]\d+|\d)(?:\.\d{0,2})?$/;
+import { MOKI } from '../../utils/ContractData';
+
 
 // General:
 // props:
@@ -26,54 +26,13 @@ let regex = /^(?:[0-9]\d+|\d)(?:\.\d{0,2})?$/;
 const Moki = (props) => {
   const [state, dispatch] = useContext(Context);
   const [returnValue, setReturnValue] = useState(<></>);
-  const [errorAddress, setErrorAddress] = useState(' ');
-  const [errorAmount, setErrorAmount] = useState(' ');
-  const [btnDisabled, setbtnDisabled] = useState(true);
-  const [recipient, setRecipient] = useState('');
-  const [amount, setAmount] = useState('');
-
-
-  const changeHandler = async (e) => {
-    e.preventDefault();
-    console.log("onChange")
-    switch (e.target.name) {
-      case 'amount':
-        let newValue = e.target.value;
-        if (e.target.value.includes(',')) {
-          newValue = e.target.value.replace(',', '.');
-        }
-
-        if (regex.test(newValue) && newValue > 0.00) {
-          setErrorAmount('')
-          let balance = await balanceOf(state.account);
-          if (newValue > balance) setErrorAmount('insufficient funds.')
-        } else {
-          setErrorAmount('invalid amount.');
-        }
-        setAmount(newValue);
-        break;
-      default:
-        setErrorAddress('Err: 101');
-        break;
-    }
-    setTimeout(() => {
-      console.log("btn")
-      if (errorAddress !== '' && errorAmount !== '') {
-        setbtnDisabled(false);
-      } else {
-        setbtnDisabled(true);
-      }
-    }, 1000)
-
-  }
 
   const isDisabled = () => {
-    return (state.inputUserAddress === '' &&  errorAmount !== '')
+    return ((state.inputUserAddress === '' || state.inputMokiValue === ''))
   }
 
-
   const transfer = async () => {
-    const data = state.moki.methods.transfer(state.inputUserAddress, amount * 100).encodeABI();
+    const data = state.moki.methods.transfer(state.inputUserAddress, state.inputMokiValue * 100).encodeABI();
     const args = { from: state.account, to: MOKI, data };
     await dispatch({ type: 'SET_TX', payload: args });
     await dispatch({ type: 'SET_MODAL', payload: true });
@@ -108,18 +67,11 @@ const Moki = (props) => {
                 <label className="label">
                   Moki:
             </label>  &nbsp; &nbsp;
-            <input
-                  className="input input-short"
-                  type="number"
-                  name="amount"
-                  value={amount}
-                  onChange={changeHandler}
-                /> &nbsp; &nbsp;
+              <MokiInputField />&nbsp; &nbsp;
                 <button className="btn" onClick={transfer} disabled={isDisabled()}>
                   senden
             </button>
               </p>
-              <p className="error">{errorAmount}</p>
             </div>
             {state.modal && <TxModal />}
           </>);
@@ -133,7 +85,7 @@ const Moki = (props) => {
 
   useEffect(async () => {
     renderReturn();
-  }, [state.tx, state.init, recipient, amount, errorAmount, errorAddress, btnDisabled])
+  }, [state.tx, state.init, state.inputUserAddress, state.inputMokiValue])
 
 
   return (
