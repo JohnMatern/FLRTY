@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="page">
       <Moki func={'transfer'} />
-    </div>
+          </div>
   );
 }
 

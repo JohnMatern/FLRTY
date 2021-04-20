@@ -48,7 +48,6 @@ const App = () => {
                       <Register />
                     </Route>
 
-
                     <Route path="/menu">
                       <div>Menu</div>
                     </Route>
