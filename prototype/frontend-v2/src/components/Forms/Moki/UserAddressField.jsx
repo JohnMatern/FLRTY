@@ -28,7 +28,7 @@ const UserAddressField = () => {
           dispatch({ type: 'SET_INPUTUSERADDRESS', payload: newRecipient });
         }
       } else {
-        let nameAddress = await state.userdata.methods.resolveName(newRecipient).call();
+        let nameAddress = await state.userdata.methods.resolveName(newRecipient.toLowerCase()).call();
         if (nameAddress === "0x0000000000000000000000000000000000000000") {
           setImg(<HiXCircle />)
           dispatch({ type: 'SET_INPUTUSERADDRESS', payload: '' });
