@@ -24,7 +24,7 @@ const App = () => {
   return (
     <div className="app">
       <Store>
-        <Box className="appBox" style={{ width: "400px", padding: "10px", minHeight: windowHeight }}>
+        <Box className="appBox" style={{ width: "400px", padding: "0px", minHeight: windowHeight }}>
           <Container fluid className="d-flex flex-column h-100">
             <Row>
               <Col className="border-bottom">
@@ -32,7 +32,7 @@ const App = () => {
               </Col>
             </Row>
             <BrowserRouter>
-              <Row className="h-100" style={{ fontSize: "10px", marginTop:"10px" }}>
+              <Row className="h-100" style={{ fontSize: "10px", marginTop:"10px", marginBottom:"50px" }}>
                 <Col className="h-100">
                   <center>
 
@@ -71,8 +71,8 @@ const App = () => {
                 </Col>
               </Row>
               <Row>
-                <Col className="mt-auto border-top"
-                  style={{ height: "40px" }}>
+                <Col className=""
+                  style={{ height: "40px", bottom: "0", margin: "0", padding: "0", position: "fixed", width: "400px", backgroundColor: "white" }}>
                   <Footer />
                 </Col>
               </Row>

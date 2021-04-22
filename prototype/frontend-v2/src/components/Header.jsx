@@ -21,7 +21,7 @@ const Header = () => {
   }, [state])
 
   return (
-    <div className="text-secondary" style={{fontSize: "13px"}}>
+    <div className="text-secondary" style={{fontSize: "13px", padding: "10px"}}>
       <Row>
         <Row>
           <Col className="inline-block col">

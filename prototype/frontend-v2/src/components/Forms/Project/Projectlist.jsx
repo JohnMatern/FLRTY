@@ -48,8 +48,8 @@ const Projectlist = () => {
         <tr key={c.project} onClick={() => {projectClick(c.project)}}>
             <td>{c.projectName}</td>
             <td style={{width: "120px"}}>
-              <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style={{width: c.percentage}} aria-valuenow={c.votes} aria-valuemin="0" aria-valuemax="100%">{c.votes}/{c.minVotes}</div>
+              <div className="progress">
+                <div className="progress-bar bg-success" role="progressbar" style={{width: c.percentage}} aria-valuenow={c.votes} aria-valuemin="0" aria-valuemax="100%">{c.votes}/{c.minVotes}</div>
               </div>
             </td>
             <td>{new Date(c.endDate * 1000).toLocaleDateString('de-DE', dateOptions)}</td>
