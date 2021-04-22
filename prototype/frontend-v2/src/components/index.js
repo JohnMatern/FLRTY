@@ -5,6 +5,7 @@ import Moki from './Contracts/Moki'
 import Vote from './Contracts/Vote'
 import UserData from './Contracts/UserData'
 import Whitelist from './Contracts/Whitelist'
+import Project from './Contracts/Project'
 // Modals
 import TxModal from './Modals/TxModal'
 // Form Stuff
@@ -21,6 +22,7 @@ export {
     Vote,
     UserData,
     Whitelist,
+    Project,
 
     TxModal,
 

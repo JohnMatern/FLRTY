@@ -5,6 +5,7 @@ import Web3 from "web3";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import * as CD from '../utils/ContractData'
+import { useHistory } from "react-router-dom";
 
 let provider = '';
 let web3 = '';
@@ -92,6 +93,7 @@ const finished = async (dispatch) => {
 }
 
 function Login() {
+    let history = useHistory();
     const [state, dispatch] = useContext(Context);
     const [isInit, setInit] = useState(false);
 

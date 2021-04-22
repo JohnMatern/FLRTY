@@ -1,11 +1,11 @@
-import { Moki } from '../components/index.js';
+import { Project } from '../components/index.js';
 
 const Home = () => {
 
   return (
     <div className="page">
-      <Moki func={'transfer'} />
-          </div>
+      <Project func={'getProjects'} />
+    </div>
   );
 }
 

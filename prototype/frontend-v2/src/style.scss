@@ -8,7 +8,6 @@ $lightGrey: rgb(204, 202, 202);
 @mixin main($color) {
   background-color: $color;
   width: calc(100vw);
-  max-width: 400px;
 }
 
 body {

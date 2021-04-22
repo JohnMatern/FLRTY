@@ -4,7 +4,7 @@ import { useEffect, useContext, useState } from 'react';
 import Person from '../media/person.png';
 import { Moki, Vote } from './index';
 import { Container, Row, Col, Jumbotron } from 'react-bootstrap';
-import { ReactComponent as Logo } from '../media/flarity.svg';
+import logo from '../media/flarity.svg';
 
 const Header = () => {
   const [state, dispatch] = useContext(Context);
@@ -21,34 +21,43 @@ const Header = () => {
   }, [state])
 
   return (
-    <div>
+    <div className="text-secondary" style={{fontSize: "13px"}}>
       <Row>
-        <Jumbotron>
-          <Col>
-            <Logo />
+        <Row>
+          <Col className="inline-block col">
+            <img src={logo} style={{ width: "200px" }} />
           </Col>
-          <Col>
-            Adresse: &nbsp; {address}
+          <Col className="inline-block">
+            <Row>
+              <Col style={{width: "100px"}}><strong>Name</strong></Col>
+              <Col className="align-left"><strong>{username}</strong></Col>
+            </Row>
+            <Row>
+              <Col><strong>Moki</strong></Col>
+              <Col>
+              <strong><Moki 
+                  func={'balanceOf'} 
+                  payload={{ address: state.account }}
+                /></strong>
+              </Col>
+            </Row>
+            <Row>
+              <Col><strong>Vote</strong></Col>
+              <Col>
+              <strong><Vote 
+                  func={'balanceOf'}
+                  payload={{ address: state.account }}
+                /></strong>
+              </Col>
+            </Row>
           </Col>
-          <Col>
-            Name: &nbsp; {username}
-          </Col>
-          <Col>
-            Moki: &nbsp;
-          <Moki func={'balanceOf'}
-              payload={{ address: state.account }}
-            />
-          </Col>
-          <Col>
-            Vote: &nbsp;
-          <Vote func={'balanceOf'}
-              payload={{ address: state.account }}
-            />
-          </Col>
-          {/*<div className="photo">
+        </Row>
+        <center>
+        <strong style={{color: "lightgrey"}}>Adresse: &nbsp; {address}</strong>
+        </center>
+        {/*<div className="photo">
               <img src={Person} />
             </div>*/}
-        </Jumbotron>
       </Row>
     </div>
   );

@@ -1,24 +1,23 @@
 import { Context } from '../../utils/Store'
-import NameInput from '../Forms/Userdata/NameInput';
+import Projectlist from '../Forms/Project/Projectlist';
+import SingleProject from '../Forms/Project/SingleProject'
 import { useEffect, useContext, useState } from 'react';
 
-const template = (props) => {
+const Project = (props) => {
   const [state, dispatch] = useContext(Context);
   const [returnValue, setReturnValue] = useState(<></>);
 
   const renderReturn = async () => {
     if (state.init) {
       switch (props.func) {
-        case 'setName':         // argument: string
+        case 'getProjects':         // argument: string
           setReturnValue(
-            <div className="formDiv">
-              <NameInput />
-            </div>
+              <Projectlist />
           );
           break;
-        case 'getAddress':      // argument: name, returns: address
+        case 'getSingleProject':      // argument: name, returns: address
           setReturnValue(
-            state.userdata.methods.getName(props.payload.name).call()
+            <SingleProject />
           );
           break;
         default:
@@ -37,4 +36,4 @@ const template = (props) => {
   );
 }
 
-export default template;
+export default Project;
