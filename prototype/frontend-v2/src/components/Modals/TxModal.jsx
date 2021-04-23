@@ -22,27 +22,25 @@ const TxModal = (props) => {
   }
 
   useEffect(async () => {
-    setTimeout(async () => {
-      state.web3.eth.sendTransaction(state.tx)
-        .on("transactionHash", async (h) => {
-          console.log("tx hash received");
-          setHash(h);
-          setMessage(<p>View on <a href={`https://rinkeby.etherscan.io/tx/${hash}`} target="_blank">etherscan</a></p>);
-        })
-        .on("confirmation", async () => {
-          console.log("tx success");
-          setHeading('Success');
-          setImg(success);
-          setBtnDisabled(false);
-        })
-        .on("error", async (error) => {
-          console.log("tx error");
-          setHeading('Error');
-          setMessage(<><p>Ooops.. something went wrong</p><p>View on <a href={`https://rinkeby.etherscan.io/tx/${hash}`} target="_blank">etherscan</a></p></>)
-          setImg(err);
-          setBtnDisabled(false);
-        })
-    }, 5000);
+    state.web3.eth.sendTransaction(state.tx)
+      .on("transactionHash", async (h) => {
+        console.log("tx hash received");
+        setHash(h);
+        setMessage(<p>View on <a href={`https://rinkeby.etherscan.io/tx/${hash}`} target="_blank">etherscan</a></p>);
+      })
+      .on("confirmation", async () => {
+        console.log("tx success");
+        setHeading('Success');
+        setImg(success);
+        setBtnDisabled(false);
+      })
+      .on("error", async (error) => {
+        console.log("tx error");
+        setHeading('Error');
+        setMessage(<><p>Ooops.. something went wrong</p><p>View on <a href={`https://rinkeby.etherscan.io/tx/${hash}`} target="_blank">etherscan</a></p></>)
+        setImg(err);
+        setBtnDisabled(false);
+      })
   }, [])
 
   return (

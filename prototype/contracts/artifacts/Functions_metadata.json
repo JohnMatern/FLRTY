@@ -6,21 +6,16 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
+				"inputs": [],
+				"name": "getVoteSupply",
+				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "mintInitToken",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -31,16 +26,15 @@
 						"type": "address"
 					}
 				],
-				"name": "pushUser",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "removeCommunityRestriction",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "isManager",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -51,9 +45,15 @@
 						"type": "address"
 					}
 				],
-				"name": "setWhitelist",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "isOwner",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -70,7 +70,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FLRTY/prototype/contracts/Whitelist.sol": "Functions"
+			"FLRTY/prototype/contracts/Store.sol": "Functions"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -84,12 +84,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"FLRTY/prototype/contracts/Whitelist.sol": {
-			"keccak256": "0x5d32b02ae0452d0e9e0923941bb6d8f65110485186ed82915050cd8fe450a087",
+		"FLRTY/prototype/contracts/Store.sol": {
+			"keccak256": "0xac9b337c6ce11e8da3599f2a09f357fff85e962ec443eb7331789d03295d5d50",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a773608f1459a504d455b13c12c0adc0f57685e11804265b3fd241309cced2e2",
-				"dweb:/ipfs/QmSJkHSE3kXAFdVxYfXLzsdhnQ7d5ECaXnnwMMki8VFYUV"
+				"bzz-raw://4a248cf6a0f70469e942e6250da6fa952cf4898c5e7860a1e6b72310d17e82a6",
+				"dweb:/ipfs/QmRTjGZak2M96xu5L9LHqKdd3z9FbP5gJYJseg4ew5BjH6"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

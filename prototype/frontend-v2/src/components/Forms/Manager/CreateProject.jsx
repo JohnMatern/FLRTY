@@ -28,8 +28,11 @@ const AddProject = () => {
       weeks
     ).encodeABI();
     const args = { from: state.account, to: MANAGER, data };
-    await dispatch({ type: 'SET_MODAL', payload: true });
     await dispatch({ type: 'SET_TX', payload: args });
+    await dispatch({ type: 'SET_MODAL', payload: true });
+    setTimeout(async () => {
+      await dispatch({ type: 'SET_MODAL', payload: true });
+    },1000)
   }
 
   const onChangeHandler = (e) => {
