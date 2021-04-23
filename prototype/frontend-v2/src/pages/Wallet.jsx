@@ -1,7 +1,9 @@
+import { Moki } from '../components/index'
+
 const Wallet = () => {
   return (
     <div>
-      Wallet
+     <Moki func={"transfer"} />
     </div>
   );
 }

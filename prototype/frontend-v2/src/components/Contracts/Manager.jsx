@@ -1,25 +1,20 @@
 import { Context } from '../../utils/Store'
 import Projectlist from '../Forms/Project/Projectlist';
 import SingleProject from '../Forms/Project/SingleProject'
-import AddProject from '../Forms/Manager/CreateProject'
+import CreateProject from '../Forms/Manager/CreateProject'
 import { useEffect, useContext, useState } from 'react';
 
-const Project = (props) => {
+const Manager = (props) => {
   const [state, dispatch] = useContext(Context);
   const [returnValue, setReturnValue] = useState(<></>);
 
   const renderReturn = async () => {
     if (state.init) {
       switch (props.func) {
-        case 'getProjects':         // argument: string
+        case 'createProject':
           setReturnValue(
-              <Projectlist />
-          );
-          break;
-        case 'getSingleProject':      // argument: name, returns: address
-          setReturnValue(
-            <SingleProject />
-          );
+            <CreateProject />
+          )
           break;
         default:
           setReturnValue(<>Error</>);
@@ -37,4 +32,4 @@ const Project = (props) => {
   );
 }
 
-export default Project;
+export default Manager;

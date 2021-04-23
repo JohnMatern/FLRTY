@@ -1,7 +1,9 @@
+import { MenuComponent } from '../components/index.js'
+
 const Menu = () => {
   return (
     <div>
-      Menu
+      <MenuComponent />
     </div>
   );
 }

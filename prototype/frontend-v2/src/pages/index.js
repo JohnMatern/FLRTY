@@ -6,13 +6,13 @@ import Register from './Register'
 import Wallet from './Wallet'
 import Menu from './Menu'
 import ProjectPage from './ProjectPage'
+import NewProject from './NewProject'
 //import Menu from './Menu'
 //import Wallet from './Wallet'
 //import SingleProject from './SingleProject'
 //import MyProjects from './MyProjects'
 
 export {
-    //Projects,
     Login,
     Home,
     AddUsername,
@@ -20,8 +20,5 @@ export {
     Wallet,
     Menu,
     ProjectPage,
-    //Wallet,
-    //Menu,
-    //SingleProject,
-    //MyProjects
+    NewProject,
 }
