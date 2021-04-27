@@ -2,6 +2,7 @@ import { Context } from '../../utils/Store'
 import { TxModal, UserAddressField, MokiInputField } from '../index'
 import { useEffect, useContext, useState } from 'react';
 import { MOKI } from '../../utils/ContractData';
+import UserQrCode from '../General/UserQrCode'; 
 
 
 // General:
@@ -66,6 +67,12 @@ const Moki = (props) => {
             {state.modal && <TxModal />}
           </>);
           break;
+
+        case 'receive': 
+            setReturnValue(<>
+              <UserQrCode />
+            </>); 
+            break; 
 
         default:
           setReturnValue(<>Error</>);
