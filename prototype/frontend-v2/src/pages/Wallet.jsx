@@ -1,5 +1,6 @@
 import { Moki } from '../components/index'
 import { Accordion, Card } from 'react-bootstrap';
+import QrCodeReader from '../components/General/QrCodeReader'; 
 
 const Wallet = () => {
   return (
@@ -14,6 +15,7 @@ const Wallet = () => {
           <Accordion.Collapse eventKey="0">
             <Card.Body>
               {<Moki func={"transfer"} />}
+              {<QrCodeReader />}
             </Card.Body>
 
           </Accordion.Collapse>
