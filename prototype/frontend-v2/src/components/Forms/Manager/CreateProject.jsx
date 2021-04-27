@@ -4,7 +4,7 @@ import { Context } from '../../../utils/Store'
 import { MANAGER } from '../../../utils/ContractData';
 import { TxModal } from '../../index'
 
-const AddProject = () => {
+const CreateProject = () => {
   const [state, dispatch] = useContext(Context);
   const [init, setInit] = useState(false);
   const [img, setImg] = useState("");
@@ -159,4 +159,4 @@ const AddProject = () => {
   );
 }
 
-export default AddProject;
+export default CreateProject;
