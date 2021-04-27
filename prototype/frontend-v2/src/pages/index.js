@@ -7,6 +7,7 @@ import Wallet from './Wallet'
 import Menu from './Menu'
 import ProjectPage from './ProjectPage'
 import NewProject from './NewProject'
+import NewGroup from './NewGroup'
 //import Menu from './Menu'
 //import Wallet from './Wallet'
 //import SingleProject from './SingleProject'
@@ -21,4 +22,6 @@ export {
     Menu,
     ProjectPage,
     NewProject,
+    NewGroup,
+    
 }

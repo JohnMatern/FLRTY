@@ -1,7 +1,6 @@
 import { Context } from '../../utils/Store'
-import Projectlist from '../Forms/Project/Projectlist';
-import SingleProject from '../Forms/Project/SingleProject'
 import CreateProject from '../Forms/Manager/CreateProject'
+import CreateGroup from '../Forms/Manager/CreateGroup'
 import { useEffect, useContext, useState } from 'react';
 
 const Manager = (props) => {
@@ -16,6 +15,11 @@ const Manager = (props) => {
             <CreateProject />
           )
           break;
+          case 'createGroup':
+            setReturnValue(
+              <CreateGroup />
+            )
+            break;
         default:
           setReturnValue(<>Error</>);
       }

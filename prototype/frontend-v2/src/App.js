@@ -5,7 +5,7 @@ import { Box } from "@material-ui/core";
 import IsLoggedin from './utils/IsLoggedin'
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Login, Home, AddUsername, Register, Wallet, Menu, ProjectPage, NewProject } from "./pages/index";
+import { Login, Home, AddUsername, Register, Wallet, Menu, ProjectPage, NewProject, NewGroup } from "./pages/index";
 import { Container, Row, Col } from 'react-bootstrap';
 import './style.scss';
 
@@ -32,7 +32,7 @@ const App = () => {
               </Col>
             </Row>
             <BrowserRouter>
-              <Row className="h-100" style={{ fontSize: "10px", marginTop:"10px", marginBottom:"50px" }}>
+              <Row className="h-100" style={{ fontSize: "10px", marginTop: "10px", marginBottom: "50px" }}>
                 <Col className="h-100">
                   <center>
 
@@ -68,6 +68,10 @@ const App = () => {
 
                       <Route path="/newProject">
                         <NewProject />
+                      </Route>
+
+                      <Route path="/newGroup">
+                        <NewGroup />
                       </Route>
 
                     </Switch>
