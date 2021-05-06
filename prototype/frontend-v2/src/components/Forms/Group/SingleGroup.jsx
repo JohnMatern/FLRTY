@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom'
 
 // const ProjectPage = () => {
 //   let { address } = useParams();
-const SingleProject = () => {
+const SingleGroup = () => {
   let { address } = useParams();
   const [state, dispatch] = useContext(Context);
   const [code, setCode] = useState("");
@@ -59,9 +59,49 @@ const SingleProject = () => {
         <h5 className="card-title">Special title treatment</h5>
         <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
         <a href="#" className="btn btn-primary">Go somewhere</a>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        a<br />
+        <br />
+        <br />
+        b<br />
+        <br />
+        <br />
+        <br />
+        c<br />
+        <br />
+        <br />
+        <br />
+        d<br />
+        <br />
+        <br />
+        <br />
+        e<br />
+        <br />
+        <br />
+        <br />
+        f<br />
+        <br />
+        <br />
+        <br />
+        <br />
+        g<br />
+        <br />
+        <br />
+        <br />
+        h
       </div>
     </div>
   );
 }
 
-export default SingleProject;
+export default SingleGroup;

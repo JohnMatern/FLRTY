@@ -1,7 +1,5 @@
 import { Context } from '../../utils/Store'
-import Projectlist from '../Forms/Project/Projectlist';
-import SingleProject from '../Forms/Project/SingleProject'
-import AddProject from '../Forms/Manager/CreateProject'
+import { Projectlist, SingleProject, MyProjectlist } from '../Forms/Project/index'
 import { useEffect, useContext, useState } from 'react';
 
 const Project = (props) => {
@@ -11,16 +9,24 @@ const Project = (props) => {
   const renderReturn = async () => {
     if (state.init) {
       switch (props.func) {
+
         case 'getProjects':         // argument: string
           setReturnValue(
-              <Projectlist />
+            <Projectlist />
           );
           break;
+
         case 'getSingleProject':      // argument: name, returns: address
           setReturnValue(
             <SingleProject />
           );
           break;
+
+        case 'getMyProjects':
+          setReturnValue(
+            <MyProjectlist />
+          )
+
         default:
           setReturnValue(<>Error</>);
       }

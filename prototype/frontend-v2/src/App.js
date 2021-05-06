@@ -5,7 +5,7 @@ import { Box } from "@material-ui/core";
 import IsLoggedin from './utils/IsLoggedin'
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Login, Home, AddUsername, Register, Wallet, Menu, ProjectPage, NewProject, NewGroup } from "./pages/index";
+import { Login, Home, AddUsername, Register, Wallet, Menu, ProjectPage, NewProject, NewGroup, MyProjects, MyGroups } from "./pages/index";
 import { Container, Row, Col } from 'react-bootstrap';
 import './style.scss';
 
@@ -72,6 +72,14 @@ const App = () => {
 
                       <Route path="/newGroup">
                         <NewGroup />
+                      </Route>
+
+                      <Route path="/myProjcts">
+                        <MyProjects />
+                      </Route>
+
+                      <Route path="/myProjcts">
+                        <MyGroups />
                       </Route>
 
                     </Switch>

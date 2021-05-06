@@ -1,31 +1,31 @@
 import { Context } from '../../utils/Store'
-import { CreateProject, EditProject } from '../Forms/Project/index'
-import { CreateGroup } from '../Forms/Group/index'; 
+import { Grouplist, SingleGroup, MyGrouplist } from '../Forms/Group/index'
 import { useEffect, useContext, useState } from 'react';
 
-const Manager = (props) => {
+const Group = (props) => {
   const [state, dispatch] = useContext(Context);
   const [returnValue, setReturnValue] = useState(<></>);
 
   const renderReturn = async () => {
     if (state.init) {
       switch (props.func) {
-        case 'createProject':
+        case 'getGroups':         // argument: string
           setReturnValue(
-            <CreateProject />
-          )
+            <Grouplist />
+          );
+          break;
+        case 'getSingleGroup':      // argument: name, returns: address
+          setReturnValue(
+            <SingleGroup />
+          );
           break;
 
-          case 'editProject': 
+        case 'getMyGroups':      // argument: name, returns: address
           setReturnValue(
-            <EditProject /> 
-          )
-          break; 
-          case 'createGroup':
-            setReturnValue(
-              <CreateGroup />
-            )
-            break;
+            <MyGrouplist />
+          );
+          break;
+
         default:
           setReturnValue(<>Error</>);
       }
@@ -42,4 +42,4 @@ const Manager = (props) => {
   );
 }
 
-export default Manager;
+export default Group;

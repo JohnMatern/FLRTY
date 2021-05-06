@@ -6,6 +6,7 @@ import Vote from './Contracts/Vote'
 import UserData from './Contracts/UserData'
 import Whitelist from './Contracts/Whitelist'
 import Project from './Contracts/Project'
+import Group from './Contracts/Group'
 import Manager from './Contracts/Manager'
 // Modals
 import TxModal from './Modals/TxModal'
@@ -25,6 +26,7 @@ export {
     UserData,
     Whitelist,
     Project,
+    Group, 
     Manager,
 
     TxModal,
