@@ -1,6 +1,8 @@
 import { Context } from '../../utils/Store'
 import { CreateProject, EditProject } from '../Forms/Project/index'
 import { CreateGroup } from '../Forms/Group/index'; 
+import Vote from '../Forms/Manager/Vote'
+import EndProject from '../Forms/Manager/EndProject'
 import { useEffect, useContext, useState } from 'react';
 
 const Manager = (props) => {
@@ -24,6 +26,16 @@ const Manager = (props) => {
           case 'createGroup':
             setReturnValue(
               <CreateGroup />
+            )
+            break;
+          case 'vote':
+            setReturnValue(
+              <Vote address={props.address}/>
+            )
+            break;
+          case "endProject":
+            setReturnValue(
+              <EndProject address={props.address}/>
             )
             break;
         default:

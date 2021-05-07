@@ -1,66 +1,95 @@
-import { RiCheckboxCircleFill } from 'react-icons/ri';
-import { HiXCircle } from 'react-icons/hi';
-import { VscLoading } from 'react-icons/vsc';
 import { useEffect, useContext, useState } from 'react';
 import { Context } from '../../../utils/Store'
 import { CircularProgress } from '@material-ui/core';
 import { useParams } from 'react-router-dom'
-
+import { Manager } from '../../index'
+import {BiEditAlt} from 'react-icons/bi'
 // const ProjectPage = () => {
 //   let { address } = useParams();
-const SingleProject = () => {
+const SingleProject = (props) => {
   let { address } = useParams();
   const [state, dispatch] = useContext(Context);
-  const [code, setCode] = useState("");
-  const [img, setImg] = useState("");
-  const [btnDisabled, setBtnDisabled] = useState(true);
 
-  const [title, setTitle] = useState(address);
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("")
+  const [group, setGroup] = useState("");
+  const [groupMember, setGroupMember] = useState("");
+  const [creator, setCreator] = useState("");
 
-  const changeHandler = async (e) => {
-    e.preventDefault();
-    let newValue = e.target.value;
-    setCode(newValue);
-    setImg(<VscLoading />)
-    setTimeout(async () => {
-
-      if (!true) {
-        setImg(<HiXCircle />) // code invalid
-        setBtnDisabled(true);
-      } else {
-        setImg(<RiCheckboxCircleFill />);
-        setBtnDisabled(false);
+  const loadData = async () => {
+    let projectName = await state.project.methods.getName(address).call();
+    let projectDesc = await state.project.methods.getDesc(address).call();
+    let projectGroup = await state.project.methods.getGroup(address).call();
+    let groupName = await state.group.methods.getName(projectGroup).call();
+    let userList = await state.group.methods.getUserList(projectGroup).call();
+    let creator = await state.project.methods.getCreator(address).call();
+    let userNames = [];
+    for (let i = 0; i < userList.length; i++) {
+      if (userList[i] != "0x0000000000000000000000000000000000000000") {
+        let username = await state.userdata.methods.getName(userList[i]).call();
+        userNames.push(username);
       }
-    }, 1000)
-  }
-
-  const send = async () => {
-    const data = state.whitelist.methods.addUserByCode(code).encodeABI();
-    const args = { from: state.account, to: '', data };
-    await dispatch({ type: 'SET_TX', payload: args });
-    await dispatch({ type: 'SET_MODAL', payload: true });
+    }
+    console.log(userNames)
+    setGroupMember(userNames.join());
+    setTitle(projectName);
+    setDesc(projectDesc);
+    setGroup(groupName);
+    setCreator(creator)
   }
 
   useEffect(async () => {
+    if (!address) {
+      address = props.address;
+    }
+    if (address) {
+      loadData();
+    }
+  })
 
-  }, [code, img, btnDisabled])
-
-  if (title === '') {
+  if (title === '' && desc == '') {
     return (
       <CircularProgress />
     )
   }
   return (
-    <div className="card">
-      <div className="card-header">
-        {title}
+    <>
+      <div style={{ color: "lightgrey" }}>
+        {props.address}
       </div>
-      <div className="card-body">
-        <h5 className="card-title">Special title treatment</h5>
-        <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" className="btn btn-primary">Go somewhere</a>
+      <div className="card">
+        <div className="card-header">
+          {title} {creator === state.account && <BiEditAlt />}
+        </div>
+        <div className="card-body">
+          <p className="card-text">
+            <table style={{width: "100%"}}>
+              <tr>
+                Erstellt durch: {group} <br />
+              </tr>
+              <tr>
+                Mitglieder: {groupMember}
+              </tr>
+              <tr>
+                &nbsp;
+              </tr>
+              <tr>
+                Beschreibung: {creator === state.account && <BiEditAlt />}
+              </tr>
+              <tr>
+                &nbsp;
+              </tr>
+              <tr>
+                {desc}
+              </tr>
+            </table>
+          </p>
+          <Manager func="vote" address={props.address} />
+          <br />
+          <Manager func="endProject" address={props.address} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -108,8 +108,7 @@ contract Manager is EIP712MetaTransaction {
              ((FunctionsM(store()).getVoteHistory(project, msgSender())+1)**2 == amount)
         ));
         FunctionsM(vote()).transferToken(msgSender(), project, amount);
-        uint256 voteAmount = FunctionsM(store()).getVoteHistory(project, msgSender());
-        FunctionsM(store()).addVoteHistory(project, msgSender(), voteAmount+1);
+        FunctionsM(store()).addVoteHistory(project, msgSender(), 1);
     }
 
     function endProject(address project) public {

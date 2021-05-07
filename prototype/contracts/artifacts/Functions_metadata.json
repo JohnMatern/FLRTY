@@ -1,18 +1,24 @@
 {
 	"compiler": {
-		"version": "0.7.6+commit.7338295f"
+		"version": "0.7.4+commit.3f05b770"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"name": "getVoteSupply",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "isAdmin",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "bool",
 						"name": "",
-						"type": "uint256"
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -45,7 +51,7 @@
 						"type": "address"
 					}
 				],
-				"name": "isOwner",
+				"name": "isUser",
 				"outputs": [
 					{
 						"internalType": "bool",
@@ -70,7 +76,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FLRTY/prototype/contracts/Store.sol": "Functions"
+			"FLRTY/prototype/contracts/DeployProject.sol": "Functions"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -84,12 +90,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"FLRTY/prototype/contracts/Store.sol": {
-			"keccak256": "0xac9b337c6ce11e8da3599f2a09f357fff85e962ec443eb7331789d03295d5d50",
+		"FLRTY/prototype/contracts/DeployProject.sol": {
+			"keccak256": "0xd90e8984b738a9cbe6c2642e59a42030fcf9f4a909486143f036c1b3845c1a7e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4a248cf6a0f70469e942e6250da6fa952cf4898c5e7860a1e6b72310d17e82a6",
-				"dweb:/ipfs/QmRTjGZak2M96xu5L9LHqKdd3z9FbP5gJYJseg4ew5BjH6"
+				"bzz-raw://e8c4c8989a815117bc5ced6bba2569ed8531ca9b01adbbe9926d6a910d7510b8",
+				"dweb:/ipfs/QmX6SCKU3tctVnbupvAQuGiNZr7adfwxf8jmajXDN5m6AD"
+			]
+		},
+		"FLRTY/prototype/contracts/Project.sol": {
+			"keccak256": "0xd27313e49f36012f9ebecbeca5313b1f45331b6e5bb53c7cd1da51fff8521104",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a1069e26c3e07a55a9fcd7f99e9f18d3453324e69caa75d0049dd8fcd9557ec3",
+				"dweb:/ipfs/QmTqiWqh7hzEPd7wvAvVSofxQDhV95kcDKZw5Z1F8FT12P"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

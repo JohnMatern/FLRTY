@@ -10,7 +10,7 @@ const QrCodeReader = () => {
     }
 
     const handleScan = (result) => {
-        console.log(result); 
+       // console.log(result); 
         setData(result); 
     }
 
@@ -20,6 +20,7 @@ const QrCodeReader = () => {
                 delay={100}
                 onError={handleError}
                 onScan={handleScan}
+                style={{width: "250px"}}
             />
         </div>
     )

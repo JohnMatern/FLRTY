@@ -16,9 +16,9 @@ const Project = (props) => {
           );
           break;
 
-        case 'getSingleProject':      // argument: name, returns: address
+        case 'getSingleProject':
           setReturnValue(
-            <SingleProject />
+            <SingleProject address={props.address} />
           );
           break;
 

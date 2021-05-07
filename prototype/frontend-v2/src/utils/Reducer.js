@@ -101,10 +101,10 @@ const Reducer = (state, action) => {
 				tx: action.payload
 			}
 		case 'SET_INPUTUSERADDRESS':
-		return {
-			... state,
-			inputUserAddress: action.payload
-		}
+			return {
+				...state,
+				inputUserAddress: action.payload
+			}
 		case 'SET_INPUTMOKIVALUE':
 			return {
 				...state,

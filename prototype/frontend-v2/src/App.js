@@ -66,19 +66,11 @@ const App = () => {
                         <ProjectPage />
                       </Route>
 
-                      <Route path="/newProject">
-                        <NewProject />
-                      </Route>
-
-                      <Route path="/newGroup">
-                        <NewGroup />
-                      </Route>
-
-                      <Route path="/myProjcts">
+                      <Route path="/myProjects">
                         <MyProjects />
                       </Route>
 
-                      <Route path="/myProjcts">
+                      <Route path="/myGroups">
                         <MyGroups />
                       </Route>
 

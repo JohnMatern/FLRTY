@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.7.6+commit.7338295f"
+		"version": "0.7.4+commit.3f05b770"
 	},
 	"language": "Solidity",
 	"output": {
@@ -322,11 +322,11 @@
 	},
 	"sources": {
 		"FLRTY/prototype/contracts/Manager.sol": {
-			"keccak256": "0x8cc5bedfe14b5547005fba7b438707b01e2430afeea9617331ed5e8e7f880781",
+			"keccak256": "0x385235b95699696ef6d9cf0b68bc079f799edc2b60bb860864a8cbea3816b6bf",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a76ff6734c3f6ce6ec3a8b85a11472f5228f5ef085f934dd9964535fee8dd930",
-				"dweb:/ipfs/QmXhU4gfYgupSV1sAnj1cYiyR8ebYMJXnEFqjujR3M4xMo"
+				"bzz-raw://b0099accb620da8178f6969b41e8845fc4bd66aed5dd7c59194c4664aa6db1a6",
+				"dweb:/ipfs/QmaUB2tmDhG84p7MdgsHhyF9fcT3HkxbkmmbSQ7wWtRWpN"
 			]
 		},
 		"FLRTY/prototype/contracts/lib/EIP712Base.sol": {

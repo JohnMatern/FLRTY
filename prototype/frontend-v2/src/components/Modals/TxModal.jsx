@@ -45,17 +45,21 @@ const TxModal = (props) => {
 
   return (
     <>
-      <div className="txModal">
+      <div className="txModal" style={{width: "300px", height: "400px"}}>
         <Dialog
           open={state.modal}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
+          classes= {{
+            minHeight: "400px",
+            minWidth: "300px"
+          }}
         >
           <DialogTitle id="alert-dialog-title">{heading}</DialogTitle>
 
           <DialogContent>
-            <div>
+            <div style={{width: "300px", height: "250px"}}>
               <center>
                 <img src={img} alt="img" style={{ height: "120px", width: "120px" }} /> <br />
                 {message} <br />
