@@ -11,8 +11,10 @@ const CreateGroup = () => {
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [name, setName] = useState("");
   const [des, setDes] = useState("");
+  const [lock, setLock] = useState(true);
 
   const sendTx = async () => {
+    setLock(false)
     const data = state.manager.methods.createGroup(
       name, 
       des
@@ -22,6 +24,7 @@ const CreateGroup = () => {
     await dispatch({ type: 'SET_MODAL', payload: true });
     setTimeout(async () => {
       await dispatch({ type: 'SET_MODAL', payload: true });
+      setLock(true)
     },1000)
   }
 
@@ -77,7 +80,7 @@ const CreateGroup = () => {
           <textarea className="form-control" id="shortDesc" rows="4" onChange={onChangeHandler}></textarea>
         </div>
         <button className="btn" onClick={sendTx} disabled={btnDisabled}>absenden</button>
-      {state.modal && <TxModal />}
+      {!lock && state.modal && <TxModal />}
     </div >
   );
 }

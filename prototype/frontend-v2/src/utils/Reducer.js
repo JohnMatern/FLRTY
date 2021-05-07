@@ -95,11 +95,16 @@ const Reducer = (state, action) => {
 				...state,
 				modal: action.payload
 			}
-		case 'SET_TX':
-			return {
-				...state,
-				tx: action.payload
-			}
+			case 'SET_TX':
+				return {
+					...state,
+					tx: action.payload
+				}		
+			case 'SET_TXLOCK':
+				return {
+					...state,
+					tx: action.payload
+				}
 		case 'SET_INPUTUSERADDRESS':
 			return {
 				...state,

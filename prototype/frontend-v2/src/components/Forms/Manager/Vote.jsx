@@ -11,8 +11,10 @@ const Vote = (props) => {
   const [btnDisabled, setBtnDisabled] = useState(true)
   const [toggleRefresh, setToggleRefresh] = useState(state.modal);
   const [canVote, setCanVote] = useState(false);
+  const [lock, setLock] = useState(true);
 
   const vote = async () => {
+    setLock(false)
     const data = state.manager.methods.voteForProject(props.address, toVote).encodeABI();
     const args = { from: state.account, to: MANAGER, data };
     await dispatch({ type: 'SET_TX', payload: args });
@@ -29,6 +31,7 @@ const Vote = (props) => {
   }
 
   const loadData = async () => {
+    setLock(true)
     let blockNumber = await state.web3.eth.getBlockNumber();
     let timestamp = await state.web3.eth.getBlock(blockNumber);
     let endDate = await state.project.methods.getEndDate(props.address).call();
@@ -79,7 +82,7 @@ const Vote = (props) => {
           </td> </>}
         </tr>
       </td>
-      {state.modal && <TxModal />}
+      {!lock && state.modal && <TxModal />}
     </div>
   );
 }

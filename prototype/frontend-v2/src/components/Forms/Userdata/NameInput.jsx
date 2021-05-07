@@ -11,6 +11,7 @@ const NameInput = () => {
   const [name, setName] = useState("");
   const [img, setImg] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
+  const [lock, setLock] = useState(true);
 
   const changeHandler = async (e) => {
     e.preventDefault();
@@ -34,6 +35,7 @@ const NameInput = () => {
   }
 
   const setNameTx = async () => {
+    setLock(false)
     const data = state.userdata.methods.setName(name.toLowerCase()).encodeABI();
     const args = { from: state.account, to: USERDATA, data };
     await dispatch({ type: 'SET_TX', payload: args });
@@ -41,7 +43,7 @@ const NameInput = () => {
   }
 
   useEffect(async () => {
-    
+    setLock(true)
   }, [name, img, btnDisabled])
 
 
@@ -60,7 +62,7 @@ const NameInput = () => {
     <button className="btn" onClick={setNameTx} disabled={btnDisabled}>
       senden
   </button>
-  {state.modal && <TxModal />}
+  {!lock && state.modal && <TxModal />}
   </div>
   );
 }

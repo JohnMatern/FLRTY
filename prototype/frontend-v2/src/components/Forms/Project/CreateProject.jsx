@@ -16,8 +16,10 @@ const CreateProject = () => {
   const [weeks, setWeeks] = useState("");
   const [grouplist, setGrouplist] = useState([]);
   const [groupNames, setGroupNames] = useState([]);
+  const [lock, setLock] = useState(true);
 
   const sendTx = async () => {
+    setLock(false)
     let grpAddr = await grouplist.filter((g) => {return g.name == group})[0].address;
     
     const data = state.manager.methods.createProject(
@@ -98,6 +100,7 @@ const CreateProject = () => {
       setInit(true);
     }
     manageButton();
+    setLock(true)
   }, [name, des, weeks, votes, group, btnDisabled])
 
   if (!init) {
@@ -154,7 +157,7 @@ const CreateProject = () => {
           </select>
         </div>
         <button className="btn" onClick={sendTx} disabled={btnDisabled}>absenden</button>
-      {state.modal && <TxModal />}
+      {!lock && state.modal && <TxModal />}
     </div >
   );
 }

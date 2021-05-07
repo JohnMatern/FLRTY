@@ -11,6 +11,7 @@ const AddUserByCode = () => {
   const [code, setCode] = useState("");
   const [img, setImg] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
+  const [lock, setLock] = useState(true);
 
   const changeHandler = async (e) => {
     e.preventDefault();
@@ -30,6 +31,7 @@ const AddUserByCode = () => {
   }
 
   const send = async () => {
+    setLock(false)
     const data = state.whitelist.methods.addUserByCode(code).encodeABI();
     const args = { from: state.account, to: WHITELIST, data };
     await dispatch({ type: 'SET_TX', payload: args });
@@ -37,7 +39,7 @@ const AddUserByCode = () => {
   }
 
   useEffect(async () => {
-    
+    setLock(true)
   }, [code, img, btnDisabled])
 
 
@@ -56,7 +58,7 @@ const AddUserByCode = () => {
     <button className="btn" onClick={send} disabled={btnDisabled}>
       senden
   </button>
-  {state.modal && <TxModal />}
+  {!lock && state.modal && <TxModal />}
   </div>
   );
 }

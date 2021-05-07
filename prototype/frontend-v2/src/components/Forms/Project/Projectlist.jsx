@@ -119,8 +119,8 @@ const Projectlist = (props) => {
   }
 
   useEffect(async () => {
-    init();
-  }, [projectAddresses, data, loadProject, state.modal])
+    await init();
+  }, [loadProject, state.modal, data, projectAddresses])
 
   if (!content) {
     return (

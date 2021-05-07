@@ -22,6 +22,7 @@ const initialState = {
     isAdmin: false,
     modal: false,
     tx: '',
+    txlock: false,
     error: '',
     inputUserAddress: '',
     inputMokiValue: '',

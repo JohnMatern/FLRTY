@@ -22,6 +22,7 @@ const TxModal = (props) => {
   }
 
   useEffect(async () => {
+    console.log(state.txlock)
     state.web3.eth.sendTransaction(state.tx)
       .on("transactionHash", async (h) => {
         console.log("tx hash received");
@@ -45,13 +46,13 @@ const TxModal = (props) => {
 
   return (
     <>
-      <div className="txModal" style={{width: "300px", height: "400px"}}>
+      <div className="txModal" style={{ width: "300px", height: "400px" }}>
         <Dialog
           open={state.modal}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
-          classes= {{
+          classes={{
             minHeight: "400px",
             minWidth: "300px"
           }}
@@ -59,7 +60,7 @@ const TxModal = (props) => {
           <DialogTitle id="alert-dialog-title">{heading}</DialogTitle>
 
           <DialogContent>
-            <div style={{width: "300px", height: "250px"}}>
+            <div style={{ width: "300px", height: "250px" }}>
               <center>
                 <img src={img} alt="img" style={{ height: "120px", width: "120px" }} /> <br />
                 {message} <br />

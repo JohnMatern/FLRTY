@@ -27,16 +27,18 @@ import UserQrCode from '../General/UserQrCode';
 const Moki = (props) => {
   const [state, dispatch] = useContext(Context);
   const [returnValue, setReturnValue] = useState(<></>);
-
+  const [lock, setLock] = useState(true);
   const isDisabled = () => {
     return ((state.inputUserAddress === '' || state.inputMokiValue === ''))
   }
 
   const transfer = async () => {
+    setLock(false);
     const data = state.moki.methods.transfer(state.inputUserAddress, state.inputMokiValue * 100).encodeABI();
     const args = { from: state.account, to: MOKI, data };
     await dispatch({ type: 'SET_TX', payload: args });
     await dispatch({ type: 'SET_MODAL', payload: true });
+    setLock(true);
   }
 
   const balanceOf = async (address) => {
@@ -64,7 +66,7 @@ const Moki = (props) => {
                 senden
             </button>
             </div>
-            {state.modal && <TxModal />}
+            {!lock && state.modal && <TxModal />}
           </>);
           break;
 

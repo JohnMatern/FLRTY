@@ -6,8 +6,10 @@ import { TxModal } from '../../index'
 const EndProject = (props) => {
   const [state, dispatch] = useContext(Context);
   const [canEnd, setCanEnd] = useState(false);
+  const [lock, setLock] = useState(true);
 
   const end = async () => {
+    setLock(false)
     const data = state.manager.methods.endProject(props.address).encodeABI();
     const args = { from: state.account, to: MANAGER, data };
     await dispatch({ type: 'SET_TX', payload: args });
@@ -15,6 +17,7 @@ const EndProject = (props) => {
   }
 
   const init = async () => {
+    setLock(true)
     let blockNumber = await state.web3.eth.getBlockNumber();
     let timestamp = await state.web3.eth.getBlock(blockNumber);
     let endDate = await state.project.methods.getEndDate(props.address).call();
@@ -34,7 +37,7 @@ const EndProject = (props) => {
             <button className="" onClick={end}>
               beenden
            </button> </>}
-      {state.modal && <TxModal />}
+      {!lock && state.modal && <TxModal />}
     </div>
   );
 }
