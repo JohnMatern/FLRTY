@@ -100,6 +100,7 @@ const Projectlist = (props) => {
     setContent(tableRows);
   }
 
+  
   const init = async () => {
     console.log("init")
     if (state.modal != toggleRefresh) {
